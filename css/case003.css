@@ -1,0 +1,222 @@
+/* ============================================================
+   SIGAP — case003.css
+   CASE 003 "Link Palsu" — email mockup, URL inspector,
+   sandbox fake page, domain challenge. Prefix: .c3-
+   ============================================================ */
+
+/* ---------- Email mockup ---------- */
+.c3-email {
+  padding: 0;
+  overflow: hidden;
+  border-color: var(--color-border-strong);
+}
+.c3-email__chrome {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-3);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-1);
+  color: var(--color-cyan);
+  letter-spacing: 0.06em;
+}
+.c3-email__head {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  gap: var(--space-2);
+}
+.c3-email__row { font-size: var(--text-2); }
+.c3-email__k { color: var(--color-cyan); font-family: var(--font-mono); font-size: var(--text-1); margin-right: 0.4em; }
+.c3-email__body {
+  padding: var(--space-4) var(--space-3);
+  display: grid;
+  gap: var(--space-3);
+  background: var(--color-surface-2);
+}
+.c3-email__brand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: var(--text-3);
+}
+.c3-email__logo { font-size: 1.3em; margin-right: 0.35em; }
+
+/* Inspectable elements */
+.c3-inspect {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-2);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.c3-inspect:hover:not(:disabled),
+.c3-inspect:focus-visible {
+  border-color: var(--color-cyan);
+  background: var(--color-surface-3);
+}
+.c3-inspect:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 2px; }
+.c3-inspect:disabled { cursor: default; opacity: 0.85; }
+.c3-inspect-hint {
+  display: inline-block;
+  margin-left: var(--space-2);
+  font-size: var(--text-1);
+  font-family: var(--font-mono);
+  color: var(--color-amber);
+  white-space: nowrap;
+}
+
+/* Phishing CTA button (deliberately loud) */
+.c3-cta {
+  min-height: 48px;
+  padding: var(--space-2) var(--space-5);
+  justify-self: start;
+  background: #c62f2f;
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--text-2);
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  box-shadow: 0 2px 0 #7c1c1c;
+}
+.c3-cta:hover:not(:disabled) { filter: brightness(1.1); }
+.c3-cta:focus-visible { outline: 2px solid var(--color-amber); outline-offset: 2px; }
+
+/* ---------- URL boxes & segments ---------- */
+.c3-urlbox {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  word-break: break-all;
+  font-size: var(--text-2);
+}
+.c3-urlbox--seg { display: flex; flex-wrap: wrap; gap: 2px; }
+
+.c3-seg {
+  padding: 0 0.25em;
+  border-radius: 3px;
+  border-bottom: 2px solid transparent;
+}
+.c3-seg--proto { color: var(--color-text-muted, #8fa2b8); }
+.c3-seg--sub   { color: var(--color-amber); border-bottom-color: var(--color-amber); }
+.c3-seg--dom,
+.c3-seg--domain { color: var(--color-cyan); border-bottom-color: var(--color-cyan); font-weight: 700; }
+.c3-seg--tld   { color: var(--color-purple); border-bottom-color: var(--color-purple); }
+.c3-seg--path  { color: var(--color-text-muted, #8fa2b8); }
+
+/* ---------- URL Inspector (interactive) ---------- */
+.c3-urlbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-2);
+}
+.c3-urlseg {
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-2);
+  color: inherit;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  word-break: break-all;
+  transition: border-color 0.15s, background 0.15s;
+}
+.c3-urlseg:hover:not(:disabled) { border-color: var(--color-cyan); }
+.c3-urlseg:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 2px; }
+.c3-urlseg:disabled { opacity: 0.55; cursor: default; }
+.c3-urlseg--seen {
+  border-color: var(--color-cyan);
+  background: var(--color-surface-3);
+  box-shadow: inset 0 -2px 0 var(--color-cyan);
+}
+.c3-quizrow { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+
+/* ---------- Annotation / feedback notes ---------- */
+.c3-note {
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--color-cyan);
+  background: var(--color-surface-2);
+  border-radius: 0 var(--radius-2) var(--radius-2) 0;
+  font-size: var(--text-2);
+  display: grid;
+  gap: var(--space-1);
+}
+.c3-note--ok { border-left-color: var(--color-green); }
+.c3-note--warn { border-left-color: var(--color-amber); }
+
+.c3-list { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-1); }
+
+/* ---------- Sandbox fake page ---------- */
+.c3-fakepage {
+  padding: var(--space-3);
+  background: #f4f5f7;
+  color: #1b2330;
+  border-radius: var(--radius-2);
+  border: 1px solid var(--color-border-strong);
+  display: grid;
+  gap: var(--space-2);
+}
+.c3-fakepage .field__label { color: #3b4657; }
+.c3-fakepage input {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid #b8c0cc;
+  border-radius: var(--radius-1);
+  background: #fff;
+  color: #1b2330;
+  font: inherit;
+}
+.c3-fakepage__head {
+  font-weight: 700;
+  font-size: var(--text-3);
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid #c62f2f;
+  padding-bottom: var(--space-1);
+}
+.c3-fakepage--official .c3-fakepage__head { border-bottom-color: var(--color-green); }
+.c3-fakepage--official {
+  background: var(--color-surface-2);
+  color: inherit;
+}
+
+/* ---------- Comparison & challenge ---------- */
+.c3-compare {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+}
+.c3-compare .tag { justify-self: start; }
+.c3-choice-url { word-break: break-all; }
+
+/* ---------- Evidence selection ---------- */
+.c3-ev--picked {
+  border-color: var(--color-cyan) !important;
+  box-shadow: 0 0 0 2px var(--color-cyan);
+}
+
+/* ---------- Misc ---------- */
+.c3-tray { max-height: 60vh; overflow-y: auto; display: grid; gap: var(--space-2); }
+.c3-nav-row { gap: var(--space-2); flex-wrap: wrap; }
+.c3-nav-row[hidden] { display: none; }
+
+@media (max-width: 560px) {
+  .c3-urlseg { font-size: var(--text-1); }
+  .c3-email__body { padding: var(--space-3) var(--space-2); }
+}

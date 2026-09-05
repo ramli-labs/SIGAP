@@ -1,0 +1,361 @@
+/* ============================================================
+   SIGAP — game.css
+   Shared game visuals: chrome/topbar, backgrounds, terminal,
+   scan effects, case layout scaffolding, debrief.
+   ============================================================ */
+
+/* ---------- Background effects ---------- */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(55, 200, 221, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55, 200, 221, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -10%, rgba(31, 84, 122, 0.35), transparent 65%),
+    radial-gradient(ellipse 40% 35% at 85% 110%, rgba(76, 55, 128, 0.22), transparent 60%);
+  pointer-events: none;
+}
+.scanline {
+  position: fixed;
+  inset-inline: 0;
+  height: 2px;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, rgba(55, 200, 221, 0.25), transparent);
+  animation: scanMove 9s linear infinite;
+  pointer-events: none;
+}
+@keyframes scanMove {
+  from { top: -2px; }
+  to { top: 100dvh; }
+}
+
+/* ---------- App chrome (topbar) ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(7, 12, 20, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-divider);
+  min-height: 56px;
+}
+.topbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--text-sm);
+}
+.topbar__logo svg { width: 26px; height: 26px; }
+.topbar__crumb {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.topbar__spacer { flex: 1; }
+.topbar__agent {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-align: right;
+  line-height: 1.3;
+}
+.topbar__agent strong { color: var(--color-cyan); font-weight: 600; }
+.icon-btn {
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+.icon-btn:hover { color: var(--color-text); background: var(--color-surface-2); border-color: var(--color-border); }
+
+/* ---------- Screen scaffolding ---------- */
+.screen {
+  padding: var(--space-6) 0 var(--space-16);
+}
+.screen__header { margin-bottom: var(--space-6); }
+.screen__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  margin-bottom: var(--space-2);
+}
+.screen__title { font-size: var(--text-xl); }
+.screen__sub { color: var(--color-text-muted); margin-top: var(--space-2); font-size: var(--text-sm); }
+
+/* ---------- Terminal panel ---------- */
+.terminal {
+  background: var(--color-bg-deep);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  overflow: hidden;
+}
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-divider);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.terminal__bar::before {
+  content: '● ● ●';
+  color: var(--color-text-faint);
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+.terminal__body { padding: var(--space-4); overflow-x: auto; }
+.terminal__line { white-space: pre-wrap; word-break: break-word; }
+.terminal__prompt { color: var(--color-cyan); }
+
+/* ---------- Chat / message mockup ---------- */
+.chat-mock {
+  background: var(--color-bg-deep);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  max-width: 480px;
+}
+.chat-bubble {
+  justify-self: start;
+  max-width: 90%;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+}
+.chat-bubble__meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  margin-bottom: 2px;
+}
+.chat-attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-deep);
+  border: 1px dashed var(--color-amber-dim);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-amber);
+}
+
+/* ---------- Scan effect ---------- */
+.scan-target { position: relative; overflow: hidden; }
+.scan-target--active::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+  box-shadow: 0 0 14px rgba(55, 200, 221, 0.6);
+  animation: scanSweep 1.4s ease-in-out;
+  pointer-events: none;
+}
+@keyframes scanSweep {
+  from { top: 0; }
+  to { top: calc(100% - 3px); }
+}
+
+/* ---------- Investigation tokens ---------- */
+.token-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-amber);
+}
+.token-chip {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-amber);
+  display: inline-block;
+}
+.token-chip--used { border-color: var(--color-text-faint); opacity: 0.35; }
+
+/* ---------- Step indicator (OBSERVE→...→REFLECT) ---------- */
+.phase-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+}
+.phase-steps__item {
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+}
+.phase-steps__item--active {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan-dim);
+  background: rgba(55, 200, 221, 0.08);
+}
+.phase-steps__item--done { color: var(--color-green); border-color: var(--color-green-dim); }
+
+/* ---------- Debrief / feedback ---------- */
+.debrief-verdict {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  font-weight: 600;
+}
+.debrief-verdict--good { border-color: var(--color-green-dim); }
+.debrief-verdict--bad { border-color: var(--color-red-dim); }
+.debrief-verdict__icon { font-size: 1.4rem; flex: none; }
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--color-divider);
+  font-size: var(--text-sm);
+}
+.score-row:last-child { border-bottom: none; }
+.score-row__val { font-family: var(--font-mono); color: var(--color-cyan); }
+.score-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-weight: 700;
+}
+.score-total__val { font-family: var(--font-mono); font-size: var(--text-xl); color: var(--color-cyan); }
+
+/* ---------- Practice banner ---------- */
+.practice-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(232, 163, 61, 0.08);
+  border: 1px solid var(--color-amber-dim);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-amber);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Simulated-tool disclaimer ---------- */
+.sim-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-purple);
+  border: 1px dashed #4b3f8a;
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- PHANTOM glitch ---------- */
+.phantom-glitch { position: relative; }
+.phantom-glitch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(142, 123, 240, 0.05) 3px 4px
+  );
+  pointer-events: none;
+  animation: glitchShift 2.4s steps(6) infinite;
+}
+@keyframes glitchShift {
+  0%, 92% { transform: none; opacity: 1; }
+  94% { transform: translateX(-2px); opacity: 0.7; }
+  96% { transform: translateX(2px); opacity: 1; }
+  98% { transform: none; opacity: 0.85; }
+}
+
+/* ---------- Case complete cinematic ---------- */
+.case-complete-cine {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  background: rgba(4, 7, 13, 0.92);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 300ms ease-out;
+  text-align: center;
+  padding: var(--space-4);
+}
+.case-complete-cine__stamp {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  border: 3px solid var(--color-green);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-6);
+  transform: rotate(-4deg);
+  animation: stampIn 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes stampIn {
+  from { opacity: 0; transform: rotate(-4deg) scale(1.6); }
+  to { opacity: 1; transform: rotate(-4deg) scale(1); }
+}

@@ -1,0 +1,320 @@
+/* ============================================================
+   SIGAP — css/ai-lab.css
+   AI LABORATORY styles. Semua kelas diprefix .lab-
+   ============================================================ */
+
+/* ---------- Hub ---------- */
+.lab-hub-grid { align-items: stretch; }
+
+.lab-card { height: 100%; }
+.lab-card__top { align-items: center; }
+.lab-card__title {
+  font-size: var(--text-lg);
+  margin: 0;
+  color: var(--color-text);
+}
+.lab-card__brief { flex: 1; margin: 0; }
+.lab-card__stats { color: var(--color-text-muted); }
+
+.lab-hub-foot { margin-top: var(--space-4); }
+
+/* ---------- Label & header ---------- */
+.lab-sim-label { display: inline-block; margin: var(--space-2) 0; }
+
+.lab-screen .practice-banner { margin-top: var(--space-2); }
+
+/* ---------- LAB 01: urutan pola ---------- */
+.lab-seq {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--color-bg-deep, #05080f);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.lab-seq__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  font-size: 1.35rem;
+  letter-spacing: 2px;
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.lab-seq__chip--q {
+  color: var(--color-amber);
+  border-color: var(--color-amber-dim, #8a6423);
+  border-style: dashed;
+  font-weight: 700;
+}
+
+/* ---------- Opsi jawaban (dipakai lab01/02/03/04) ---------- */
+.lab-options { gap: var(--space-2); }
+
+.lab-option:disabled { cursor: default; opacity: 0.85; }
+.lab-option--correct {
+  border-color: var(--color-green);
+  background: rgba(79, 196, 127, 0.1);
+}
+.lab-option--correct .option-card__key {
+  color: var(--color-green);
+  border-color: var(--color-green);
+}
+.lab-option--wrong {
+  border-color: var(--color-red);
+  background: rgba(224, 86, 95, 0.1);
+}
+.lab-option--wrong .option-card__key {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+/* ---------- Panel umpan balik ---------- */
+.lab-feedback { border-left: 3px solid var(--color-border-strong); }
+.lab-feedback--ok { border-left-color: var(--color-green); }
+.lab-feedback--no { border-left-color: var(--color-red); }
+.lab-feedback__head {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- LAB 02: kartu data ---------- */
+.lab-count { color: var(--color-cyan); }
+
+.lab-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+.lab-cards--compact {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+.lab-datacard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.lab-datacard--bad { border-color: var(--color-red-dim, #7a2e33); }
+.lab-datacard__emoji { font-size: 2rem; line-height: 1; }
+.lab-datacard__name { font-size: var(--text-sm); }
+.lab-datacard__note { line-height: 1.35; }
+.lab-datacard__choices {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.lab-basket-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  background: var(--color-surface-3, var(--color-surface-2));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.lab-basket-btn:hover { border-color: var(--color-cyan-dim); color: var(--color-text); }
+.lab-basket-btn--on,
+.lab-basket-btn[aria-pressed='true'] {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  background: rgba(55, 200, 221, 0.1);
+}
+
+.lab-train-status { color: var(--color-cyan); }
+
+.lab-pred {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-3);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.lab-pred__emoji { font-size: 1.6rem; flex: none; line-height: 1.2; }
+.lab-pred__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.lab-lesson {
+  border-color: var(--color-amber-dim, #8a6423);
+  background: rgba(232, 163, 61, 0.06);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+/* ---------- LAB 03: bias ---------- */
+.lab-share-slider {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--color-cyan);
+  cursor: pointer;
+}
+.lab-share-slider:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.lab-bias-readout {
+  padding: var(--space-3);
+  background: var(--color-bg-deep, #05080f);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.lab-bias-group { gap: var(--space-1); }
+.lab-bias-overall {
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-border);
+}
+
+.lab-disclaimer {
+  color: var(--color-amber);
+  border: 1px dashed var(--color-amber-dim, #8a6423);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  margin: 0;
+}
+
+.lab-bias-flow { margin-top: var(--space-2); }
+
+/* ---------- LAB 04: konten & verdict ---------- */
+.lab-content-doc {
+  padding: var(--space-4);
+  background: var(--color-bg-deep, #05080f);
+  border: 1px solid var(--color-border-strong, var(--color-border));
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.lab-content-doc__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
+.lab-content-doc__body {
+  margin: 0;
+  font-size: var(--text-base, 1rem);
+  line-height: 1.65;
+  white-space: pre-line;
+}
+.lab-content-doc__meta {
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-border);
+}
+
+.lab-step-title {
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--color-amber);
+  margin: var(--space-2) 0 0;
+}
+
+.lab-verdicts { flex-wrap: wrap; gap: var(--space-2); }
+
+.lab-verdict-btn {
+  flex: 1 1 140px;
+  min-height: 48px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+.lab-verdict-btn:hover { border-color: var(--color-cyan-dim); background: var(--color-surface-3, var(--color-surface-2)); }
+.lab-verdict-btn--on,
+.lab-verdict-btn[aria-pressed='true'] {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  background: rgba(55, 200, 221, 0.1);
+  box-shadow: var(--glow-cyan, none);
+}
+.lab-verdict-btn:disabled { cursor: default; opacity: 0.8; }
+
+.lab-evidence-check {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.lab-ev {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  border-left: 3px solid transparent;
+}
+.lab-ev--hit { border-left-color: var(--color-green); color: var(--color-text); }
+.lab-ev--miss { border-left-color: var(--color-amber); color: var(--color-text-muted); }
+.lab-ev--false { border-left-color: var(--color-red); color: var(--color-text-muted); }
+.lab-ev--skip { border-left-color: var(--color-border); color: var(--color-text-faint, var(--color-text-muted)); }
+
+.lab-quiz-q { font-size: var(--text-base, 1rem); line-height: 1.6; margin: 0; }
+
+/* ---------- Debrief ---------- */
+.lab-debrief__rows { gap: 0; }
+.lab-debrief__concept { border-color: var(--color-cyan-dim); }
+.lab-debrief__nav { flex-wrap: wrap; gap: var(--space-2); }
+
+.lab-concept-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* ---------- Fokus & aksesibilitas ---------- */
+.lab-basket-btn:focus-visible,
+.lab-verdict-btn:focus-visible,
+.lab-option:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 560px) {
+  .lab-cards { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .lab-verdict-btn { flex-basis: 100%; }
+  .lab-seq__chip { font-size: 1.1rem; }
+}
+
+/* ---------- Gerak dikurangi ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lab-screen .meter__fill { transition: none; }
+}

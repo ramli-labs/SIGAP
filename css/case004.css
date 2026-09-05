@@ -1,0 +1,317 @@
+/* ============================================================
+   SIGAP — case004.css
+   CASE 004 "Phantom Signal" — deepfake / video termanipulasi.
+   Semua kelas berprefix .c4- (lihat SPEC.md).
+   ============================================================ */
+
+/* ---------- Step indicator wrapper ---------- */
+.c4-steps {
+  margin-bottom: var(--space-4, 16px);
+}
+
+/* ---------- Fase AMATI: video ---------- */
+.c4-videos {
+  align-items: start;
+}
+
+.c4-video-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.c4-video-holder {
+  position: relative;
+  background: #05090f;
+  border: 1px solid var(--color-border, #1e2f4a);
+  border-radius: var(--radius-2, 8px);
+  overflow: hidden;
+}
+
+.c4-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #05090f;
+}
+
+.c4-video-fallback {
+  padding: var(--space-4, 16px);
+  font-size: var(--text-2, 0.9rem);
+}
+
+.c4-video-controls {
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.c4-transcript {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 6px;
+  font-size: var(--text-2, 0.9rem);
+  color: var(--color-text, #dce6f2);
+}
+
+/* ---------- Fase HIPOTESIS ---------- */
+.c4-hypo-grid {
+  align-items: stretch;
+}
+
+.c4-hypo-card {
+  text-align: left;
+  min-height: 44px;
+}
+
+/* ---------- Tabs alat ---------- */
+.c4-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.c4-tool-btn {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-1, 0.8rem);
+  letter-spacing: 0.04em;
+  color: var(--color-text, #dce6f2);
+  background: var(--color-surface-2, #101b30);
+  border: 1px solid var(--color-border, #1e2f4a);
+  border-radius: var(--radius-2, 8px);
+  cursor: pointer;
+}
+
+.c4-tool-btn:hover {
+  border-color: var(--color-cyan, #37c8dd);
+}
+
+.c4-tool-btn:focus-visible {
+  outline: 2px solid var(--color-cyan, #37c8dd);
+  outline-offset: 2px;
+}
+
+.c4-tool-btn--active {
+  border-color: var(--color-cyan, #37c8dd);
+  color: var(--color-cyan, #37c8dd);
+  background: rgba(55, 200, 221, 0.08);
+}
+
+.c4-tool-btn--locked {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.c4-tool-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+/* ---------- Kanvas & grafik ---------- */
+.c4-frame-canvas,
+.c4-chart,
+.c4-bg-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #0b1220;
+  border: 1px solid var(--color-border, #1e2f4a);
+  border-radius: var(--radius-2, 8px);
+}
+
+.c4-time-label {
+  font-size: var(--text-3, 1rem);
+}
+
+.c4-scrub {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--color-cyan, #37c8dd);
+}
+
+.c4-scrub:focus-visible {
+  outline: 2px solid var(--color-cyan, #37c8dd);
+  outline-offset: 2px;
+}
+
+.c4-axis {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-1, 0.75rem);
+  color: var(--color-text-muted, #8fa2b8);
+}
+
+/* ---------- Timeline segmen (tandai timestamp) ---------- */
+.c4-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.c4-seg {
+  min-width: 64px;
+  min-height: 44px;
+  padding: 4px 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-1, 0.75rem);
+  color: var(--color-text-muted, #8fa2b8);
+  background: var(--color-surface-2, #101b30);
+  border: 1px solid var(--color-border, #1e2f4a);
+  border-radius: var(--radius-1, 6px);
+  cursor: pointer;
+}
+
+.c4-seg:hover {
+  border-color: var(--color-cyan, #37c8dd);
+  color: var(--color-text, #dce6f2);
+}
+
+.c4-seg:focus-visible {
+  outline: 2px solid var(--color-cyan, #37c8dd);
+  outline-offset: 2px;
+}
+
+.c4-seg--correct {
+  border-color: var(--color-green, #4ade80);
+  color: var(--color-green, #4ade80);
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.c4-seg--correct::after {
+  content: " \2713";
+}
+
+.c4-seg--wrong {
+  border-color: var(--color-red, #f87171);
+  color: var(--color-red, #f87171);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.c4-seg--wrong::after {
+  content: " \2717";
+}
+
+/* ---------- BACKGROUND CONTINUITY ---------- */
+.c4-bg-grid {
+  gap: var(--space-3, 12px);
+}
+
+.c4-bg-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ---------- METADATA VIEWER ---------- */
+.c4-meta-label {
+  font-size: var(--text-2, 0.85rem);
+  font-weight: 700;
+}
+
+.c4-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-2, 0.85rem);
+}
+
+.c4-meta-table th,
+.c4-meta-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border: 1px solid var(--color-border, #1e2f4a);
+}
+
+.c4-meta-table thead th {
+  background: var(--color-surface-2, #101b30);
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.04em;
+}
+
+.c4-meta-table tbody th {
+  color: var(--color-text-muted, #8fa2b8);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.c4-meta-note {
+  font-size: var(--text-2, 0.85rem);
+}
+
+/* ---------- Keputusan / rekap / explain ---------- */
+.c4-recap {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 6px;
+  font-size: var(--text-2, 0.9rem);
+}
+
+.c4-explain {
+  margin-top: var(--space-3, 12px);
+  padding: var(--space-3, 12px);
+  border: 1px dashed var(--color-border-strong, #2c4a76);
+  border-radius: var(--radius-2, 8px);
+}
+
+.c4-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: var(--radius-1, 6px);
+  cursor: pointer;
+  font-size: var(--text-2, 0.9rem);
+}
+
+.c4-check:hover {
+  background: var(--color-surface-2, #101b30);
+}
+
+.c4-check input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--color-cyan, #37c8dd);
+  flex: none;
+}
+
+.c4-check input:focus-visible {
+  outline: 2px solid var(--color-cyan, #37c8dd);
+  outline-offset: 2px;
+}
+
+/* ---------- PHANTOM finale ---------- */
+.c4-phantom-panel {
+  border-color: var(--color-purple, #8e7bf0);
+}
+
+.c4-phantom-card {
+  text-align: left;
+}
+
+.c4-phantom-card:hover {
+  border-color: var(--color-purple, #8e7bf0);
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 640px) {
+  .c4-videos,
+  .c4-bg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .c4-seg {
+    min-width: 56px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .c4-seg,
+  .c4-tool-btn {
+    transition: none;
+  }
+}

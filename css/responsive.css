@@ -1,0 +1,77 @@
+/* ============================================================
+   SIGAP — responsive.css
+   Mobile-first adjustments. Loaded last.
+   Breakpoints tested: 360, 390, 768, 1366, 1920.
+   ============================================================ */
+
+/* ---------- Small phones (<= 480px) ---------- */
+@media (max-width: 480px) {
+  .container { padding-inline: var(--space-3); }
+
+  .screen { padding-top: var(--space-4); }
+
+  .dialogue-box {
+    grid-template-columns: 52px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+  .dialogue__portrait { width: 52px; height: 52px; }
+
+  .modal__body { padding: var(--space-4); }
+  .modal__footer { padding: var(--space-3) var(--space-4); }
+  .modal__footer .btn { flex: 1 1 auto; }
+
+  .btn--lg { width: 100%; }
+
+  .topbar { padding-inline: var(--space-3); }
+  .topbar__crumb { display: none; }
+  .topbar__agent { display: none; }
+
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+
+  .achv-pop {
+    left: var(--space-3);
+    right: var(--space-3);
+    max-width: none;
+  }
+}
+
+/* ---------- Phones / small tablets (<= 768px) ---------- */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+
+  .screen__title { font-size: var(--text-lg); }
+
+  /* Stack side-by-side case layouts */
+  .case-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .phase-steps { overflow-x: auto; flex-wrap: nowrap; padding-bottom: var(--space-1); }
+  .phase-steps__item { flex: none; }
+}
+
+/* ---------- Tablet and up ---------- */
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+
+  .case-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+}
+
+/* ---------- Large desktop ---------- */
+@media (min-width: 1600px) {
+  :root { --content-wide: 1360px; }
+}
+
+/* ---------- Touch targets ---------- */
+@media (pointer: coarse) {
+  .btn, .option-card, .icon-btn { min-height: 48px; }
+  .conf-slider input[type='range'] { height: 44px; }
+}

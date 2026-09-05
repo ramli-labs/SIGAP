@@ -1,0 +1,267 @@
+/* ============================================================
+   SIGAP — case002.css
+   CASE 002 "Real or Generated?" — plate viewer, region overlay,
+   scanner AI simulasi, compare view, debrief per-plate.
+   Semua kelas berawalan .c2- (kontrak SPEC).
+   ============================================================ */
+
+/* ---------- Tabs plate ---------- */
+.c2-tabs {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.c2-tab {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease, background 140ms ease;
+}
+.c2-tab:hover { border-color: var(--color-cyan-dim); color: var(--color-text); }
+.c2-tab:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 2px; }
+.c2-tab--active {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  background: var(--color-cyan-glow);
+}
+.c2-tab__done { color: var(--color-green); }
+
+/* ---------- Panel plate ---------- */
+.c2-plate-head { gap: var(--space-2); flex-wrap: wrap; }
+.c2-plate-label { font-size: var(--text-sm); letter-spacing: 0.04em; }
+.c2-plate-desc { margin-top: calc(-1 * var(--space-1)); }
+
+/* ---------- Viewer + overlay region ---------- */
+.c2-viewer {
+  position: relative;
+  aspect-ratio: 3 / 2; /* citra fotorealistis 960x640 */
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #0b1424;
+}
+.c2-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.c2-overlay { position: absolute; inset: 0; }
+
+/* ---------- Kaca pembesar (loupe) ---------- */
+.c2-viewer--loupe { touch-action: none; cursor: zoom-in; }
+.c2-loupe {
+  position: absolute;
+  display: none;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid var(--color-cyan);
+  box-shadow: 0 4px 18px rgba(4, 7, 13, 0.65), inset 0 0 0 1px rgba(4, 7, 13, 0.5);
+  background-color: #0b1424;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 6;
+}
+@media (max-width: 640px) {
+  .c2-loupe { width: 120px; height: 120px; }
+}
+
+.c2-region {
+  position: absolute;
+  min-width: 44px;
+  min-height: 44px;
+  border: 2px dashed var(--color-cyan);
+  border-radius: var(--radius-sm);
+  background: rgba(55, 200, 221, 0.08);
+  cursor: pointer;
+  padding: 0;
+  animation: c2RegionIn 320ms ease-out backwards;
+}
+.c2-region:hover { background: rgba(55, 200, 221, 0.18); }
+.c2-region:focus-visible { outline: 3px solid var(--color-cyan); outline-offset: 2px; }
+.c2-region--found {
+  border-style: solid;
+  border-color: var(--color-green);
+  background: rgba(79, 196, 127, 0.14);
+}
+.c2-region--wrong {
+  border-color: var(--color-red);
+  background: rgba(224, 86, 95, 0.16);
+  animation: c2Shake 340ms ease-in-out;
+}
+.c2-region__tag {
+  position: absolute;
+  top: -11px;
+  left: 6px;
+  padding: 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-cyan);
+  background: var(--color-surface);
+  border: 1px solid var(--color-cyan-dim);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.c2-region--found .c2-region__tag { color: var(--color-green); border-color: var(--color-green-dim); }
+
+@keyframes c2RegionIn {
+  from { opacity: 0; transform: scale(1.12); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes c2Shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+}
+
+/* Pin temuan permanen */
+.c2-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-green);
+  color: var(--color-text-inverse);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 0 0 2px rgba(4, 7, 13, 0.7);
+  pointer-events: none;
+}
+
+/* ---------- Compare ---------- */
+.c2-compare-pick { gap: var(--space-2); flex-wrap: wrap; align-items: center; }
+.c2-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+.c2-compare-cell { margin: 0; }
+.c2-compare-cap {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.c2-viewer--mini { border-color: var(--color-border); }
+
+/* ---------- Aksi viewer + hipotesis ---------- */
+.c2-viewer-actions { gap: var(--space-2); flex-wrap: wrap; }
+.c2-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.c2-chip {
+  min-height: 44px;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.c2-chip:hover { border-color: var(--color-amber); color: var(--color-text); }
+.c2-chip:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 2px; }
+.c2-chip--on {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+  background: rgba(232, 163, 61, 0.1);
+}
+.c2-chip:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ---------- Scanner ---------- */
+.c2-scanner .sim-label { margin-bottom: var(--space-2); }
+.c2-scanner-note { margin-top: var(--space-1); }
+.c2-modes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+.c2-mode {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+.c2-mode:hover { border-color: var(--color-cyan-dim); }
+.c2-mode:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 2px; }
+.c2-mode--active {
+  border-color: var(--color-cyan);
+  background: var(--color-cyan-glow);
+  color: var(--color-cyan);
+}
+.c2-mode:disabled { opacity: 0.5; cursor: not-allowed; }
+.c2-mode__seen { color: var(--color-green); font-size: var(--text-lg); line-height: 0; }
+
+.c2-scan-status { min-height: 2.4em; }
+.c2-hint-btn { margin-top: var(--space-2); }
+
+/* ---------- Temuan + kesimpulan ---------- */
+.c2-findings .evidence-card { margin-top: var(--space-2); }
+.c2-conclude .option-card { width: 100%; }
+.c2-report-btn { animation: c2RegionIn 300ms ease-out; }
+
+/* ---------- Laporan ---------- */
+.c2-report-row {
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--color-divider);
+  display: grid;
+  gap: 2px;
+}
+.c2-report-row:last-of-type { border-bottom: none; }
+
+/* ---------- Debrief ---------- */
+.c2-plate-review {
+  padding: var(--space-3) 0;
+  border-bottom: 1px dashed var(--color-divider);
+}
+.c2-plate-review:last-child { border-bottom: none; }
+.c2-plate-review--ok strong { color: var(--color-green); }
+.c2-plate-review--no strong { color: var(--color-red); }
+.c2-plate-review p { margin-top: var(--space-1); }
+.c2-debrief-nav { gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-3); }
+
+/* ---------- Reduced motion ---------- */
+[data-reduced-motion='true'] .c2-region,
+[data-reduced-motion='true'] .c2-region--wrong,
+[data-reduced-motion='true'] .c2-report-btn {
+  animation: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .c2-compare-grid { grid-template-columns: 1fr; }
+  .c2-tab { flex: 1 1 auto; text-align: center; }
+}
