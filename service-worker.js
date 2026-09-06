@@ -8,7 +8,7 @@
      media requests; those get a proper error Response.
    Bump CACHE_VERSION on every significant release.
    ============================================================ */
-var CACHE_VERSION = 'sigap-v6';
+var CACHE_VERSION = 'sigap-v7';
 
 var PRECACHE = [
   './',

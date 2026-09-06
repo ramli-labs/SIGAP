@@ -1,0 +1,70 @@
+# ============================================================
+# SIGAP: publikasi ke GitHub Pages
+#
+# Yang di-upload HANYA berkas aplikasi. Folder `guru/` (panduan guru +
+# KUNCI JAWABAN), `docs/`, dan `tools/` sengaja TIDAK ikut, supaya materi
+# guru tidak bisa dibuka siswa lewat URL situs.
+#
+# Sekali saja di GitHub: Settings > Pages > Build and deployment >
+# Source: "GitHub Actions". Selama Source masih "Deploy from a branch",
+# seluruh isi repo tetap disajikan dan pengecualian ini TIDAK berlaku.
+# ============================================================
+name: Deploy SIGAP ke GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Susun isi situs (tanpa materi guru)
+        run: |
+          set -e
+          mkdir -p _site
+          cp index.html manifest.json service-worker.js _site/
+          cp -r css js assets _site/
+          # Skrip pipeline video tidak perlu ikut tayang.
+          find _site/assets -name '*.py' -delete
+          echo "--- isi yang akan dipublikasikan ---"
+          find _site -maxdepth 2 | sort
+
+      - name: Pastikan tidak ada materi guru yang lolos
+        run: |
+          set -e
+          if find _site \( -path '*guru*' -o -name '*kunci-jawaban*' -o -name '*panduan-guru*' \) | grep -q .; then
+            echo "GAGAL: materi guru ikut ter-upload."
+            exit 1
+          fi
+          if [ -d _site/docs ] || [ -d _site/tools ]; then
+            echo "GAGAL: folder docs/ atau tools/ ikut ter-upload."
+            exit 1
+          fi
+          echo "OK: hanya berkas aplikasi yang dipublikasikan."
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

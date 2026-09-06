@@ -10,6 +10,32 @@ Panduan ini membantu guru memakai SIGAP di kelas: tujuan pembelajaran, skenario 
 
 ---
 
+## 0. Langkah cepat guru (dari nol sampai menilai)
+
+**Sekali di awal, sebelum mengajar**
+
+1. Buka [`kunci-jawaban.md`](kunci-jawaban.md) di folder yang sama. File ini **tidak ada di situs**, hanya di repositori, jadi bukalah lewat GitHub atau salinan folder proyek. Simpan/cetak untuk diri sendiri.
+2. Mainkan sendiri minimal CASE 001 sampai selesai supaya paham alurnya.
+3. Pastikan tiap perangkat siswa pernah membuka URL SIGAP **sekali saat online**. Setelah itu gim jalan offline.
+4. Tentukan cara siswa mengirim Class Code: grup chat kelas, dokumen bersama, atau ditulis di kertas.
+
+**Saat pelajaran**
+
+5. Siswa membuka URL, mengisi Nama Agen, lalu bermain. Tidak ada login dan tidak ada data yang dikirim ke mana pun.
+6. Anda berkeliling. Yang layak diamati bukan skornya, melainkan apakah siswa memeriksa bukti sebelum menyimpulkan.
+
+**Mengumpulkan hasil**
+
+7. Siswa: **FINAL REPORT → EXPORT Class Code**, lalu kirim kodenya (diawali `SGC1.`) ke Anda.
+8. Anda: buka SIGAP → **Dashboard Guru** (bisa dibuka tanpa profil siswa) → tempel kode → **Impor**. Ulangi untuk tiap siswa.
+9. Baca tabel roster, lalu klik **Detail** pada siswa yang ingin ditelusuri.
+
+**Setelah selesai**
+
+10. Kalau memakai komputer bersama, tekan **Hapus semua** di roster sebelum meninggalkan komputer.
+
+---
+
 ## 1. Apa itu SIGAP (ringkas untuk guru)
 
 SIGAP adalah gim investigasi digital untuk siswa SMP. Siswa berperan sebagai agen yang menyelidiki 4 kasus (file berbahaya, gambar hasil AI, phishing, deepfake) dan 4 mini-lab literasi AI. Setiap kasus memaksa siswa mengikuti metode: **amati → hipotesis → verifikasi → bandingkan → putuskan (dengan tingkat keyakinan) → jelaskan → refleksi**.
@@ -31,13 +57,13 @@ SIGAP mengukur 5 kompetensi: **Critical Thinking (CT)**, **AI Literacy (AI)**, *
 | **LAB 03: AI Bias** | AI (1), ET (1) | Memahami hubungan keterwakilan data dan performa per kelompok; menyadari akurasi keseluruhan ≠ keadilan per kelompok |
 | **LAB 04: Human or AI?** | CT (1.5), AI (1) | Menilai konten berdasarkan indikator, bukan firasat; memahami konsep provenance; berani menjawab "belum cukup bukti" |
 
-Kunci jawaban tiap kasus ada di bagian **"SPOILER: untuk guru"** di `docs/gameplay-guide.md`.
+Kunci jawaban tiap kasus ada di [`kunci-jawaban.md`](kunci-jawaban.md), di folder yang sama. Folder `guru/` sengaja tidak ikut dipublikasikan ke situs.
 
 ## 3. Cara pakai di kelas
 
 ### Persiapan (sebelum jam pelajaran)
 - Pastikan tiap perangkat (Chromebook/HP/PC lab) sudah pernah membuka URL SIGAP sekali saat online; setelah itu gim berjalan offline.
-- Coba mainkan CASE 001 sendiri dan baca bagian spoiler di gameplay-guide.
+- Coba mainkan CASE 001 sendiri dan baca [`kunci-jawaban.md`](kunci-jawaban.md).
 - Siapkan kanal pengumpulan Class Code (grup chat kelas, dokumen bersama, atau ditulis di kertas).
 
 ### Skenario A: 2 JP (±80 menit): fokus satu kasus
@@ -72,6 +98,7 @@ CASE 001→002→003→004 berurutan (satu per sesi/di rumah), diakhiri CASE 004
    - Siswa yang sama diimpor dua kali → data lama **digantikan** data terbaru (ada notifikasi).
    - Dua siswa bernama sama **tidak** saling menimpa; identitas dibedakan dengan akhiran Agent ID (mis. "Raka · A7K2" dan "Raka · M3XW").
 5. Roster tersimpan lokal di perangkat guru. Tombol hapus per siswa / hapus semua tersedia (dengan konfirmasi).
+6. **Di komputer lab yang dipakai bergantian, tekan "Hapus semua" setelah selesai.** Roster tersimpan di browser komputer itu, bukan di akun Anda, jadi siswa berikutnya yang membuka Dashboard Guru di komputer yang sama bisa melihat skor dan refleksi seluruh kelas. Kalau memungkinkan, pakai perangkat Anda sendiri.
 
 ## 5. Membaca dashboard
 
@@ -132,5 +159,5 @@ XP dan Level hanya mengukur **banyaknya aktivitas**, bukan kemampuan. Untuk gamb
 - **Video CASE 004 perlu dijelaskan apa adanya:** sumbernya rekaman asli seorang pengajar yang dipakai dengan izin, dan versi "suspect" memang wajah serta suara orang itu yang diberi artefak buatan (lip-sync meleset, warna suara berubah, kedipan di area wajah, warna blok slide bertukar). Kedua video ber-watermark "SIMULASI MEDIA PELATIHAN". Justru inilah bahan diskusinya: manipulasi semacam ini bisa dibuat dari rekaman siapa pun. Jangan sebarkan potongannya di luar konteks kelas, dan jika Anda mengganti videonya dengan rekaman sendiri, pastikan ada izin dari orang yang tampil.
 - Gim sengaja **tidak mengajarkan aturan absolut** ("domain .top = penipu", "aneh = pasti AI", "metadata = pasti benar"). Jika siswa membawa "aturan cepat" seperti itu ke diskusi, luruskan, itulah salah satu tujuan pembelajarannya.
 - Angka-angka di AI Lab (mis. "performa per kelompok" di LAB 03) **disederhanakan untuk pembelajaran** dan bukan rumus akurasi AI nyata; gim menampilkan disclaimer ini.
-- **Privasi:** seluruh data siswa hanya ada di perangkat siswa; roster guru hanya ada di perangkat guru. Tidak ada data yang dikirim ke server mana pun. Class Code berpindah tangan hanya jika siswa memberikannya.
+- **Privasi:** seluruh data siswa hanya ada di perangkat siswa; roster guru hanya ada di browser perangkat yang dipakai mengimpor (lihat catatan komputer bersama di bagian dashboard). Tidak ada data yang dikirim ke server mana pun. Class Code berpindah tangan hanya jika siswa memberikannya.
 - Dan sekali lagi, sebagai pegangan penilaian: **"Skor SIGAP bukan nilai akademik tunggal. Gunakan bersama observasi, refleksi, diskusi, dan asesmen guru."**

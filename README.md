@@ -61,9 +61,16 @@ Tidak ada dependency, `npm install`, atau proses build apa pun.
    git remote add origin https://github.com/USERNAME/sigap.git
    git push -u origin main
    ```
-3. Di GitHub: **Settings → Pages → Build and deployment**:
-   - Source: **Deploy from a branch**
-   - Branch: **main**, folder **/(root)** → **Save**.
+3. Di GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+   Workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) akan jalan otomatis setiap push ke `main`.
+
+   > **Penting.** Workflow ini hanya mengunggah berkas aplikasi. Folder `guru/`
+   > (panduan guru + **kunci jawaban**), `docs/`, dan `tools/` sengaja TIDAK ikut,
+   > supaya materi guru tidak bisa dibuka siswa lewat URL situs. Kalau Source
+   > dibiarkan **"Deploy from a branch"**, seluruh isi repo tetap disajikan dan
+   > pengecualian ini tidak berlaku. Workflow punya langkah pemeriksa yang
+   > menggagalkan build kalau materi guru sampai lolos.
+
 4. Tunggu 1–2 menit. Situs tersedia di `https://USERNAME.github.io/sigap/`.
 5. Verifikasi:
    - Buka situs, cek tidak ada error di console (F12).
@@ -80,12 +87,13 @@ sigap/
 ├── index.html              # Satu-satunya halaman; memuat semua CSS/JS (classic scripts, defer)
 ├── manifest.json           # PWA manifest (ikon, warna, standalone)
 ├── service-worker.js       # Cache offline-first (lihat bagian PWA)
-├── SPEC.md                 # Kontrak integrasi antar-modul (untuk developer)
-├── briefs/                 # Brief desain tiap modul (untuk developer)
-├── docs/
-│   ├── gameplay-guide.md   # Panduan gameplay & sistem skor
-│   ├── teacher-guide.md    # Panduan guru
+├── docs/                   # dokumentasi umum (tidak ikut dipublikasikan)
+│   ├── gameplay-guide.md   # Panduan gameplay & sistem skor (tanpa spoiler)
 │   └── playtest-checklist.md # Checklist QA
+├── guru/                   # KHUSUS GURU, dikecualikan dari situs publik
+│   ├── panduan-guru.md     # Tujuan pembelajaran, skenario kelas, baca dashboard
+│   └── kunci-jawaban.md    # Kunci jawaban seluruh CASE & Lab
+├── tools/                  # skrip pendukung (tidak ikut dipublikasikan)
 ├── css/                    # fonts, main, components, game, screens, case001–004, ai-lab, responsive
 ├── js/
 │   ├── storage.js          # Wrapper LocalStorage (fallback in-memory, tahan korupsi)
@@ -200,7 +208,7 @@ Skema state (`SCHEMA_VERSION = 1`, di `js/state.js`):
 - Master: rekaman asli (1920×1080, 60 fps, 8,0 s) yang dipakai dengan izin. **Master tidak disimpan di repo** (3,1 MB dan tidak pernah dimuat aplikasi); simpan sendiri, lalu berikan path-nya ke skrip. Kedua aset diturunkan dari master yang **sama** oleh `assets/cases/case004/generate.py` (ffmpeg): `python3 generate.py /path/ke/master.mp4`. Untuk mengganti video, **ganti master lalu jalankan ulang `generate.py`**, jangan sekadar menaruh video lain, karena deskripsi evidence dalam gameplay harus cocok dengan artefak yang benar-benar ada di video:
   - ±00:03.4 lip-sync mismatch (bibir mendahului audio ~0,4 s, sinkron lagi di 00:04.9);
   - ±00:04.9 sambungan kasar lalu pitch turun ~2,5 semitone + tremolo 9 Hz sampai akhir;
-  - ±00:05.6 boundary artifact (salinan wajah bergeser + kotak magenta, 3–4 frame);
+  - ±00:05.6 boundary artifact (salinan wajah bergeser + kotak magenta, 5 frame / 0,2 detik);
   - 00:06.0+ dua blok warna di slide proyektor bertukar dibanding reference.
 - `generate.py` berjalan **tiga tahap**: render base lossless → bangun tambalan warna slide dengan OpenCV (blok dicari ulang tiap frame, jadi tambalan ikut goyangan kamera) → komposit akhir. Berkas antara dihapus otomatis. Butuh `numpy` + `opencv-python<5`.
 - Setelah ganti master, **ukur ulang** grafik in-game dengan `assets/cases/case004/measure.py` (butuh `numpy`, `opencv-python<5`, dan `mediapipe==0.10.x` untuk landmark bibir) dan tempel hasilnya ke `MOUTH_DATA` / `AUDIO_REF` / `AUDIO_SUS` di `js/games/case004.js`; sesuaikan juga `FACE` (kotak kepala) dan `SLIDE_ROI` + ambang warna `BLOCK_*` di `generate.py` terhadap frame baru. Skrip mencetak berapa blok yang berhasil terdeteksi, kalau kurang dari 2× jumlah frame, ambangnya perlu disetel ulang.
@@ -252,14 +260,15 @@ Alur **tanpa server**: cocok untuk lab komputer offline:
    - Identitas siswa = `displayName · akhiran agentId` (mis. "Raka · A7K2"), jadi dua siswa bernama sama tidak saling menimpa. Impor ulang agentId yang sama = data diperbarui.
 4. Roster tersimpan di `sigap_teacher_roster` (terpisah dari save siswa). Guru dapat melihat tabel skor, kompetensi, flags kalibrasi, misconception warnings, dan teks refleksi; menghapus per siswa atau semua.
 
-Panduan lengkap membaca dashboard: lihat [`docs/teacher-guide.md`](docs/teacher-guide.md).
+Panduan lengkap membaca dashboard: lihat [`guru/panduan-guru.md`](guru/panduan-guru.md).
 
 ---
 
 ## Dokumentasi lain
 
-- [`docs/gameplay-guide.md`](docs/gameplay-guide.md): filosofi desain, alur tiap CASE/Lab, sistem skor & achievements (berisi bagian spoiler khusus guru).
-- [`docs/teacher-guide.md`](docs/teacher-guide.md): tujuan pembelajaran, skenario kelas 2–4 JP, cara membaca dashboard, diskusi lanjutan.
+- [`docs/gameplay-guide.md`](docs/gameplay-guide.md): filosofi desain, alur tiap CASE/Lab, sistem skor & achievements. **Tanpa spoiler**, aman dibagikan.
+- [`guru/panduan-guru.md`](guru/panduan-guru.md): tujuan pembelajaran, skenario kelas 2–4 JP, cara membaca dashboard, diskusi lanjutan.
+- [`guru/kunci-jawaban.md`](guru/kunci-jawaban.md): **kunci jawaban seluruh CASE dan Lab.** Folder `guru/` dikecualikan dari situs yang dipublikasikan.
 - [`docs/playtest-checklist.md`](docs/playtest-checklist.md): checklist QA lengkap sebelum rilis.
 
 ## Privasi & etika

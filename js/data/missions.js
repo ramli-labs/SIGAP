@@ -43,7 +43,7 @@
       code: 'CASE 004',
       title: 'Phantom Signal',
       theme: 'Deepfake · Video termanipulasi',
-      brief: 'Sebuah video pernyataan beredar. Bandingkan dengan rekaman referensi, uji hipotesismu, dan hadapi PHANTOM.',
+      brief: 'Potongan video seorang guru beredar dan diragukan keasliannya. Bandingkan dengan rekaman referensi, uji hipotesismu, dan hadapi PHANTOM.',
       route: 'case004',
       competencies: ['aiLiteracy', 'evidenceReasoning', 'ethicalReasoning', 'criticalThinking'],
       xp: 100

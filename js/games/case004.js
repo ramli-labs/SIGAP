@@ -18,7 +18,7 @@
        audio ±0,4 s; suara terlambat/overlap, BUKAN hening. Contoh:
        detik 3,8–4,1 mulut aktif ("bapak akan…") tetapi amplitudo audio
        nyaris kosong.
-     - 00:05.55–00:05.72 area wajah pecah 3–4 frame: salinan wajah
+     - 00:05.55–00:05.72 area wajah pecah 5 frame (0,2 s): salinan wajah
        (crop 76x92 @442,124) bergeser +5/+4 px, bingkai kotak magenta,
        garis sobek mendatar.
      - 00:04.9 sambungan kasar (potongan 4,5–4,9 terlewati, sepotong kata
@@ -56,7 +56,7 @@
     'c4-ev-boundary': {
       id: 'c4-ev-boundary',
       title: '00:05.6 · Tepi wajah berkedip',
-      body: 'Selama 3–4 frame (detik 5,55–5,72) area wajah pecah: muncul salinan wajah yang ' +
+      body: 'Selama 5 frame saja (detik 5,55–5,72, sekitar 0,2 detik) area wajah pecah: muncul salinan wajah yang ' +
         'bergeser beberapa piksel dengan bingkai kotak magenta, plus garis sobek mendatar melintasi wajah. ' +
         'Artefak batas (boundary) seperti ini bisa muncul saat sebuah wajah ditempelkan ke video lain.',
       source: 'FRAME ANALYZER (simulasi)',
@@ -702,7 +702,7 @@
       } else {
         wrongMark('frame', [
           'Di frame ini belum tampak keanehan. Perhatikan area TEPI wajah, bukan bagian tengah.',
-          'Petunjuk: kejanggalan visual sering hanya 2-3 frame. Telusuri pelan-pelan sekitar detik 5-6.'
+          'Petunjuk: kejanggalan visual sering hanya beberapa frame. Telusuri pelan-pelan sekitar detik 5-6.'
         ]);
       }
     }));
@@ -1111,7 +1111,7 @@
     var whyList =
       '<ul class="c4-recap">' +
       '<li><span class="text-mono">00:03.4</span> suara tertinggal ±0,4 detik dari gerak bibir, mulut mendahului audio sampai detik 4,9;</li>' +
-      '<li><span class="text-mono">00:05.6</span> area wajah pecah/berkedip (salinan wajah bergeser + garis sobek) selama 3-4 frame;</li>' +
+      '<li><span class="text-mono">00:05.6</span> area wajah pecah/berkedip (salinan wajah bergeser + garis sobek) selama 5 frame;</li>' +
       '<li><span class="text-mono">±00:04.9</span> sambungan kasar lalu warna suara berubah, nada dasar turun dan bergetar;</li>' +
       '<li><span class="text-mono">00:06.0</span> dua blok warna di slide bertukar, di referensi tidak.</li></ul>';
     if (correct) {

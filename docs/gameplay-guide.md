@@ -1,6 +1,6 @@
 # SIGAP - Panduan Gameplay
 
-Panduan ini menjelaskan filosofi desain, alur permainan, sistem skor, dan achievements SIGAP. Bagian per-CASE untuk siswa **tidak membocorkan jawaban**; kunci jawaban dikumpulkan di bagian terpisah **"SPOILER: untuk guru"** di akhir dokumen.
+Panduan ini menjelaskan filosofi desain, alur permainan, sistem skor, dan achievements SIGAP. Bagian per-CASE **tidak membocorkan jawaban**, jadi dokumen ini aman dibagikan. Kunci jawaban disimpan terpisah di `guru/kunci-jawaban.md`, folder yang dikecualikan dari situs publik.
 
 ---
 
@@ -142,34 +142,8 @@ Di layar Achievements, badge terkunci tetap menampilkan nama dan deskripsinya (e
 
 ---
 
-## 7. SPOILER: untuk guru (kunci jawaban)
+## 7. Kunci jawaban
 
-> ⚠️ Bagian ini membocorkan jawaban. Jangan tunjukkan ke siswa sebelum bermain.
-
-### CASE 001
-- **Keputusan benar: C**. Jangan instal; verifikasi pengirim lewat jalur lain; hapus file; laporkan. (A = install, B = abaikan saja, D = sebarkan; semuanya salah, A/D memicu misconception warning.)
-- Kekuatan bukti: FILE TYPE (**KUAT**: `.apk` adalah installer Android, bukan format foto; mismatch klaim vs format), PERMISSIONS (**KUAT**: SMS/Contacts/Accessibility tidak masuk akal untuk melihat foto), DIRECT CONFIRMATION (**KUAT**: Dimas menyangkal mengirim; akunnya sempat tidak bisa dibuka), SENDER (**SEDANG**: nomor baru, foto profil crop, akun baru dibuat).
-- Kombinasi 2 token "cerdas" (basis Token Strategist): dua dari {FILE TYPE, PERMISSIONS, DIRECT CONFIRMATION}.
-- Inti debrief: tiga bukti independen saling mendukung: format ≠ klaim, permission berisiko, pengirim menyangkal.
-
-### CASE 002
-- **Kunci per plate:** Plate A → (a) kemungkinan manipulasi/generatif; Plate B → (b) **tidak ditemukan bukti manipulasi yang cukup** (BUKAN "asli"); Plate C → (c) **belum cukup bukti** (memicu achievement Honest Uncertainty).
-- Indikator Plate A: (1) TEXT, "KAFE NUSANTARA" vs "KAFE NUSANTRA" di elemen lain + satu huruf N terbalik; (2) LIGHT, bayangan dua objek berlawanan arah padahal satu sumber cahaya; (3) TEXTURE, pola batu bata melebur/berulang aneh di satu area.
-- Plate C hanya punya 1 indikator lemah (teks agak aneh yang bisa dijelaskan kompresi/perspektif), jadi tidak cukup untuk menyimpulkan.
-- `decisionCorrect` kasus = ketiga kesimpulan plate benar sekaligus.
-
-### CASE 003
-- **Keputusan benar: C**. Jangan klik; verifikasi lewat kanal resmi; tandai spam/laporkan; beri tahu keluarga. (A = bayar; B = klik dulu lalu isi kalau tampilan resmi, padahal tampilan bisa ditiru; D = balas email, yang justru mengonfirmasi alamat aktif.)
-- Kunci teknis: domain sebenarnya pengirim adalah `resi-cek.top` (bukan `nusantara-ekspres.com`); pada URL pembayaran, nama merek hanya menjadi **subdomain** dari `track-verifikasi.top`.
-- Domain Challenge: `https://bri.co.id/promo` resmi vs `bri.co.id.promo-spesial.net` palsu (domain sebenarnya `promo-spesial.net`); `dana.id` dan `help.dana.id` resmi vs `dana-id.top` perlu dicurigai/diverifikasi; `sekolah.sch.id/ujian` resmi vs `sekolah-sch-id.web.app` perlu verifikasi lebih lanjut.
-- Jika siswa beralasan "karena .top" → dikoreksi eksplisit + misconception "menggeneralisasi TLD".
-
-### CASE 004
-- **Kesimpulan benar: "kemungkinan manipulasi"**, karena beberapa bukti independen saling mendukung.
-- Artefak yang benar-benar ada di video suspect: ±00:03.2 lip-sync mismatch (bibir mendahului audio ~0,4s); ±00:05.6 boundary artifact (flicker area wajah 2–3 frame); perubahan pitch/timbre audio di tengah; elemen latar berpindah pada detik 6+ dibanding reference. Metadata (encoder berbeda, created ≠ modified) = bukti **pendukung**, bukan final.
-- **FINAL PHANTOM DECISION, jawaban benar: C**: dokumentasikan bukti, verifikasi, laporkan ke pihak berwenang/platform, edukasi teman (unlock Ethical Agent). A = balas deepfake tandingan; B = diamkan; D = sebar balik dengan ejekan; semuanya salah.
-
-### AI Lab
-- LAB 01 soal wajib: ● ■■ ● ■■■■ ● ? → **■■■■■■■■** (pola 2→4→8, dikali 2). Soal jebakan: jawaban benar = "informasi belum cukup menentukan satu aturan".
-- LAB 03 kuis: "model 95% akurat keseluruhan, pasti adil untuk semua kelompok?" → **belum tentu; evaluasi per kelompok**.
-- LAB 04: minimal satu konten berjawaban benar **"belum cukup bukti"** dan diberi skor penuh.
+Kunci jawaban tiap CASE dan Lab **tidak disimpan di file ini** supaya panduan ini
+aman dibagikan/dipublikasikan. Materinya ada di `guru/kunci-jawaban.md`, folder
+yang dikecualikan dari situs publik.

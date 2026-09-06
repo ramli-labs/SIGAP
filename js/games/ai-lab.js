@@ -749,7 +749,8 @@
       doc.appendChild(el('div', 'lab-content-doc__title', esc(K.title)));
       // Escape dulu, baru ubah penanda ~kata~ jadi coretan revisi.
       doc.appendChild(el('p', 'lab-content-doc__body',
-        esc(K.body).replace(/~([^~]+)~/g, '<s>$1</s>')));
+        esc(K.body).replace(/~([^~]+)~/g,
+          '<s>$1<span class="sr-only"> (dicoret)</span></s>')));
       doc.appendChild(el('div', 'lab-content-doc__meta text-xs text-muted', 'ℹ Konteks: ' + esc(K.meta)));
       panel.appendChild(doc);
 
