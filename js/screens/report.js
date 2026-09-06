@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — screens/report.js
+   SIGAP - screens/report.js
    FINAL REPORT: PROGRESS vs PERFORMANCE terpisah, feedback
    personal dari data nyata, ekspor Class Code, cetak.
    ============================================================ */
@@ -88,9 +88,9 @@
         ta.setSelectionRange(0, ta.value.length);
         var done = document.execCommand('copy');
         if (done) ok();
-        else SIGAP.ui.toast('Tidak bisa menyalin otomatis — tandai teks lalu salin manual (Ctrl+C).', 'warn');
+        else SIGAP.ui.toast('Tidak bisa menyalin otomatis. Tandai teks lalu salin manual (Ctrl+C).', 'warn');
       } catch (e) {
-        SIGAP.ui.toast('Tidak bisa menyalin otomatis — tandai teks lalu salin manual (Ctrl+C).', 'warn');
+        SIGAP.ui.toast('Tidak bisa menyalin otomatis. Tandai teks lalu salin manual (Ctrl+C).', 'warn');
       }
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -103,15 +103,15 @@
   /* ---------- Personalized feedback ---------- */
 
   var STRENGTH_TEXT = {
-    criticalThinking: 'Kamu terbiasa mempertanyakan informasi sebelum menyimpulkan — kebiasaan inti seorang investigator.',
+    criticalThinking: 'Kamu terbiasa mempertanyakan informasi sebelum menyimpulkan. Itu kebiasaan inti seorang investigator.',
     aiLiteracy: 'Kamu memahami cara kerja dan batas kemampuan AI, sehingga tidak mudah terkecoh konten buatan mesin.',
-    digitalSafety: 'Kamu peka terhadap jebakan digital seperti file berbahaya dan phishing — refleks keamananmu bagus.',
+    digitalSafety: 'Kamu peka terhadap jebakan digital seperti file berbahaya dan phishing. Refleks keamananmu bagus.',
     evidenceReasoning: 'Kamu pandai menimbang kekuatan bukti dan menghubungkan beberapa petunjuk menjadi kesimpulan.',
-    ethicalReasoning: 'Kamu mempertimbangkan dampak keputusanmu pada orang lain — integritasmu terlihat dalam pilihan-pilihanmu.'
+    ethicalReasoning: 'Kamu mempertimbangkan dampak keputusanmu pada orang lain. Integritasmu terlihat dalam pilihan-pilihanmu.'
   };
 
   var TRAIN_TEXT = {
-    criticalThinking: 'Latih dengan membuat lebih dari satu hipotesis sebelum memeriksa bukti. Semua CASE melatih ini — coba ulangi kasus dengan skor terendahmu.',
+    criticalThinking: 'Latih dengan membuat lebih dari satu hipotesis sebelum memeriksa bukti. Semua CASE melatih ini. Coba ulangi kasus dengan skor terendahmu.',
     aiLiteracy: 'Buka AI LABORATORY (terutama LAB 01 dan LAB 04), lalu terapkan di CASE 002 dan CASE 004 tentang citra AI dan deepfake.',
     digitalSafety: 'Ulangi CASE 001 (file berbahaya) dan CASE 003 (phishing). Perhatikan detail pengirim, domain, dan izin aplikasi.',
     evidenceReasoning: 'Sebelum memutuskan, tanya: bukti mana yang KUAT dan mana yang LEMAH? Coba kumpulkan semua bukti dalam satu CASE sebelum menyimpulkan.',
@@ -133,34 +133,34 @@
     var toTrain = [];
 
     var best = entries[0];
-    strengths.push('<strong>' + esc(best.name) + ' (' + best.value + '/100)</strong> — ' + STRENGTH_TEXT[best.key]);
+    strengths.push('<strong>' + esc(best.name) + ' (' + best.value + '/100)</strong>: ' + STRENGTH_TEXT[best.key]);
 
     var flags = s.performance.flags || {};
     if ((flags.wellCalibrated || 0) >= 2 &&
         (flags.wellCalibrated || 0) >= (flags.overconfident || 0) &&
         (flags.wellCalibrated || 0) >= (flags.underconfident || 0)) {
-      strengths.push('<strong>Kalibrasi confidence</strong> — sebanyak ' + flags.wellCalibrated +
+      strengths.push('<strong>Kalibrasi confidence</strong>: sebanyak ' + flags.wellCalibrated +
         ' kali keyakinanmu sesuai dengan kekuatan bukti. Itu tanda penilaian yang matang.');
     }
 
     if (entries.length > 1) {
       var worst = entries[entries.length - 1];
       if (worst.key !== best.key) {
-        toTrain.push('<strong>' + esc(worst.name) + ' (' + worst.value + '/100)</strong> — ' + TRAIN_TEXT[worst.key]);
+        toTrain.push('<strong>' + esc(worst.name) + ' (' + worst.value + '/100)</strong>: ' + TRAIN_TEXT[worst.key]);
       }
     }
     if ((flags.overconfident || 0) >= 2) {
-      toTrain.push('<strong>Confidence terlalu tinggi</strong> — sebanyak ' + flags.overconfident +
+      toTrain.push('<strong>Confidence terlalu tinggi</strong>: sebanyak ' + flags.overconfident +
         ' kali keyakinanmu terlalu tinggi sebelum bukti cukup. Tahan kesimpulan sampai minimal dua bukti saling mendukung.');
     }
     if ((flags.underconfident || 0) >= 2) {
-      toTrain.push('<strong>Confidence terlalu rendah</strong> — sebanyak ' + flags.underconfident +
+      toTrain.push('<strong>Confidence terlalu rendah</strong>: sebanyak ' + flags.underconfident +
         ' kali kamu benar tetapi ragu-ragu. Kalau buktimu saling mendukung, percayai analisismu.');
     }
     var miscs = s.performance.misconceptions || [];
     if (miscs.length) {
       var last = miscs[miscs.length - 1];
-      toTrain.push('<strong>Catatan terakhir</strong> — ' + esc(last.text) +
+      toTrain.push('<strong>Catatan terakhir</strong>: ' + esc(last.text) +
         (last.caseId ? ' <span class="text-mono text-xs">(' + esc(String(last.caseId).toUpperCase()) + ')</span>' : ''));
     }
     if (!toTrain.length) {
@@ -200,7 +200,7 @@
       var prog = document.createElement('section');
       prog.className = 'panel panel--accent stack';
       var progHtml =
-        '<div class="panel-title">1 · PROGRESS — seberapa jauh kamu melangkah</div>' +
+        '<div class="panel-title">1 · PROGRESS: seberapa jauh kamu melangkah</div>' +
         '<div class="scr-report-stats">' +
         '<div class="scr-stat"><span class="scr-stat__val">' + casesDone + '/' + totalCases + '</span><span class="scr-stat__label">CASE selesai</span></div>' +
         '<div class="scr-stat"><span class="scr-stat__val">' + labsDone + '/' + totalLabs + '</span><span class="scr-stat__label">AI LAB selesai</span></div>' +
@@ -216,7 +216,7 @@
       }
       progHtml += '<div><div class="text-xs text-muted" style="margin-bottom:var(--space-2)">Badge terbuka:</div>' +
         (badgeList || '<span class="text-sm text-faint">Belum ada badge terbuka.</span>') + '</div>' +
-        '<p class="text-xs text-faint">PROGRESS mengukur seberapa banyak yang sudah kamu kerjakan — bukan seberapa baik.</p>';
+        '<p class="text-xs text-faint">PROGRESS mengukur seberapa banyak yang sudah kamu kerjakan, bukan seberapa baik.</p>';
       prog.innerHTML = progHtml;
       main.appendChild(prog);
 
@@ -225,7 +225,7 @@
       perf.className = 'panel stack';
       var perfTitle = document.createElement('div');
       perfTitle.className = 'panel-title';
-      perfTitle.textContent = '2 · PERFORMANCE — seberapa baik cara kamu menyelidiki';
+      perfTitle.textContent = '2 · PERFORMANCE: seberapa baik cara kamu menyelidiki';
       perf.appendChild(perfTitle);
 
       var summary = SIGAP.scoring.competencySummary();
@@ -239,7 +239,7 @@
         headRow.className = 'row row--between';
         headRow.innerHTML = '<span class="text-sm">' + esc(names[key]) + '</span>' +
           (v === null || v === undefined
-            ? '<span class="text-xs text-faint">Belum ada data — selesaikan CASE/LAB terkait</span>'
+            ? '<span class="text-xs text-faint">Belum ada data, selesaikan CASE/LAB terkait</span>'
             : '<span class="text-sm text-mono text-cyan">' + v + '/100</span>');
         row.appendChild(headRow);
         var meter = document.createElement('div');
@@ -290,9 +290,9 @@
       var exportPanel = document.createElement('section');
       exportPanel.className = 'panel panel--accent stack scr-no-print';
       exportPanel.innerHTML =
-        '<div class="panel-title">Class Code — untuk gurumu</div>' +
+        '<div class="panel-title">Class Code untuk gurumu</div>' +
         '<p class="text-sm text-muted">Class Code berisi ringkasan progres, kompetensi, dan refleksimu (tanpa data pribadi lain). ' +
-        '<strong>Berikan kode ini ke gurumu</strong> — guru akan mengimpornya di Dashboard Guru.</p>';
+        '<strong>Berikan kode ini ke gurumu</strong>: guru akan mengimpornya di Dashboard Guru.</p>';
 
       var ta = document.createElement('textarea');
       ta.className = 'scr-code-area text-mono';

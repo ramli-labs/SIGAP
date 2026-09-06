@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — achievements.js
+   SIGAP - achievements.js
    Unlock logic + popup card animation.
    ============================================================ */
 (function () {

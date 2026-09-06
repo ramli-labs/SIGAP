@@ -1,7 +1,7 @@
 /* ============================================================
-   SIGAP — components/reflection.js
+   SIGAP - components/reflection.js
    Reflection form after each CASE. Free text is stored for
-   teacher review only — NEVER auto-graded, NEVER length-scored.
+   teacher review only. NEVER auto-graded, NEVER length-scored.
    SIGAP.ui.reflectionForm({ contextId, questions:[..], onDone }) -> el
    ============================================================ */
 (function () {
@@ -20,7 +20,7 @@
     var intro = document.createElement('p');
     intro.className = 'text-sm text-muted';
     intro.textContent =
-      'Refleksi singkat. Jawabanmu disimpan untuk dilihat guru — tidak dinilai otomatis dan tidak memengaruhi skor.';
+      'Refleksi singkat. Jawabanmu disimpan untuk dilihat guru, tidak dinilai otomatis dan tidak memengaruhi skor.';
     form.appendChild(intro);
 
     var areas = [];

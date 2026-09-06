@@ -1,11 +1,11 @@
 /* ============================================================
-   SIGAP — games/case002.js
-   CASE 002 "Real or Generated?" — investigasi visual 3 plate
+   SIGAP - games/case002.js
+   CASE 002 "Real or Generated?". Investigasi visual 3 plate
    dengan AI FORENSIC SCANNER (alat SIMULASI: hanya menyoroti
    area kandidat; PEMAIN yang menilai dan menandai).
 
    Kunci epistemik:
-   - Plate B hanyalah "SIMULASI KONTROL (pembanding)" — tidak
+   - Plate B hanyalah "SIMULASI KONTROL (pembanding)", tidak
      pernah disebut "asli/real/verified".
    - Tidak ada "AI probability". Alat tidak memberi jawaban.
    - "Belum cukup bukti" adalah kesimpulan sah (Plate C) dan
@@ -25,40 +25,40 @@
      ------------------------------------------------------------ */
   SIGAP.data.evidenceCatalog.case002 = {
     'a-text': {
-      title: 'TEXT — Tulisan menu tidak konsisten',
-      body: 'Papan menu tertulis “KAFE NUSANTRA” — kehilangan satu huruf A — dan huruf N ' +
+      title: 'TEXT: Tulisan menu tidak konsisten',
+      body: 'Papan menu tertulis “KAFE NUSANTRA”, kehilangan satu huruf A, dan huruf N ' +
         'pertamanya tampak terbalik seperti “И”, padahal papan nama utama tertulis ' +
         '“KAFE NUSANTARA” dengan benar. Teks yang kacau atau tidak konsisten adalah ' +
-        'indikator umum citra generatif — indikator, bukan bukti final.',
+        'indikator umum citra generatif. Ini indikator, bukan bukti final.',
       strength: 'KUAT',
-      source: 'AI Forensic Scanner — mode TEXT (simulasi)'
+      source: 'AI Forensic Scanner, mode TEXT (simulasi)'
     },
     'a-light': {
-      title: 'LIGHTING — Arah bayangan berlawanan',
+      title: 'LIGHTING: Arah bayangan berlawanan',
       body: 'Bayangan hidran jatuh ke KIRI, padahal sisi kiri hidran justru yang tersorot ' +
         'cahaya matahari sore. Bandingkan: bayangan pohon dan bayangan bangunan pada dinding ' +
-        'bata jatuh ke kanan. Dengan satu matahari, semua bayangan seharusnya searah — ' +
+        'bata jatuh ke kanan. Dengan satu matahari, semua bayangan seharusnya searah. ' +
         'indikator, bukan bukti final.',
       strength: 'KUAT',
-      source: 'AI Forensic Scanner — mode LIGHTING (simulasi)'
+      source: 'AI Forensic Scanner, mode LIGHTING (simulasi)'
     },
     'a-texture': {
-      title: 'TEXTURE — Pola bata melebur',
+      title: 'TEXTURE: Pola bata melebur',
       body: 'Di bagian bawah dinding bata, susunan bata tampak melebur: garis nat kabur dan ' +
         'menghilang, baris bata berulang dan tidak mengikuti pola di sekitarnya. Tekstur ' +
-        'yang “meleleh” seperti ini sering muncul pada citra generatif — indikator, bukan ' +
+        'yang “meleleh” seperti ini sering muncul pada citra generatif. Ini indikator, bukan ' +
         'bukti final.',
       strength: 'SEDANG',
-      source: 'AI Forensic Scanner — mode TEXTURE (simulasi)'
+      source: 'AI Forensic Scanner, mode TEXTURE (simulasi)'
     },
     'c-text': {
-      title: 'TEXT — Baris menu sedikit miring',
+      title: 'TEXT: Baris menu sedikit miring',
       body: 'Baris “ES KOPI SUSU 12K” pada papan menu tampak sedikit miring dan lebih kabur ' +
-        'daripada baris lain. Bisa jadi jejak manipulasi — tetapi bisa juga karena sudut ' +
+        'daripada baris lain. Bisa jadi jejak manipulasi, tetapi bisa juga karena sudut ' +
         'kamera, papan yang agak miring, atau kompresi gambar yang berat. Indikator LEMAH ' +
         'yang punya penjelasan wajar.',
       strength: 'LEMAH',
-      source: 'AI Forensic Scanner — mode TEXT (simulasi)'
+      source: 'AI Forensic Scanner, mode TEXT (simulasi)'
     }
   };
 
@@ -94,12 +94,12 @@
   var NOTE_BUKA = 'Tanda “BUKA” di pintu kaca pendek, jelas, dan ejaannya benar. Bukan indikator.';
   var NOTE_PERSON = 'Bayangan pendek di sekitar kaki orang ini wajar untuk matahari sore dan tidak bertentangan dengan bayangan lain. Bukan indikator.';
   var NOTE_WINDOW = 'Cahaya hangat dari dalam jendela wajar untuk kafe yang sedang buka. Bukan indikator.';
-  var NOTE_TREE = 'Bayangan pohon jatuh ke kanan — searah cahaya matahari sore dari kiri. Konsisten. Bukan indikator.';
+  var NOTE_TREE = 'Bayangan pohon jatuh ke kanan, searah cahaya matahari sore dari kiri. Konsisten. Bukan indikator.';
   var NOTE_AWNING = 'Garis-garis kanopi berulang secara teratur dan rapi. Pola rapi wajar untuk objek buatan manusia. Bukan indikator.';
   var NOTE_WALK = 'Sambungan ubin trotoar dan garis pemandu kuning tersusun teratur dan konsisten. Bukan indikator.';
   var NOTE_BRICK_OK = 'Susunan bata mengikuti pola berselang-seling yang teratur, garis nat jelas, tanpa peleburan. Bukan indikator.';
-  var NOTE_HYD_OK = 'Bayangan hidran jatuh ke kanan, searah dengan bayangan pohon — konsisten dengan satu sumber cahaya. Bukan indikator.';
-  var NOTE_MENU_OK = 'Papan menu tertulis “KAFE NUSANTARA — ES KOPI SUSU 12K, ROTI BAKAR 10K” dengan rapi, sama persis dengan papan nama. Konsisten. Bukan indikator.';
+  var NOTE_HYD_OK = 'Bayangan hidran jatuh ke kanan, searah dengan bayangan pohon, konsisten dengan satu sumber cahaya. Bukan indikator.';
+  var NOTE_MENU_OK = 'Papan menu tertulis “KAFE NUSANTARA, ES KOPI SUSU 12K, ROTI BAKAR 10K” dengan rapi, sama persis dengan papan nama. Konsisten. Bukan indikator.';
 
   function region(name, x, y, w, h, opt) {
     var r = { name: name, x: x, y: y, w: w, h: h };
@@ -134,7 +134,7 @@
     {
       id: 'a',
       short: 'PLATE A',
-      label: 'PLATE A — “Kiriman Viral”',
+      label: 'PLATE A: “Kiriman Viral”',
       tag: 'KIRIMAN VIRAL', tagClass: 'tag--amber',
       img: ASSETS + 'plate-a.jpg',
       desc: 'Gambar ini viral dengan klaim “suasana kafe baru di kotamu”. Sumber pertama tidak diketahui.',
@@ -146,18 +146,18 @@
         { evidenceId: 'a-texture' }
       ),
       feedback: {
-        manipulasi: 'Tepat. Tiga indikator saling menguatkan: teks menu tidak konsisten (“NUSANTRA” dengan huruf N terbalik), bayangan hidran jatuh berlawanan arah dengan bayangan lain, dan pola bata yang melebur. Satu indikator bisa kebetulan — tiga indikator yang saling mendukung adalah dasar kesimpulan yang kuat.',
+        manipulasi: 'Tepat. Tiga indikator saling menguatkan: teks menu tidak konsisten (“NUSANTRA” dengan huruf N terbalik), bayangan hidran jatuh berlawanan arah dengan bayangan lain, dan pola bata yang melebur. Satu indikator bisa kebetulan; tiga indikator yang saling mendukung adalah dasar kesimpulan yang kuat.',
         'no-evidence': 'Kurang tepat. Plate A memuat tiga indikator yang bisa ditemukan lewat mode TEXT (tulisan menu vs papan nama), LIGHTING (arah bayangan hidran), dan TEXTURE (pola bata). Bukti sekuat itu seharusnya tidak dilewatkan.',
-        insufficient: 'Terlalu hati-hati untuk plate ini. Ada tiga indikator dari tiga mode berbeda yang saling menguatkan — saat bukti saling mendukung seperti itu, “kemungkinan manipulasi” adalah kesimpulan yang lebih sesuai bukti.'
+        insufficient: 'Terlalu hati-hati untuk plate ini. Ada tiga indikator dari tiga mode berbeda yang saling menguatkan. Saat bukti saling mendukung seperti itu, “kemungkinan manipulasi” adalah kesimpulan yang lebih sesuai bukti.'
       }
     },
     {
       id: 'b',
       short: 'PLATE B',
-      label: 'PLATE B — SIMULASI KONTROL (pembanding)',
+      label: 'PLATE B: SIMULASI KONTROL (pembanding)',
       tag: 'SIMULASI KONTROL (pembanding)', tagClass: 'tag--cyan',
       img: ASSETS + 'plate-b.jpg',
-      desc: 'Plate pembanding yang disusun tim lab agar kamu punya acuan tampilan scene yang konsisten. Ini bahan latihan — bukan klaim tentang keaslian foto mana pun.',
+      desc: 'Plate pembanding yang disusun tim lab agar kamu punya acuan tampilan scene yang konsisten. Ini bahan latihan, bukan klaim tentang keaslian foto mana pun.',
       correct: 'no-evidence',
       regions: makeRegions(
         { note: NOTE_MENU_OK },
@@ -165,15 +165,15 @@
         { note: NOTE_BRICK_OK }
       ),
       feedback: {
-        'no-evidence': 'Tepat — dan perhatikan kata-katanya: “tidak ditemukan bukti manipulasi yang cukup” TIDAK sama dengan “terbukti asli”. Pemeriksaanmu hanya berkata: dari tiga mode scan, tidak ada indikator. Keaslian tetap tidak terbukti — itu batas jujur dari alat dan mata kita.',
-        manipulasi: 'Kurang tepat. Plate B adalah simulasi kontrol yang konsisten: teks, bayangan, dan tekstur saling cocok. Menandai kejanggalan yang tidak ada sama berbahayanya dengan melewatkan yang ada — keduanya kesalahan investigasi.',
+        'no-evidence': 'Tepat, dan perhatikan kata-katanya: “tidak ditemukan bukti manipulasi yang cukup” TIDAK sama dengan “terbukti asli”. Pemeriksaanmu hanya berkata: dari tiga mode scan, tidak ada indikator. Keaslian tetap tidak terbukti, itu batas jujur dari alat dan mata kita.',
+        manipulasi: 'Kurang tepat. Plate B adalah simulasi kontrol yang konsisten: teks, bayangan, dan tekstur saling cocok. Menandai kejanggalan yang tidak ada sama berbahayanya dengan melewatkan yang ada; keduanya kesalahan investigasi.',
         insufficient: 'Bisa dimengerti, tetapi setelah ketiga mode scan tidak menemukan indikator apa pun, kesimpulan yang lebih informatif adalah “tidak ditemukan bukti manipulasi yang cukup”. Ingat: itu tetap BUKAN klaim “asli”.'
       }
     },
     {
       id: 'c',
       short: 'PLATE C',
-      label: 'PLATE C — Sumber Tidak Diketahui',
+      label: 'PLATE C: Sumber Tidak Diketahui',
       tag: 'SUMBER TIDAK DIKETAHUI', tagClass: 'tag--purple',
       img: ASSETS + 'plate-c.jpg',
       desc: 'Dikirim anonim ke kanal lab tanpa keterangan. Kualitas kompresi tampak rendah.',
@@ -184,9 +184,9 @@
         { note: NOTE_BRICK_OK }
       ),
       feedback: {
-        insufficient: 'Tepat. Hanya ada satu indikator LEMAH (baris menu agak miring) yang bisa dijelaskan oleh sudut kamera atau kompresi. Satu indikator lemah tidak cukup untuk menuduh manipulasi — tetapi juga tidak bisa diabaikan begitu saja. “Belum cukup bukti” adalah kesimpulan paling jujur.',
+        insufficient: 'Tepat. Hanya ada satu indikator LEMAH (baris menu agak miring) yang bisa dijelaskan oleh sudut kamera atau kompresi. Satu indikator lemah tidak cukup untuk menuduh manipulasi, tetapi juga tidak bisa diabaikan begitu saja. “Belum cukup bukti” adalah kesimpulan paling jujur.',
         manipulasi: 'Terlalu cepat. Satu-satunya temuan adalah indikator lemah yang punya penjelasan wajar (perspektif papan, kompresi gambar). Menuduh manipulasi dari satu indikator lemah adalah lompatan kesimpulan.',
-        'no-evidence': 'Hampir — tetapi ada satu indikator lemah (baris menu miring) yang belum bisa dijelaskan tuntas. Selama masih ada keraguan kecil yang belum terjawab, “belum cukup bukti” lebih jujur daripada “tidak ditemukan bukti yang cukup”.'
+        'no-evidence': 'Hampir, tetapi ada satu indikator lemah (baris menu miring) yang belum bisa dijelaskan tuntas. Selama masih ada keraguan kecil yang belum terjawab, “belum cukup bukti” lebih jujur daripada “tidak ditemukan bukti yang cukup”.'
       }
     }
   ];
@@ -194,31 +194,31 @@
   var HINTS = [
     'Mulai dari hipotesis: bagian apa yang paling sering salah pada gambar buatan? Biasanya teks, arah cahaya, dan pola yang berulang.',
     'Pakai ketiga mode scan pada tiap plate, lalu bandingkan tulisan yang sama di dua tempat berbeda. Konsisten atau tidak?',
-    'Dengan satu sumber cahaya, semua bayangan harus searah. Dan ingat: tidak menemukan apa pun juga merupakan data — catat lewat tombol “tidak ada temuan”.'
+    'Dengan satu sumber cahaya, semua bayangan harus searah. Dan ingat: tidak menemukan apa pun juga merupakan data. Catat lewat tombol “tidak ada temuan”.'
   ];
 
   var INTRO = [
     { speaker: 'system', text: 'TIGA PLATE CITRA MASUK KE LAB FORENSIK VISUAL…' },
-    { speaker: 'aruna', voice: 'aruna/case002-intro-01.mp3', text: 'Tiga gambar, tiga klaim berbeda. Tugasmu bukan menebak “asli atau palsu” — tugasmu memeriksa indikator, lalu menimbang seberapa kuat buktinya.' },
-    { speaker: 'aruna', voice: 'aruna/case002-intro-02.mp3', text: 'Perhatikan Plate B. Itu SIMULASI KONTROL — pembanding yang kita susun sendiri dan kita tahu konsisten. Ilmuwan selalu butuh pembanding sebelum menilai yang lain.' },
+    { speaker: 'aruna', voice: 'aruna/case002-intro-01.mp3', text: 'Tiga gambar, tiga klaim berbeda. Tugasmu bukan menebak “asli atau palsu”, tugasmu memeriksa indikator, lalu menimbang seberapa kuat buktinya.' },
+    { speaker: 'aruna', voice: 'aruna/case002-intro-02.mp3', text: 'Perhatikan Plate B. Itu SIMULASI KONTROL, pembanding yang kita susun sendiri dan kita tahu konsisten. Ilmuwan selalu butuh pembanding sebelum menilai yang lain.' },
     { speaker: 'aruna', voice: 'aruna/case002-intro-03.mp3', text: 'Satu prinsip penting: scanner hanya MENGARAHKAN perhatianmu ke area kandidat. Ia tidak pernah memberi jawaban. Yang menilai tetap kamu.' }
   ];
 
   var TUTORIAL = [
-    { speaker: 'aruna', voice: 'aruna/case002-scanner-01.mp3', text: 'Sebelum menyentuh plate, pahami cara kerja AI FORENSIC SCANNER. Ini alat SIMULASI untuk latihan — bukan detector AI sungguhan.' },
+    { speaker: 'aruna', voice: 'aruna/case002-scanner-01.mp3', text: 'Sebelum menyentuh plate, pahami cara kerja AI FORENSIC SCANNER. Ini alat SIMULASI untuk latihan, bukan detector AI sungguhan.' },
     { speaker: 'aruna', voice: 'aruna/case002-scanner-02.mp3', text: 'AMATI dulu tanpa alat. Apa yang kamu lihat? Jangan buru-buru menduga.' },
     { speaker: 'aruna', voice: 'aruna/case002-scanner-03.mp3', text: 'BUAT HIPOTESIS. Misalnya: “kalau gambar ini buatan, bagian teksnya mungkin kacau.” Hipotesis menentukan alat yang kamu pilih.' },
-    { speaker: 'aruna', voice: 'aruna/case002-scanner-04.mp3', text: 'PILIH MODE SCAN — TEXT, LIGHTING, atau TEXTURE. Scanner akan menyoroti beberapa area kandidat. Ingat: area yang disorot BELUM TENTU janggal.' },
-    { speaker: 'aruna', voice: 'aruna/case002-scanner-05.mp3', text: 'PERIKSA tiap area kandidat, lalu KLIK area yang menurutmu tidak konsisten. Kamu yang menandai — bukan mesinnya. Kalau semuanya wajar, nyatakan “tidak ada temuan”.' },
+    { speaker: 'aruna', voice: 'aruna/case002-scanner-04.mp3', text: 'PILIH MODE SCAN: TEXT, LIGHTING, atau TEXTURE. Scanner akan menyoroti beberapa area kandidat. Ingat: area yang disorot BELUM TENTU janggal.' },
+    { speaker: 'aruna', voice: 'aruna/case002-scanner-05.mp3', text: 'PERIKSA tiap area kandidat, lalu KLIK area yang menurutmu tidak konsisten. Kamu yang menandai, bukan mesinnya. Kalau semuanya wajar, nyatakan “tidak ada temuan”.' },
     { speaker: 'aruna', voice: 'aruna/case002-scanner-06.mp3', text: 'BANDINGKAN antar-plate. Perbedaan kecil lebih mudah terlihat saat dua gambar berdampingan.' },
-    { speaker: 'aruna', voice: 'aruna/case002-scanner-07.mp3', text: 'Terakhir: SET CONFIDENCE dan SIMPULKAN. Tiga pilihan selalu tersedia — termasuk “belum cukup bukti”. Kadang itu justru kesimpulan paling berani.' }
+    { speaker: 'aruna', voice: 'aruna/case002-scanner-07.mp3', text: 'Terakhir: SET CONFIDENCE dan SIMPULKAN. Tiga pilihan selalu tersedia, termasuk “belum cukup bukti”. Kadang itu justru kesimpulan paling berani.' }
   ];
 
   var PHANTOM_LINES = [
     { speaker: 'system', text: '⚠ INTERFERENSI SINYAL TERDETEKSI DI KANAL LAB…' },
     { speaker: 'phantom', voice: 'phantom/case002-01.mp3', text: 'Matamu mudah ditipu. Alatmu juga.' },
     { speaker: 'phantom', voice: 'phantom/case002-02.mp3', text: 'Satu gambar meyakinkan lebih cepat daripada seribu pemeriksaanmu. Itulah kenapa aku selalu menang.' },
-    { speaker: 'aruna', voice: 'aruna/case002-post-phantom.mp3', text: 'Dia benar tentang satu hal: mata dan alat memang bisa tertipu. Justru karena itu kita pakai metode — kontrol, pembanding, dan keberanian bilang “belum cukup bukti”. Itu yang tidak dimiliki PHANTOM.' }
+    { speaker: 'aruna', voice: 'aruna/case002-post-phantom.mp3', text: 'Dia benar tentang satu hal: mata dan alat memang bisa tertipu. Justru karena itu kita pakai metode: kontrol, pembanding, dan keberanian bilang “belum cukup bukti”. Itu yang tidak dimiliki PHANTOM.' }
   ];
 
   /* ------------------------------------------------------------
@@ -319,7 +319,7 @@
   var refs = null; // elemen yang di-update parsial
 
   SIGAP.router.register('case002', {
-    title: 'CASE 002 — Real or Generated?',
+    title: 'CASE 002: Real or Generated?',
     render: function (container) {
       run = freshRun();
       refs = {};
@@ -336,7 +336,7 @@
       header.innerHTML =
         '<div class="screen__eyebrow">CASE 002 · CITRA HASIL AI</div>' +
         '<h1 class="screen__title">Real or Generated?</h1>' +
-        '<p class="screen__sub">Tiga plate gambar menunggu pemeriksaan. Scanner menyoroti area kandidat — ' +
+        '<p class="screen__sub">Tiga plate gambar menunggu pemeriksaan. Scanner menyoroti area kandidat, ' +
         'tapi yang menilai janggal atau tidak adalah kamu.</p>';
       main.appendChild(header);
 
@@ -547,7 +547,7 @@
     viewer.appendChild(overlay);
 
     // Kaca pembesar: memperbesar area di bawah kursor/jari.
-    // Murni bantuan visual — tidak menyorot dan tidak menilai apa pun.
+    // Murni bantuan visual: tidak menyorot dan tidak menilai apa pun.
     if (run.loupe) {
       var loupe = document.createElement('div');
       loupe.className = 'c2-loupe';
@@ -727,7 +727,7 @@
 
     var sim = document.createElement('div');
     sim.className = 'sim-label';
-    sim.textContent = 'SIMULATED FORENSIC TOOL — bukan detector AI nyata';
+    sim.textContent = 'SIMULATED FORENSIC TOOL, bukan detector AI nyata';
     scanner.appendChild(sim);
 
     var expl = document.createElement('p');
@@ -759,12 +759,12 @@
     if (ps.locked) {
       status.textContent = 'Kesimpulan plate ini sudah terkunci.';
     } else if (run.compare) {
-      status.textContent = 'Mode pembanding aktif — tutup pembanding untuk kembali men-scan.';
+      status.textContent = 'Mode pembanding aktif. Tutup pembanding untuk kembali men-scan.';
     } else if (run.scanning) {
       status.textContent = 'Memindai…';
     } else if (run.activeMode) {
       var n = p.regions[run.activeMode].length;
-      status.textContent = n + ' area kandidat disorot pada gambar. Periksa satu per satu, lalu klik yang menurutmu janggal — atau nyatakan tidak ada temuan.';
+      status.textContent = n + ' area kandidat disorot pada gambar. Periksa satu per satu, lalu klik yang menurutmu janggal, atau nyatakan tidak ada temuan.';
     } else {
       status.textContent = 'Pilih mode scan untuk menyorot area kandidat pada ' + p.short + '.';
     }
@@ -1031,12 +1031,12 @@
     var slider = SIGAP.ui.confidenceSlider({
       label: 'Keyakinan keseluruhan terhadap laporanmu',
       value: 65,
-      hint: 'Ukur dari kekuatan bukti di ketiga plate — bukan dari perasaan. Laporan yang jujur lebih berharga daripada laporan yang percaya diri.'
+      hint: 'Ukur dari kekuatan bukti di ketiga plate, bukan dari perasaan. Laporan yang jujur lebih berharga daripada laporan yang percaya diri.'
     });
     body.appendChild(slider.el);
 
     SIGAP.ui.modal({
-      title: 'LAPORAN LAB — CASE 002',
+      title: 'LAPORAN LAB: CASE 002',
       body: body,
       wide: true,
       actions: [
@@ -1118,7 +1118,7 @@
       }
       if (run.plates.b.conclusion === 'manipulasi') {
         SIGAP.scoring.recordMisconception('case002',
-          'Menandai simulasi kontrol yang konsisten sebagai manipulasi — mencari kejanggalan yang tidak ada.');
+          'Menandai simulasi kontrol yang konsisten sebagai manipulasi, yaitu mencari kejanggalan yang tidak ada.');
       }
       if (run.plates.c.conclusion === 'manipulasi' && run.plates.c.confidence > 70) {
         SIGAP.scoring.recordMisconception('case002',
@@ -1153,7 +1153,7 @@
     if (res.practice) {
       var pb = document.createElement('div');
       pb.className = 'practice-banner';
-      pb.textContent = 'PRACTICE RUN — XP tidak diberikan';
+      pb.textContent = 'PRACTICE RUN: XP tidak diberikan';
       wrap.appendChild(pb);
     }
 
@@ -1163,8 +1163,8 @@
     verdict.innerHTML =
       '<span class="debrief-verdict__icon" aria-hidden="true">' + (sc.decisionCorrect ? '✔' : '✘') + '</span>' +
       '<span>' + (sc.decisionCorrect
-        ? 'Ketiga kesimpulanmu sesuai bukti. Kamu membedakan “ada bukti manipulasi”, “tidak ditemukan bukti yang cukup”, dan “belum cukup bukti” — itu inti literasi visual.'
-        : 'Sebagian kesimpulan belum sesuai bukti. Baca ulasan per plate di bawah — yang dinilai bukan tebakanmu, melainkan cara kamu menimbang indikator.') +
+        ? 'Ketiga kesimpulanmu sesuai bukti. Kamu membedakan “ada bukti manipulasi”, “tidak ditemukan bukti yang cukup”, dan “belum cukup bukti”, itu inti literasi visual.'
+        : 'Sebagian kesimpulan belum sesuai bukti. Baca ulasan per plate di bawah, yang dinilai bukan tebakanmu, melainkan cara kamu menimbang indikator.') +
       '</span>';
     wrap.appendChild(verdict);
 
@@ -1232,7 +1232,7 @@
     cine.setAttribute('aria-label', 'Kasus selesai');
     cine.innerHTML =
       '<div class="case-complete-cine__stamp">CASE CLOSED</div>' +
-      '<p class="text-muted">CASE 002 — Real or Generated? · Laporan diarsipkan.</p>';
+      '<p class="text-muted">CASE 002: Real or Generated? · Laporan diarsipkan.</p>';
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'btn btn--primary';

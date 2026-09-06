@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — components/chrome.js
+   SIGAP - components/chrome.js
    Shared app chrome: topbar (logo, crumb, agent info, sound
    toggle), background layers, settings modal, logo SVG.
    ============================================================ */
@@ -38,7 +38,7 @@
     logo.className = 'topbar__logo';
     logo.href = '#/' + (SIGAP.state.hasProfile() ? 'academy' : 'title');
     logo.innerHTML = SIGAP.ui.logoSvg(26) + '<span>SIGAP</span>';
-    logo.setAttribute('aria-label', 'SIGAP — kembali ke ' + (SIGAP.state.hasProfile() ? 'Academy' : 'halaman utama'));
+    logo.setAttribute('aria-label', 'SIGAP - kembali ke ' + (SIGAP.state.hasProfile() ? 'Academy' : 'halaman utama'));
     bar.appendChild(logo);
 
     if (opts.crumb) {

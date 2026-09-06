@@ -7,7 +7,7 @@
 # dipangkas ke ~0,15 s dan di akhir ke ~0,05 s.
 #
 # Suara dipilih dengan mencocokkan speaker-embedding terhadap aset Aruna
-# yang sudah ada (resemblyzer): id-ID-GadisNeural memberi kemiripan ~0,81 —
+# yang sudah ada (resemblyzer): id-ID-GadisNeural memberi kemiripan ~0,81,
 # di dalam rentang variasi antar-file Aruna asli sendiri (0,71-0,94).
 # Menggeser pitch justru MENURUNKAN kemiripan (0,79 -> 0,69 pada -20Hz),
 # jadi jangan diubah tanpa mengukur ulang.

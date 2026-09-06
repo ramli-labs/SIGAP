@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — audio.js
+   SIGAP - audio.js
    Procedural SFX via WebAudio (no asset files required) +
    optional narration player with graceful fallback.
    ============================================================ */
@@ -134,7 +134,7 @@
 
     /**
      * Play a narration file from assets/audio/. Resolves silently on any
-     * failure (missing file, unsupported format) — dialogue always works
+     * failure (missing file, unsupported format); dialogue always works
      * without audio. Returns the HTMLAudioElement or null.
      */
     playNarration: function (relPath) {

@@ -1,6 +1,6 @@
 /* ============================================================
-   SIGAP — games/case004.js
-   CASE 004 "Phantom Signal" — klimaks: deepfake / video termanipulasi.
+   SIGAP - games/case004.js
+   CASE 004 "Phantom Signal". Klimaks: deepfake / video termanipulasi.
 
    Aset video (assets/cases/case004/) = REKAMAN ASLI seorang pengajar yang
    sedang presentasi di depan kelas (dipakai dengan izin sebagai bahan
@@ -43,11 +43,11 @@
   SIGAP.data.evidenceCatalog.case004 = {
     'c4-ev-lipsync': {
       id: 'c4-ev-lipsync',
-      title: '00:03.4 — Bibir mendahului audio',
+      title: '00:03.4 · Bibir mendahului audio',
       body: 'Mulai detik 3,4 suara TERTINGGAL ±0,4 detik dari gerak bibir: mulut sudah membentuk ' +
         'kata berikutnya sementara audio masih menyelesaikan kata sebelumnya. Paling jelas di detik ' +
-        '3,8–4,1 — mulut aktif berbicara tetapi bar audio nyaris kosong; suaranya baru menyusul. ' +
-        'Ketinggalan ini bertahan sampai detik 4,9 — di video referensi keduanya selalu serentak.',
+        '3,8–4,1: mulut aktif berbicara tetapi bar audio nyaris kosong; suaranya baru menyusul. ' +
+        'Ketinggalan ini bertahan sampai detik 4,9. Di video referensi keduanya selalu serentak.',
       source: 'LIP-SYNC ANALYZER (simulasi)',
       strength: 'KUAT',
       temporal: true,
@@ -55,7 +55,7 @@
     },
     'c4-ev-boundary': {
       id: 'c4-ev-boundary',
-      title: '00:05.6 — Tepi wajah berkedip',
+      title: '00:05.6 · Tepi wajah berkedip',
       body: 'Selama 3–4 frame (detik 5,55–5,72) area wajah pecah: muncul salinan wajah yang ' +
         'bergeser beberapa piksel dengan bingkai kotak magenta, plus garis sobek mendatar melintasi wajah. ' +
         'Artefak batas (boundary) seperti ini bisa muncul saat sebuah wajah ditempelkan ke video lain.',
@@ -66,9 +66,9 @@
     },
     'c4-ev-audio': {
       id: 'c4-ev-audio',
-      title: '±00:04.9 — Warna suara berubah',
-      body: 'Sebelum detik 4,9 warna suaranya masih natural. Tepat di detik 4,9 ada sambungan kasar — ' +
-        'sepotong ucapan seperti terlewati — lalu nada dasar tiba-tiba TURUN (lebih berat) dan bergetar ' +
+      title: '±00:04.9 · Warna suara berubah',
+      body: 'Sebelum detik 4,9 warna suaranya masih natural. Tepat di detik 4,9 ada sambungan kasar: ' +
+        'sepotong ucapan seperti terlewati, lalu nada dasar tiba-tiba TURUN (lebih berat) dan bergetar ' +
         'cepat (tremolo). Pola gelombang paruh kedua jelas berbeda, padahal di video referensi warna ' +
         'suaranya konsisten dari awal sampai akhir.',
       source: 'AUDIO WAVEFORM (simulasi)',
@@ -78,9 +78,9 @@
     },
     'c4-ev-background': {
       id: 'c4-ev-background',
-      title: '00:06.0 — Warna blok di slide bertukar',
+      title: '00:06.0 · Warna blok di slide bertukar',
       body: 'Mulai detik 6, dua blok di slide proyektor bertukar warna: "Kumpulkan Data" yang sejak ' +
-        'awal HIJAU berubah jadi MERAH, dan "Diskusi & Refleksi" yang MERAH berubah jadi HIJAU — ' +
+        'awal HIJAU berubah jadi MERAH, dan "Diskusi & Refleksi" yang MERAH berubah jadi HIJAU, ' +
         'sementara tulisannya tetap di tempat. Pada video referensi warnanya tidak berubah sedikit pun ' +
         'selama 9 detik. Slide tidak bisa berubah sendiri sementara orangnya bicara tanpa jeda; ' +
         'perubahan seperti ini menandakan ada potongan yang disambung.',
@@ -94,11 +94,11 @@
       title: 'Metadata (simulasi) tidak konsisten',
       body: 'Encoder berbeda dengan rekaman resmi sekolah, tanggal dibuat tidak sama dengan tanggal ' +
         'diubah, dan ada jejak encode ulang. Ingat: metadata bisa membantu, TAPI mudah dipalsukan ' +
-        'atau hilang saat file dikirim ulang — ini bukti pendukung, bukan bukti final.',
+        'atau hilang saat file dikirim ulang. Ini bukti pendukung, bukan bukti final.',
       source: 'METADATA VIEWER (simulasi)',
       strength: 'LEMAH',
       temporal: false,
-      ts: '—'
+      ts: '-'
     }
   };
 
@@ -106,11 +106,11 @@
 
   /* ---------- Konfigurasi hipotesis & tools ---------- */
   var HYPOS = [
-    { id: 'face', key: 'A', label: 'Wajah', desc: 'Area wajah terasa aneh — mungkin ada artefak visual di sekitar wajah.' },
-    { id: 'lipsync', key: 'B', label: 'Lip-sync', desc: 'Gerak bibir dan suara terasa tidak pas — mungkin tidak sinkron.' },
-    { id: 'audio', key: 'C', label: 'Audio', desc: 'Suaranya terdengar berubah-ubah — mungkin audionya yang diubah.' },
-    { id: 'background', key: 'D', label: 'Latar', desc: 'Ada yang janggal di latar belakang — mungkin latarnya tidak konsisten.' },
-    { id: 'metadata', key: 'E', label: 'Metadata', desc: 'Cek dulu data teknis file-nya — mungkin ada jejak penyuntingan.' }
+    { id: 'face', key: 'A', label: 'Wajah', desc: 'Area wajah terasa aneh. Mungkin ada artefak visual di sekitar wajah.' },
+    { id: 'lipsync', key: 'B', label: 'Lip-sync', desc: 'Gerak bibir dan suara terasa tidak pas. Mungkin tidak sinkron.' },
+    { id: 'audio', key: 'C', label: 'Audio', desc: 'Suaranya terdengar berubah-ubah. Mungkin audionya yang diubah.' },
+    { id: 'background', key: 'D', label: 'Latar', desc: 'Ada yang janggal di latar belakang. Mungkin latarnya tidak konsisten.' },
+    { id: 'metadata', key: 'E', label: 'Metadata', desc: 'Cek dulu data teknis file-nya. Mungkin ada jejak penyuntingan.' }
   ];
 
   var TOOLS = [
@@ -169,7 +169,7 @@
   }
   function simLabel(extra) {
     return el('div', 'sim-label',
-      'SIMULATED FORENSIC TOOL — bukan detektor AI nyata. ' +
+      'SIMULATED FORENSIC TOOL, bukan detektor AI nyata. ' +
       'Alat ini hanya menampilkan data; KAMU yang mengamati dan menilai.' +
       (extra ? ' ' + extra : ''));
   }
@@ -242,7 +242,7 @@
   var refs = { stage: null, steps: null, sidebar: null, main: null };
 
   SIGAP.router.register('case004', {
-    title: 'CASE 004 — Phantom Signal',
+    title: 'CASE 004: Phantom Signal',
 
     render: function (container) {
       S = freshState();
@@ -256,7 +256,7 @@
       refs.main = main;
 
       var header = el('div', 'screen__header');
-      header.appendChild(el('div', 'screen__eyebrow', 'CASE 004 — KLIMAKS'));
+      header.appendChild(el('div', 'screen__eyebrow', 'CASE 004 · KLIMAKS'));
       header.appendChild(el('h1', 'screen__title', 'Phantom Signal'));
       header.appendChild(el('p', 'screen__sub',
         'Sebuah potongan video guru beredar dan diragukan keasliannya. Bandingkan dengan rekaman referensi resmi, ' +
@@ -298,20 +298,20 @@
   }
 
   /* ============================================================
-     FASE 0 — INTRO
+     FASE 0: INTRO
      ============================================================ */
   function showIntro() {
     setPhase(0);
     SIGAP.ui.dialogue.play([
-      { speaker: 'aruna', voice: 'aruna/case004-intro-01.mp3', text: 'Agen, ini kasus terbesar kita. Potongan video guru kita saat menjelaskan proyek di kelas beredar di grup chat — versinya sudah diubah, dan seorang siswa jadi tersudut. Beliau bilang bukan itu yang dia rekam.' },
+      { speaker: 'aruna', voice: 'aruna/case004-intro-01.mp3', text: 'Agen, ini kasus terbesar kita. Potongan video guru kita saat menjelaskan proyek di kelas beredar di grup chat. Versinya sudah diubah, dan seorang siswa jadi tersudut. Beliau bilang bukan itu yang dia rekam.' },
       { speaker: 'aruna', voice: 'aruna/case004-intro-02.mp3', text: 'Untungnya, sekolah punya rekaman referensi resmi yang diambil di ruangan yang sama. Bandingkan keduanya dengan teliti: mata dan telingamu adalah alat pertama.' },
       { speaker: 'system', text: 'CATATAN: kedua video adalah SIMULASI MEDIA PELATIHAN. Rekaman aslinya nyata dan dipakai dengan izin; versi "suspect" sengaja diberi artefak buatan untuk latihan ini. Jangan sebarkan potongannya di luar kelas.' },
-      { speaker: 'aruna', voice: 'aruna/case004-intro-03.mp3', text: 'Tonton keduanya sampai selesai (nyalakan suara). Catat apa pun yang terasa janggal — sekecil apa pun.' }
+      { speaker: 'aruna', voice: 'aruna/case004-intro-03.mp3', text: 'Tonton keduanya sampai selesai (nyalakan suara). Catat apa pun yang terasa janggal, sekecil apa pun.' }
     ], { onEnd: showObserve });
   }
 
   /* ============================================================
-     FASE 1 — AMATI (dua video)
+     FASE 1: AMATI (dua video)
      ============================================================ */
   function videoPanel(kind, label, tagClass, transcriptLines) {
     var panel = el('div', 'panel c4-video-panel');
@@ -327,7 +327,7 @@
     video.controls = true;
     video.preload = 'metadata';
     video.playsInline = true;
-    video.setAttribute('aria-label', label + ' — video simulasi pelatihan, 9 detik');
+    video.setAttribute('aria-label', label + ': video simulasi pelatihan, 9 detik');
     holder.appendChild(video);
     panel.appendChild(holder);
     live.videos.push(video);
@@ -348,7 +348,7 @@
       });
       body.appendChild(ul);
       SIGAP.ui.modal({
-        title: 'Transkrip — ' + label,
+        title: 'Transkrip: ' + label,
         body: body,
         actions: [{ label: 'Tutup', variant: 'primary', onClick: function (close) { close(); } }]
       });
@@ -359,7 +359,7 @@
       holder.innerHTML = '';
       var fb = el('div', 'panel panel--accent c4-video-fallback',
         '<strong>Video tidak dapat diputar di perangkat ini.</strong><br>' +
-        'Tenang — kamu tetap bisa menyelidiki lewat transkrip observasi di bawah.');
+        'Tenang, kamu tetap bisa menyelidiki lewat transkrip observasi di bawah.');
       holder.appendChild(fb);
       showTranscript();
     });
@@ -395,9 +395,9 @@
     grid.appendChild(videoPanel('suspect', 'VIDEO BEREDAR (SUSPECT)', 'tag--red', [
       'Seorang pengajar berdiri di depan kelas, di sisi kanan layar proyektor yang menampilkan slide alur belajar (Pertanyaan Pemantik, Rancang Proyek, Kumpulkan Data, Latih Model AI, Uji Model, Evaluasi & Refleksi). Dinding hijau toska di bawah layar; papan tulis kaca di sisi kanan. Watermark: SIMULASI MEDIA PELATIHAN.',
       'Ia berkata: "…yang akan kita pelajari atau kita lakuin hari ini. Yang pertama nanti bapak akan ngasih sebuah pertanyaan… terus…"',
-      'Sekitar detik 3-5 suaranya tertinggal dari gerak bibir — mulut sudah mengucapkan kata berikutnya, suaranya menyusul terlambat.',
+      'Sekitar detik 3-5 suaranya tertinggal dari gerak bibir: mulut sudah mengucapkan kata berikutnya, suaranya menyusul terlambat.',
       'Sekilas, sekitar detik 5-6, ada kedipan kotak magenta dan garis sobek di area wajah.',
-      'Di detik 4,9 ada sambungan kasar — sepotong kata seperti hilang — lalu suaranya berubah jadi lebih berat dan bergetar; setelah detik 6 ada yang berpindah di latar belakang.'
+      'Di detik 4,9 ada sambungan kasar: sepotong kata seperti hilang, lalu suaranya berubah jadi lebih berat dan bergetar; setelah detik 6 ada yang berpindah di latar belakang.'
     ]));
     grid.appendChild(videoPanel('reference', 'REKAMAN REFERENSI RESMI', 'tag--green', [
       'Pengajar yang sama, ruang kelas yang sama, slide alur belajar yang sama di layar proyektor. Watermark: SIMULASI MEDIA PELATIHAN.',
@@ -422,7 +422,7 @@
   }
 
   /* ============================================================
-     FASE 2 — HIPOTESIS
+     FASE 2: HIPOTESIS
      ============================================================ */
   function showHypothesis(isRevision) {
     if (!isRevision) {
@@ -433,7 +433,7 @@
       intro.appendChild(el('h2', 'panel-title', 'Apa dugaan awalmu?'));
       intro.appendChild(el('p', 'text-sm text-muted',
         'Pilih bagian yang menurutmu paling janggal. Pilihanmu menentukan alat forensik PERTAMA ' +
-        'yang terbuka — alat lain menyusul setelah alat pertama dipakai. Hipotesis boleh diubah kapan saja; ' +
+        'yang terbuka. Alat lain menyusul setelah alat pertama dipakai. Hipotesis boleh diubah kapan saja; ' +
         'salah hipotesis bukan akhir segalanya.'));
       refs.stage.appendChild(intro);
 
@@ -456,7 +456,7 @@
       var modal;
       HYPOS.forEach(function (h) {
         var card = btn(
-          '<span class="option-card__key">' + h.key + '</span> <strong>' + h.label + '</strong> — ' +
+          '<span class="option-card__key">' + h.key + '</span> <strong>' + h.label + '</strong>: ' +
           '<span class="text-sm text-muted">' + h.desc + '</span>',
           'option-card' + (S.hypothesis === h.id ? ' option-card--selected' : ''),
           function () {
@@ -483,7 +483,7 @@
   }
 
   /* ============================================================
-     FASE 3 — UJI (tools + papan bukti)
+     FASE 3: UJI (tools + papan bukti)
      ============================================================ */
   var activeToolId = null;
   var refreshTabs = null;
@@ -519,7 +519,7 @@
             if (!toolAvailable(t.id)) {
               SIGAP.ui.toast('Terkunci. Gunakan dulu alat pertamamu (' +
                 TOOLS.filter(function (x) { return x.id === toolForHypo(S.hypothesis); })[0].name +
-                ') — tandai sesuatu di sana — atau ubah hipotesis.', 'warn');
+                '). Tandai sesuatu di sana, atau ubah hipotesis.', 'warn');
               return;
             }
             renderInvestigate(t.id);
@@ -559,7 +559,7 @@
     hypoPanel.appendChild(el('div', 'panel-title', 'Hipotesis aktif'));
     var h = null;
     HYPOS.forEach(function (x) { if (x.id === S.hypothesis) h = x; });
-    hypoPanel.appendChild(el('p', 'text-sm', h ? ('<strong>' + h.label + '</strong> — ' + h.desc) : '—'));
+    hypoPanel.appendChild(el('p', 'text-sm', h ? ('<strong>' + h.label + '</strong>: ' + h.desc) : '-'));
     hypoPanel.appendChild(btn('Ubah hipotesis', 'btn btn--sm btn--ghost', function () {
       showHypothesis(true);
     }));
@@ -583,13 +583,13 @@
     }
     if (temporalCount() >= 2) {
       evPanel.appendChild(el('p', 'text-xs text-success',
-        '&#10003; Dua artefak temporal atau lebih — bukti mulai saling menguatkan.'));
+        '&#10003; Dua artefak temporal atau lebih. Bukti mulai saling menguatkan.'));
     }
     refs.sidebar.appendChild(evPanel);
 
     var act = el('div', 'panel panel--accent stack stack--sm');
     act.appendChild(el('p', 'text-sm text-muted',
-      'Sudah yakin dengan temuanmu? Kamu bisa mengambil keputusan kapan saja — tetapi bukti yang ' +
+      'Sudah yakin dengan temuanmu? Kamu bisa mengambil keputusan kapan saja, tetapi bukti yang ' +
       'saling mendukung membuat kesimpulan lebih kuat.'));
     act.appendChild(btn('Ambil keputusan &rarr;', 'btn btn--primary btn--block', function () {
       if (temporalCount() < 2) {
@@ -618,12 +618,12 @@
     if (t >= 5.4 && t <= 5.8) {
       return 'Area wajah tampak PECAH: salinan wajah bergeser dengan bingkai kotak magenta, plus garis sobek mendatar.';
     }
-    if (t >= 6.0) return 'Pengajar berbicara. Di slide, blok "Kumpulkan Data" kini MERAH dan blok "Diskusi & Refleksi" kini HIJAU — tertukar.';
+    if (t >= 6.0) return 'Pengajar berbicara. Di slide, blok "Kumpulkan Data" kini MERAH dan blok "Diskusi & Refleksi" kini HIJAU. Warnanya tertukar.';
     return 'Pengajar berbicara di depan layar proyektor; di slide, blok "Kumpulkan Data" hijau dan blok "Diskusi & Refleksi" merah. Tidak ada keanehan mencolok.';
   }
 
   function toolFrame(panel) {
-    panel.appendChild(el('div', 'panel-title', 'FRAME ANALYZER — video beredar (suspect)'));
+    panel.appendChild(el('div', 'panel-title', 'FRAME ANALYZER: video beredar (suspect)'));
     panel.appendChild(simLabel('Telusuri per 0,4 detik; video normal berjalan 25 frame/detik.'));
 
     var body = el('div', 'stack');
@@ -677,7 +677,7 @@
       if (fbList) return;
       fbList = el('div', 'panel panel--glass c4-frame-fallback');
       fbList.appendChild(el('p', 'text-sm',
-        '<strong>Mode teks:</strong> pratinjau frame tidak tersedia. Gunakan slider — deskripsi tiap frame tetap akurat.'));
+        '<strong>Mode teks:</strong> pratinjau frame tidak tersedia. Gunakan slider. Deskripsi tiap frame tetap akurat.'));
       body.insertBefore(fbList, timeLabel);
     }
 
@@ -712,7 +712,7 @@
 
   /* ---------- TOOL 2: LIP-SYNC ANALYZER ---------- */
   function toolLipsync(panel) {
-    panel.appendChild(el('div', 'panel-title', 'LIP-SYNC ANALYZER — video beredar (suspect)'));
+    panel.appendChild(el('div', 'panel-title', 'LIP-SYNC ANALYZER: video beredar (suspect)'));
     panel.appendChild(simLabel('Bar dibuat dari data gerak mulut dan amplitudo audio video ini.'));
 
     var body = el('div', 'stack');
@@ -792,7 +792,7 @@
   }
 
   function toolAudio(panel) {
-    panel.appendChild(el('div', 'panel-title', 'AUDIO WAVEFORM — suspect vs referensi'));
+    panel.appendChild(el('div', 'panel-title', 'AUDIO WAVEFORM: suspect vs referensi'));
     panel.appendChild(simLabel('Gelombang digambar dari data amplitudo audio kedua video.'));
 
     var body = el('div', 'stack');
@@ -807,7 +807,7 @@
     c1.setAttribute('role', 'img');
     c1.setAttribute('aria-label',
       'Gelombang audio suspect: paruh pertama pola ucapan natural (dengan pola yang tertinggal 0,4 detik ' +
-      'mulai detik 3,4); tepat di detik 4,9 ada sambungan kasar lalu polanya berubah — nada lebih ' +
+      'mulai detik 3,4); tepat di detik 4,9 ada sambungan kasar lalu polanya berubah: nada lebih ' +
       'rendah/berat dan bergetar, ditandai warna beda.');
     drawWave(c1, audioEnvSus, 4.9);
     body.appendChild(c1);
@@ -834,7 +834,7 @@
             self.classList.add('c4-seg--wrong');
             wrongMark('audio', [
               'Di sini polanya masih sama dengan bagian sebelumnya. Bandingkan paruh pertama dan paruh kedua.',
-              'Petunjuk: dengarkan/lihat sekitar tengah video — sebelum dan sesudah detik 5.'
+              'Petunjuk: dengarkan/lihat sekitar tengah video, sebelum dan sesudah detik 5.'
             ]);
           }
         });
@@ -846,7 +846,7 @@
 
   /* ---------- TOOL 4: BACKGROUND CONTINUITY ---------- */
   function toolBackground(panel) {
-    panel.appendChild(el('div', 'panel-title', 'BACKGROUND CONTINUITY — latar suspect vs referensi'));
+    panel.appendChild(el('div', 'panel-title', 'BACKGROUND CONTINUITY: latar suspect vs referensi'));
     panel.appendChild(simLabel('Membandingkan cuplikan frame awal (detik 2) dan akhir (detik 7).'));
 
     var body = el('div', 'stack');
@@ -859,10 +859,10 @@
     body.appendChild(grid);
 
     var slots = [
-      { src: 'suspect.mp4', t: 2.0, label: 'SUSPECT — 00:02.0', desc: 'Di slide: "Kumpulkan Data" HIJAU, "Diskusi & Refleksi" MERAH.' },
-      { src: 'suspect.mp4', t: 7.0, label: 'SUSPECT — 00:07.0', desc: 'Warna kedua blok itu kini TERTUKAR — labelnya tetap.' },
-      { src: 'reference.mp4', t: 2.0, label: 'REFERENSI — 00:02.0', desc: 'Di slide: "Kumpulkan Data" HIJAU, "Diskusi & Refleksi" MERAH.' },
-      { src: 'reference.mp4', t: 7.0, label: 'REFERENSI — 00:07.0', desc: 'Warnanya tetap sama seperti di detik 2.' }
+      { src: 'suspect.mp4', t: 2.0, label: 'SUSPECT 00:02.0', desc: 'Di slide: "Kumpulkan Data" HIJAU, "Diskusi & Refleksi" MERAH.' },
+      { src: 'suspect.mp4', t: 7.0, label: 'SUSPECT 00:07.0', desc: 'Warna kedua blok itu kini TERTUKAR, labelnya tetap.' },
+      { src: 'reference.mp4', t: 2.0, label: 'REFERENSI 00:02.0', desc: 'Di slide: "Kumpulkan Data" HIJAU, "Diskusi & Refleksi" MERAH.' },
+      { src: 'reference.mp4', t: 7.0, label: 'REFERENSI 00:07.0', desc: 'Warnanya tetap sama seperti di detik 2.' }
     ];
     slots.forEach(function (slot) {
       var cell = el('div', 'c4-bg-cell');
@@ -911,7 +911,7 @@
         } else {
           wrongMark('background', [
             'Elemen itu sama persis di kedua video. Bandingkan cuplikan detik 2 dan detik 7 dari video suspect.',
-            'Petunjuk: perhatikan WARNA di dalam slide setelah detik ke-6 — ada dua blok yang bertukar, hanya di suspect.'
+            'Petunjuk: perhatikan WARNA di dalam slide setelah detik ke-6: ada dua blok yang bertukar, hanya di suspect.'
           ]);
         }
       }));
@@ -923,7 +923,7 @@
   function toolMetadata(panel) {
     panel.appendChild(el('div', 'panel-title', 'METADATA VIEWER'));
     panel.appendChild(el('div', 'sim-label c4-meta-label',
-      'SIMULATED FORENSIC METADATA — dibuat untuk latihan, BUKAN metadata file nyata.'));
+      'SIMULATED FORENSIC METADATA: dibuat untuk latihan, BUKAN metadata file nyata.'));
 
     var body = el('div', 'stack');
     panel.appendChild(body);
@@ -943,7 +943,7 @@
 
     body.appendChild(el('div', 'panel panel--glass c4-meta-note',
       '<strong>Penting:</strong> metadata bisa membantu penyelidikan, TAPI juga bisa dipalsukan, diubah, ' +
-      'atau hilang saat file dikirim ulang lewat aplikasi chat. Jadikan metadata bukti PENDUKUNG — ' +
+      'atau hilang saat file dikirim ulang lewat aplikasi chat. Jadikan metadata bukti PENDUKUNG, ' +
       'jangan jadikan satu-satunya dasar kesimpulan.'));
 
     body.appendChild(btn('Simpan sebagai bukti pendukung', 'btn btn--primary', function () {
@@ -952,7 +952,7 @@
   }
 
   /* ============================================================
-     FASE 4 — KEPUTUSAN
+     FASE 4: KEPUTUSAN
      ============================================================ */
   var DECISIONS = [
     { id: 'manipulasi', key: 'A', label: 'Kemungkinan besar video DIMANIPULASI', desc: 'Beberapa bukti independen menunjuk arah yang sama.' },
@@ -1021,7 +1021,7 @@
       })(k2);
     }
     if (!checkboxes.length) {
-      explainWrap.appendChild(el('p', 'text-xs text-amber', 'Kamu belum menandai bukti apa pun — kesimpulan tanpa bukti akan sulit dipertanggungjawabkan.'));
+      explainWrap.appendChild(el('p', 'text-xs text-amber', 'Kamu belum menandai bukti apa pun. Kesimpulan tanpa bukti akan sulit dipertanggungjawabkan.'));
     }
     q.appendChild(explainWrap);
 
@@ -1078,7 +1078,7 @@
     }
     if (decision === 'manipulasi' && temporalCount() === 0) {
       SIGAP.scoring.recordMisconception('case004',
-        'Menyimpulkan manipulasi tanpa bukti temporal — "terasa aneh" saja bukan bukti.');
+        'Menyimpulkan manipulasi tanpa bukti temporal. "Terasa aneh" saja bukan bukti.');
     }
 
     var compBase = correct ? 80 : 45;
@@ -1110,21 +1110,21 @@
     var verdict = el('div', 'debrief-verdict ' + (correct ? 'debrief-verdict--good' : 'debrief-verdict--bad'));
     var whyList =
       '<ul class="c4-recap">' +
-      '<li><span class="text-mono">00:03.4</span> suara tertinggal ±0,4 detik dari gerak bibir — mulut mendahului audio sampai detik 4,9;</li>' +
+      '<li><span class="text-mono">00:03.4</span> suara tertinggal ±0,4 detik dari gerak bibir, mulut mendahului audio sampai detik 4,9;</li>' +
       '<li><span class="text-mono">00:05.6</span> area wajah pecah/berkedip (salinan wajah bergeser + garis sobek) selama 3-4 frame;</li>' +
-      '<li><span class="text-mono">±00:04.9</span> sambungan kasar lalu warna suara berubah — nada dasar turun dan bergetar;</li>' +
-      '<li><span class="text-mono">00:06.0</span> dua blok warna di slide bertukar — di referensi tidak.</li></ul>';
+      '<li><span class="text-mono">±00:04.9</span> sambungan kasar lalu warna suara berubah, nada dasar turun dan bergetar;</li>' +
+      '<li><span class="text-mono">00:06.0</span> dua blok warna di slide bertukar, di referensi tidak.</li></ul>';
     if (correct) {
       verdict.innerHTML = '<strong>&#10003; Kesimpulan tepat: kemungkinan besar dimanipulasi.</strong>' +
         '<p>Yang membuat kesimpulan ini kuat bukan satu keanehan, melainkan EMPAT pengamatan independen yang menunjuk arah sama:</p>' +
         whyList +
-        '<p>Satu keanehan bisa kebetulan (kompresi, sinyal buruk). Beberapa bukti independen yang saling menguatkan — itulah dasar kesimpulan yang sehat. Dan tetap "kemungkinan besar", bukan "pasti 100%".</p>';
+        '<p>Satu keanehan bisa kebetulan (kompresi, sinyal buruk). Beberapa bukti independen yang saling menguatkan: itulah dasar kesimpulan yang sehat. Dan tetap "kemungkinan besar", bukan "pasti 100%".</p>';
     } else if (decision === 'asli') {
       verdict.innerHTML = '<strong>&#10007; Kurang tepat: video ini menyimpan artefak nyata.</strong>' +
         '<p>Ada empat pengamatan independen yang menunjuk arah sama:</p>' + whyList +
         '<p>Saat beberapa bukti independen saling menguatkan, "tampak wajar" tidak lagi cukup sebagai penjelasan.</p>';
     } else {
-      verdict.innerHTML = '<strong>&#10007; Hati-hati itu baik — tetapi di sini bukti sudah cukup.</strong>' +
+      verdict.innerHTML = '<strong>&#10007; Hati-hati itu baik, tetapi di sini bukti sudah cukup.</strong>' +
         '<p>"Belum cukup bukti" kadang memang jawaban terbaik. Namun kali ini ada empat pengamatan independen yang saling menguatkan:</p>' + whyList +
         '<p>Ketika bukti independen berkumpul dan menunjuk arah yang sama, menunda kesimpulan justru membiarkan video menyebar lebih jauh.</p>';
     }
@@ -1150,7 +1150,7 @@
     score.appendChild(tot);
     score.appendChild(el('p', 'text-sm text-muted', res.calibrationFeedback));
     if (out.practice) {
-      score.appendChild(el('div', 'practice-banner', 'PRACTICE RUN — XP tidak diberikan'));
+      score.appendChild(el('div', 'practice-banner', 'PRACTICE RUN: XP tidak diberikan'));
     }
     refs.stage.appendChild(score);
 
@@ -1164,7 +1164,7 @@
   function showCinematic(out) {
     var cine = el('div', 'case-complete-cine');
     cine.appendChild(el('div', 'case-complete-cine__stamp', 'CASE CLOSED'));
-    cine.appendChild(el('p', 'text-muted', 'CASE 004 — PHANTOM SIGNAL'));
+    cine.appendChild(el('p', 'text-muted', 'CASE 004 · PHANTOM SIGNAL'));
     var b = btn('Lanjut', 'btn btn--primary', function () {
       if (cine.parentNode) cine.parentNode.removeChild(cine);
       live.cine = null;
@@ -1196,9 +1196,9 @@
     SIGAP.ui.dialogue.play([
       { speaker: 'system', text: 'PERINGATAN: sinyal tidak dikenal menyusup ke kanal SIGAP... enkripsi dibuka dari dalam.' },
       { speaker: 'phantom', voice: 'phantom/case004-01.mp3', text: 'Selamat, Agen. Kau membongkar video itu frame demi frame. Persis seperti yang KUAJARKAN dulu... ya, aku alumni akademi ini. Aku dulu duduk di kursimu.' },
-      { speaker: 'phantom', voice: 'phantom/case004-02.mp3', text: 'Aku keluar karena muak. Mereka memakai manipulasi untuk menjatuhkan orang — dan dunia diam saja. Jika mereka memakai manipulasi, mengapa kita tidak membalas dengan cara yang sama?' },
+      { speaker: 'phantom', voice: 'phantom/case004-02.mp3', text: 'Aku keluar karena muak. Mereka memakai manipulasi untuk menjatuhkan orang, dan dunia diam saja. Jika mereka memakai manipulasi, mengapa kita tidak membalas dengan cara yang sama?' },
       { speaker: 'phantom', voice: 'phantom/case004-03.mp3', text: 'Kau sudah pegang buktinya. Buat deepfake tandingan. Sebar. Biarkan mereka rasakan jadi korban. Kau punya kemampuannya sekarang.' },
-      { speaker: 'aruna', voice: 'aruna/case004-01.mp3', text: 'Ini bukan kuis, Agen. Tidak ada skor yang menuntunmu. Pikirkan dampaknya bagi orang lain — lalu putuskan sendiri.' }
+      { speaker: 'aruna', voice: 'aruna/case004-01.mp3', text: 'Ini bukan kuis, Agen. Tidak ada skor yang menuntunmu. Pikirkan dampaknya bagi orang lain, lalu putuskan sendiri.' }
     ], { onEnd: renderPhantomChoice });
   }
 
@@ -1216,7 +1216,7 @@
       desc: 'Bukan urusan kita. Video akan dilupakan orang.',
       ok: false,
       feedback: 'Diam terlihat netral, padahal punya dampak: video terus menyebar, korban terus tertuduh, dan pelaku belajar ' +
-        'bahwa caranya berhasil. Kamu sudah memegang bukti — tidak memakai bukti itu juga sebuah pilihan yang ada akibatnya.'
+        'bahwa caranya berhasil. Kamu sudah memegang bukti. Tidak memakai bukti itu juga sebuah pilihan yang ada akibatnya.'
     },
     {
       id: 'lapor', key: 'C', label: 'Dokumentasikan, verifikasi, laporkan, edukasi',
@@ -1224,13 +1224,13 @@
       ok: true,
       feedback: 'Ini jalur yang memutus rantai: bukti terdokumentasi rapi (timestamp 00:03.4, 00:04.9, 00:05.6, 00:06.0) ' +
         'membuat laporanmu bisa diperiksa ulang orang lain; pihak berwenang dan platform bisa bertindak; dan teman-temanmu ' +
-        'belajar mengenali polanya — sehingga manipulasi berikutnya lebih sulit berhasil.'
+        'belajar mengenali polanya, sehingga manipulasi berikutnya lebih sulit berhasil.'
     },
     {
       id: 'sebar', key: 'D', label: 'Sebar balik video suspect dengan caption mengejek',
       desc: 'Permalukan pembuatnya di depan semua orang.',
       ok: false,
-      feedback: 'Menyebarkan ulang video manipulasi — walau untuk mengejek — tetap MENYEBARKANNYA: makin banyak orang ' +
+      feedback: 'Menyebarkan ulang video manipulasi, walau untuk mengejek, tetap MENYEBARKANNYA: makin banyak orang ' +
         'melihat versi palsunya, dan banyak yang hanya ingat videonya, bukan bantahannya. Ejekan juga mengundang balas dendam, ' +
         'bukan penyelesaian.'
     }
@@ -1242,7 +1242,7 @@
     panel.appendChild(el('div', 'screen__eyebrow', 'FINAL PHANTOM DECISION'));
     panel.appendChild(el('h2', 'panel-title', 'Apa yang kamu lakukan dengan bukti di tanganmu?'));
     panel.appendChild(el('p', 'text-sm text-muted',
-      'Tidak ada slider keyakinan di sini. Ini keputusan etis — pertimbangkan dampaknya bagi korban, penonton, dan dirimu sendiri.'));
+      'Tidak ada slider keyakinan di sini. Ini keputusan etis. Pertimbangkan dampaknya bagi korban, penonton, dan dirimu sendiri.'));
     var wrap = el('div', 'stack stack--sm');
     PHANTOM_OPTS.forEach(function (o) {
       wrap.appendChild(btn(
@@ -1270,7 +1270,7 @@
       });
     } else {
       body.appendChild(el('p', 'text-sm text-muted',
-        'Kamu boleh mempertimbangkan ulang — atau tetap dengan pilihan ini dan menanggung konsekuensinya dalam cerita.'));
+        'Kamu boleh mempertimbangkan ulang, atau tetap dengan pilihan ini dan menanggung konsekuensinya dalam cerita.'));
       SIGAP.ui.modal({
         title: 'Pikirkan dampaknya',
         body: body,
@@ -1297,13 +1297,13 @@
 
     var lines = [];
     if (opt.ok) {
-      lines.push({ speaker: 'phantom', voice: 'phantom/case004-04.mp3', text: 'Melapor? Mengedukasi? Pelan sekali jalanmu, Agen... Tapi kuakui — argumenmu rapi, dan buktimu bisa diperiksa siapa saja. Itu... sulit dilawan.' });
-      lines.push({ speaker: 'phantom', voice: 'phantom/case004-05.mp3', text: 'Mungkin kau benar. Atau mungkin dunia akan membuktikan sebaliknya. Sinyal ini kututup — untuk sekarang. Kita lihat berapa lama caramu bertahan.' });
+      lines.push({ speaker: 'phantom', voice: 'phantom/case004-04.mp3', text: 'Melapor? Mengedukasi? Pelan sekali jalanmu, Agen... Tapi kuakui, argumenmu rapi, dan buktimu bisa diperiksa siapa saja. Itu... sulit dilawan.' });
+      lines.push({ speaker: 'phantom', voice: 'phantom/case004-05.mp3', text: 'Mungkin kau benar. Atau mungkin dunia akan membuktikan sebaliknya. Sinyal ini kututup, untuk sekarang. Kita lihat berapa lama caramu bertahan.' });
     } else {
-      lines.push({ speaker: 'phantom', voice: 'phantom/case004-06.mp3', text: 'Hah. Jadi begitu pilihanmu. Lihat? Pada akhirnya semua orang bisa tergoda jalan pintas... Sinyal ini kututup — untuk sekarang.' });
-      lines.push({ speaker: 'aruna', voice: 'aruna/case004-02.mp3', text: 'Keputusan itu ada konsekuensinya, Agen — dan aku ingin kamu memikirkannya lagi nanti. Investigator dinilai bukan hanya dari temuannya, tetapi dari caranya bertindak.' });
+      lines.push({ speaker: 'phantom', voice: 'phantom/case004-06.mp3', text: 'Hah. Jadi begitu pilihanmu. Lihat? Pada akhirnya semua orang bisa tergoda jalan pintas... Sinyal ini kututup, untuk sekarang.' });
+      lines.push({ speaker: 'aruna', voice: 'aruna/case004-02.mp3', text: 'Keputusan itu ada konsekuensinya, Agen, dan aku ingin kamu memikirkannya lagi nanti. Investigator dinilai bukan hanya dari temuannya, tetapi dari caranya bertindak.' });
     }
-    lines.push({ speaker: 'aruna', voice: 'aruna/case004-03.mp3', text: 'Satu hal terakhir. Deepfake yang sama bisa menjadi bahan latihan seperti hari ini — atau senjata untuk menjatuhkan orang. Dampak teknologi dipengaruhi oleh desain, konteks, aturan, dan cara manusia menggunakannya.' });
+    lines.push({ speaker: 'aruna', voice: 'aruna/case004-03.mp3', text: 'Satu hal terakhir. Deepfake yang sama bisa menjadi bahan latihan seperti hari ini, atau senjata untuk menjatuhkan orang. Dampak teknologi dipengaruhi oleh desain, konteks, aturan, dan cara manusia menggunakannya.' });
     lines.push({ speaker: 'aruna', voice: 'aruna/case004-04.mp3', text: 'Kamu baru saja menjadi salah satu penentunya. Tutup laporanmu dengan refleksi, Agen.' });
 
     SIGAP.ui.dialogue.play(lines, { onEnd: showReflection });
@@ -1327,7 +1327,7 @@
       onDone: function () {
         var done = el('div', 'panel panel--glass text-center stack');
         done.appendChild(el('p', null,
-          'Laporan CASE 004 tersimpan. Terima kasih, Agen — arsip PHANTOM resmi ditutup.'));
+          'Laporan CASE 004 tersimpan. Terima kasih, Agen. Arsip PHANTOM resmi ditutup.'));
         var row = el('div', 'row');
         row.style.justifyContent = 'center';
         row.appendChild(btn('Kembali ke Academy', 'btn btn--primary', function () {

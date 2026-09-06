@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — screens/title.js
+   SIGAP - screens/title.js
    Landing sinematik + onboarding profil + Cara Bermain +
    Tentang SIGAP + akses Dashboard Guru.
    ============================================================ */
@@ -18,12 +18,12 @@
       '<p>Di SIGAP kamu berperan sebagai <strong>agen investigasi digital</strong>. ' +
       'Setiap kasus diselesaikan dengan metode enam tahap:</p>' +
       '<ol class="title-steps">' +
-      '<li><strong>AMATI</strong> — pisahkan apa yang kamu lihat dari apa yang kamu duga.</li>' +
-      '<li><strong>BUAT HIPOTESIS</strong> — selalu ada lebih dari satu kemungkinan penjelasan.</li>' +
-      '<li><strong>VERIFIKASI</strong> — periksa sumber dan gunakan alat bantu analisis.</li>' +
-      '<li><strong>BANDINGKAN</strong> — satu petunjuk jarang cukup; cari bukti yang saling mendukung.</li>' +
-      '<li><strong>PUTUSKAN</strong> — kadang kesimpulan paling jujur adalah "belum cukup bukti".</li>' +
-      '<li><strong>JELASKAN</strong> — kalau tidak bisa menjelaskan buktimu, kamu belum selesai menyelidiki.</li>' +
+      '<li><strong>AMATI</strong>: pisahkan apa yang kamu lihat dari apa yang kamu duga.</li>' +
+      '<li><strong>BUAT HIPOTESIS</strong>, selalu ada lebih dari satu kemungkinan penjelasan.</li>' +
+      '<li><strong>VERIFIKASI</strong>. Periksa sumber dan gunakan alat bantu analisis.</li>' +
+      '<li><strong>BANDINGKAN</strong>: satu petunjuk jarang cukup; cari bukti yang saling mendukung.</li>' +
+      '<li><strong>PUTUSKAN</strong>, kadang kesimpulan paling jujur adalah "belum cukup bukti".</li>' +
+      '<li><strong>JELASKAN</strong>, kalau tidak bisa menjelaskan buktimu, kamu belum selesai menyelidiki.</li>' +
       '</ol>' +
       '<div class="panel stack--sm" style="padding:var(--space-3)">' +
       '<div class="panel-title">Kontrol</div>' +
@@ -32,7 +32,7 @@
       'Suara dan animasi bisa diatur lewat menu Pengaturan.</p>' +
       '</div>' +
       '<p class="text-sm text-muted">XP dan level menunjukkan <em>progres</em>, bukan kepintaran. ' +
-      'Skor kompetensi dihitung dari cara kamu menyelidiki — bukan dari kecepatan klik.</p>';
+      'Skor kompetensi dihitung dari cara kamu menyelidiki, bukan dari kecepatan klik.</p>';
     SIGAP.ui.modal({
       title: 'Cara Bermain',
       body: body,
@@ -45,11 +45,11 @@
     var body = document.createElement('div');
     body.className = 'stack';
     body.innerHTML =
-      '<p><strong>SIGAP — Sistem Investigasi Digital Anti Palsu</strong> adalah gim edukasi ' +
+      '<p><strong>SIGAP - Sistem Investigasi Digital Anti Palsu</strong> adalah gim edukasi ' +
       'untuk siswa SMP tentang berpikir kritis, literasi AI, dan verifikasi informasi.</p>' +
       '<p class="text-sm">Tujuannya bukan membuatmu curiga pada segalanya, tetapi membiasakan satu sikap: ' +
-      '<em>jangan langsung percaya — periksa buktinya.</em></p>' +
-      '<div class="sim-label">SIMULATED FORENSIC TOOL — semua alat forensik di dalam gim ini adalah simulasi edukatif, bukan detector AI nyata.</div>' +
+      '<em>jangan langsung percaya. Periksa buktinya.</em></p>' +
+      '<div class="sim-label">SIMULATED FORENSIC TOOL: semua alat forensik di dalam gim ini adalah simulasi edukatif, bukan detector AI nyata.</div>' +
       '<p class="text-sm text-muted">Alat di dunia nyata pun tidak pernah memberi jawaban pasti; ' +
       'alat hanya membantu manusia menganalisis.</p>' +
       '<div class="panel stack--sm" style="padding:var(--space-3)">' +
@@ -77,7 +77,7 @@
       '<div class="title-idcard__id text-mono">' + esc(agentId) + '</div>' +
       '<div class="tag tag--cyan">AGEN TERDAFTAR</div>' +
       '</div>' +
-      '<p class="text-sm text-muted">Ini AGENT ID-mu. Simpan baik-baik — ID ini juga muncul di ' +
+      '<p class="text-sm text-muted">Ini AGENT ID-mu. Simpan baik-baik; ID ini juga muncul di ' +
       'Class Code yang nanti kamu berikan ke gurumu.</p>';
     SIGAP.ui.modal({
       title: 'Identitas Agen Dibuat',

@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — screens/teacher.js
+   SIGAP - screens/teacher.js
    TEACHER DASHBOARD (lokal, tanpa server, route publik):
    impor Class Code, roster siswa, detail, hapus.
    ============================================================ */
@@ -111,9 +111,9 @@
       anyCase = true;
       var cPanel = document.createElement('div');
       cPanel.className = 'panel tch-case-detail';
-      var html = '<div class="row row--between"><strong>' + esc(cm.code + ' — ' + cm.title) + '</strong>' +
+      var html = '<div class="row row--between"><strong>' + esc(cm.code + ': ' + cm.title) + '</strong>' +
         (rec.completed
-          ? '<span class="tag tag--green">SELESAI · skor ' + (rec.bestScore !== null && rec.bestScore !== undefined ? rec.bestScore : '—') + '</span>'
+          ? '<span class="tag tag--green">SELESAI · skor ' + (rec.bestScore !== null && rec.bestScore !== undefined ? rec.bestScore : '-') + '</span>'
           : '<span class="tag tag--cyan">BELUM SELESAI</span>') + '</div>';
       if (rec.breakdown) {
         html += '<div class="tch-breakdown text-xs text-mono">' +
@@ -182,7 +182,7 @@
       warn.className = 'panel tch-warn stack stack--sm';
       var warnHtml = '<div class="panel-title">⚠ Perhatian untuk guru</div>';
       if ((flags.overconfident || 0) >= 2) {
-        warnHtml += '<p class="text-sm">Siswa beberapa kali <strong>terlalu yakin</strong> sebelum bukti cukup — topik kalibrasi layak dibahas di kelas.</p>';
+        warnHtml += '<p class="text-sm">Siswa beberapa kali <strong>terlalu yakin</strong> sebelum bukti cukup. Topik kalibrasi layak dibahas di kelas.</p>';
       }
       for (var m = 0; m < miscs.length; m++) {
         warnHtml += '<p class="text-sm">• ' + esc(miscs[m].text || '') +
@@ -195,7 +195,7 @@
     /* Reflections */
     var refTitle = document.createElement('div');
     refTitle.className = 'panel-title';
-    refTitle.textContent = 'Refleksi siswa — untuk direview guru (tidak dinilai otomatis)';
+    refTitle.textContent = 'Refleksi siswa, untuk direview guru (tidak dinilai otomatis)';
     body.appendChild(refTitle);
     var refs = st.reflections || {};
     var anyRef = false;
@@ -264,7 +264,7 @@
         '<div class="screen__eyebrow">MODE GURU · DATA LOKAL</div>' +
         '<h1 class="screen__title">Dashboard Guru</h1>' +
         '<p class="screen__sub">Impor Class Code dari siswa untuk melihat progres dan kompetensi mereka. ' +
-        'Semua data hanya tersimpan di perangkat ini — tidak ada server.</p>';
+        'Semua data hanya tersimpan di perangkat ini; tidak ada server.</p>';
       main.appendChild(header);
 
       var disclaimer = document.createElement('div');
@@ -365,7 +365,7 @@
         var caseMeta = SIGAP.data.cases || [];
         var theadHtml = '<tr><th scope="col">Siswa</th><th scope="col">CASE</th><th scope="col">LAB</th>';
         for (var c = 0; c < caseMeta.length; c++) {
-          theadHtml += '<th scope="col"><abbr title="' + esc(caseMeta[c].code + ' — ' + caseMeta[c].title) + '">C' + (c + 1) + '</abbr></th>';
+          theadHtml += '<th scope="col"><abbr title="' + esc(caseMeta[c].code + ': ' + caseMeta[c].title) + '">C' + (c + 1) + '</abbr></th>';
         }
         for (var key in COMP_ABBR) {
           if (COMP_ABBR.hasOwnProperty(key)) {
@@ -391,18 +391,18 @@
           for (var ci = 0; ci < caseMeta.length; ci++) {
             var rec = cases[caseMeta[ci].id];
             rowHtml += '<td class="text-mono">' +
-              (rec && rec.bestScore !== null && rec.bestScore !== undefined ? rec.bestScore : '—') + '</td>';
+              (rec && rec.bestScore !== null && rec.bestScore !== undefined ? rec.bestScore : '-') + '</td>';
           }
           for (var ck in COMP_ABBR) {
             if (!COMP_ABBR.hasOwnProperty(ck)) continue;
             var v = summary[ck];
-            rowHtml += '<td class="text-mono">' + (v === null || v === undefined ? '—' : v) + '</td>';
+            rowHtml += '<td class="text-mono">' + (v === null || v === undefined ? '-' : v) + '</td>';
           }
           var calCell;
           if ((flags.overconfident || 0) >= 2) calCell = '<span class="tag tag--amber">⚠ terlalu yakin ×' + flags.overconfident + '</span>';
           else if ((flags.underconfident || 0) >= 2) calCell = '<span class="tag tag--cyan">kurang yakin ×' + flags.underconfident + '</span>';
           else if ((flags.wellCalibrated || 0) >= 1) calCell = '<span class="tag tag--green">baik ×' + flags.wellCalibrated + '</span>';
-          else calCell = '<span class="text-faint">—</span>';
+          else calCell = '<span class="text-faint">-</span>';
           rowHtml += '<td>' + calCell + '</td>';
           tr.innerHTML = rowHtml;
 
@@ -436,7 +436,7 @@
 
         var note = document.createElement('p');
         note.className = 'text-xs text-faint';
-        note.textContent = 'CT = Critical Thinking, AI = AI Literacy, DS = Digital Safety, ER = Evidence Reasoning, ET = Ethical Reasoning. "—" berarti belum ada data. Klik Detail untuk breakdown, refleksi, dan catatan miskonsepsi.';
+        note.textContent = 'CT = Critical Thinking, AI = AI Literacy, DS = Digital Safety, ER = Evidence Reasoning, ET = Ethical Reasoning. "-" berarti belum ada data. Klik Detail untuk breakdown, refleksi, dan catatan miskonsepsi.';
         rosterSection.appendChild(note);
       }
 

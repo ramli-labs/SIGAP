@@ -1,14 +1,14 @@
 /* ============================================================
-   SIGAP — service-worker.js
+   SIGAP - service-worker.js
    Offline-first PWA cache.
    - Precaches app shell + critical assets on install.
    - Cache-first for same-origin GET requests.
    - Navigation requests fall back to index.html.
    - NEVER returns index.html for failed script/style/image/
-     media requests — those get a proper error Response.
+     media requests; those get a proper error Response.
    Bump CACHE_VERSION on every significant release.
    ============================================================ */
-var CACHE_VERSION = 'sigap-v5';
+var CACHE_VERSION = 'sigap-v6';
 
 var PRECACHE = [
   './',
@@ -153,7 +153,7 @@ self.addEventListener('activate', function (event) {
 /**
  * Serve a byte range out of the cache as a real 206 response.
  * Without this, a ranged media request gets the full cached 200 back and the
- * browser marks the resource NON-SEEKABLE — which breaks CASE 004's frame
+ * browser marks the resource NON-SEEKABLE, which breaks CASE 004's frame
  * scrubbing (FRAME ANALYZER, BACKGROUND CONTINUITY) whenever the app runs
  * from cache.
  */
@@ -225,7 +225,7 @@ self.addEventListener('fetch', function (event) {
   }
 
   // Subresources: cache-first, network fallback, and on total failure a
-  // typed error response — NEVER the HTML shell.
+  // typed error response, NEVER the HTML shell.
   event.respondWith(
     caches.match(req).then(function (hit) {
       if (hit) return hit;

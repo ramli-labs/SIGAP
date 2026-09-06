@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — data/missions.js
+   SIGAP - data/missions.js
    Case + lab metadata for hub/mission screens.
    ============================================================ */
 (function () {
@@ -23,7 +23,7 @@
       code: 'CASE 002',
       title: 'Real or Generated?',
       theme: 'Citra hasil AI · Manipulasi visual',
-      brief: 'Tiga plate gambar masuk ke lab. Gunakan AI Forensic Scanner untuk mencari indikator manipulasi — dan belajar kapan bukti belum cukup.',
+      brief: 'Tiga plate gambar masuk ke lab. Gunakan AI Forensic Scanner untuk mencari indikator manipulasi, dan belajar kapan bukti belum cukup.',
       route: 'case002',
       competencies: ['aiLiteracy', 'evidenceReasoning', 'criticalThinking'],
       xp: 100
@@ -55,7 +55,7 @@
       id: 'lab01',
       code: 'LAB 01',
       title: 'Pattern Recognition',
-      brief: 'Bagaimana mesin (dan manusia) mengenali pola — dan kapan pola menipu.',
+      brief: 'Bagaimana mesin (dan manusia) mengenali pola, dan kapan pola menipu.',
       xp: 50
     },
     {
@@ -76,7 +76,7 @@
       id: 'lab04',
       code: 'LAB 04',
       title: 'Human or AI?',
-      brief: 'Nilai konten dengan bukti — dan berani bilang "belum cukup bukti".',
+      brief: 'Nilai konten dengan bukti, dan berani bilang "belum cukup bukti".',
       xp: 50
     }
   ];

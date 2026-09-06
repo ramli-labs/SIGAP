@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — screens/academy.js
+   SIGAP - screens/academy.js
    Hub Academy: kartu agen, XP, ringkasan kompetensi, menu.
    ============================================================ */
 (function () {

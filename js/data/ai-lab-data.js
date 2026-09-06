@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — data/ai-lab-data.js
+   SIGAP - data/ai-lab-data.js
    Seluruh konten/soal untuk AI LABORATORY (lab01–lab04).
    Logika permainan ada di js/games/ai-lab.js.
    ============================================================ */
@@ -11,7 +11,7 @@
   SIGAP.data.aiLab = {
 
     /* ------------------------------------------------------
-       LAB 01 — PATTERN RECOGNITION
+       LAB 01: PATTERN RECOGNITION
        5 soal pola visual. Semua pola logis dan dijelaskan
        SETELAH menjawab. Soal terakhir = soal jebakan
        (dua aturan berbeda cocok dengan data awal).
@@ -73,10 +73,10 @@
     ],
 
     /* ------------------------------------------------------
-       LAB 02 — TRAINING DATA
+       LAB 02: TRAINING DATA
        Pemain melabeli 10 kartu (8 jelas + 2 ambigu) ke dua
        keranjang, lalu "melatih model" dan melihat model
-       meniru label pemain — termasuk kesalahannya.
+       meniru label pemain, termasuk kesalahannya.
        ------------------------------------------------------ */
     lab02: {
       categories: [
@@ -108,7 +108,7 @@
         { id: 'x4', emoji: '😾', name: 'Kucing kesal', kind: 'cat', truth: 'kucing' }
       ],
       badExperiment: {
-        intro: 'Sekarang eksperimen terkontrol. Kali ini BUKAN kamu yang melabeli — dataset ini sudah ' +
+        intro: 'Sekarang eksperimen terkontrol. Kali ini BUKAN kamu yang melabeli; dataset ini sudah ' +
           'berisi 2 label yang SENGAJA dibuat salah. Perhatikan apa yang dipelajari model.',
         dataset: [
           { emoji: '🐱', name: 'Kucing', given: 'kucing', wrong: false },
@@ -122,7 +122,7 @@
           { emoji: '😺', name: 'Kucing baru', pred: 'kucing', ok: true, note: 'Contoh kucing semuanya benar → prediksi benar.' },
           { emoji: '🐕‍🦺', name: 'Anjing baru', pred: 'kucing', ok: false, note: 'Separuh contoh anjing dilabeli "kucing" → model ikut menyebut anjing sebagai kucing.' }
         ],
-        lesson: 'Model tidak tahu mana label yang benar — ia hanya meniru contoh yang diberikan. ' +
+        lesson: 'Model tidak tahu mana label yang benar; ia hanya meniru contoh yang diberikan. ' +
           'Kalau contohnya salah, hasilnya ikut salah. Prinsip ini sering disebut "garbage in, garbage out": ' +
           'kalau bahan masukan buruk, hasil keluarannya juga buruk.'
       },
@@ -136,7 +136,7 @@
             'Tidak ada pengaruhnya sama sekali'
           ],
           correct: 1,
-          explain: 'Model belajar DARI contoh, bukan dari kebenaran. Ia tidak punya cara sendiri untuk tahu label mana yang salah — ' +
+          explain: 'Model belajar DARI contoh, bukan dari kebenaran. Ia tidak punya cara sendiri untuk tahu label mana yang salah. ' +
             'kesalahan label akan ditiru dalam prediksinya.'
         },
         {
@@ -148,14 +148,14 @@
             'Mengganti nama modelnya'
           ],
           correct: 2,
-          explain: 'Kualitas label menentukan kualitas model. Memperbaiki label lalu melatih ulang adalah cara yang benar — ' +
+          explain: 'Kualitas label menentukan kualitas model. Memperbaiki label lalu melatih ulang adalah cara yang benar. ' +
             'menambah data yang tetap salah label justru memperkuat kesalahan.'
         }
       ]
     },
 
     /* ------------------------------------------------------
-       LAB 03 — AI BIAS (SIMULASI KONSEPTUAL)
+       LAB 03: AI BIAS (SIMULASI KONSEPTUAL)
        Slider komposisi data latihan dua kelompok +
        kuis reasoning. Skor dari kuis.
        ------------------------------------------------------ */
@@ -175,9 +175,9 @@
         {
           q: 'Sebuah model diklaim "95% akurat secara keseluruhan". Apakah model itu pasti adil untuk semua kelompok?',
           options: [
-            'Pasti adil — 95% itu angka yang sangat tinggi',
-            'Belum tentu — akurasi keseluruhan bisa menyembunyikan performa buruk pada kelompok kecil; perlu evaluasi per kelompok',
-            'Pasti tidak adil — akurasi tinggi selalu berarti bias',
+            'Pasti adil, 95% itu angka yang sangat tinggi',
+            'Belum tentu; akurasi keseluruhan bisa menyembunyikan performa buruk pada kelompok kecil; perlu evaluasi per kelompok',
+            'Pasti tidak adil, akurasi tinggi selalu berarti bias',
             'Tidak bisa dinilai karena akurasi tidak ada hubungannya dengan keadilan'
           ],
           correct: 1,
@@ -193,13 +193,13 @@
             'Karena kelompok kecil selalu lebih sulit dikenali oleh siapa pun'
           ],
           correct: 2,
-          explain: 'Model tidak punya niat atau perasaan. Ia belajar dari contoh — makin sedikit contoh sebuah kelompok, ' +
+          explain: 'Model tidak punya niat atau perasaan. Ia belajar dari contoh: makin sedikit contoh sebuah kelompok, ' +
             'makin sedikit pola yang bisa ia pelajari tentang kelompok itu. Ini soal DATA, bukan soal "sikap" model.'
         },
         {
           q: 'Tim sekolah mau memakai model pengenal sepatu untuk lomba. Data latihannya: 90% sepatu olahraga, 10% sepatu formal. Langkah paling masuk akal?',
           options: [
-            'Langsung dipakai — 90% + 10% = 100%, berarti datanya lengkap',
+            'Langsung dipakai, 90% + 10% = 100%, berarti datanya lengkap',
             'Menambah contoh sepatu formal dan menguji performa model pada tiap jenis sepatu sebelum dipakai',
             'Menghapus semua data sepatu formal supaya modelnya fokus',
             'Memakai model hanya di ruangan yang gelap'
@@ -212,7 +212,7 @@
     },
 
     /* ------------------------------------------------------
-       LAB 04 — HUMAN OR AI?
+       LAB 04: HUMAN OR AI?
        4 konten. Pemain memilih indikator (bukti), menilai
        keyakinan, lalu memberi verdict. Minimal satu konten
        jawaban benarnya "Belum Cukup Bukti".
@@ -239,20 +239,24 @@
         present: ['rep', 'inkonsisten', 'seragam', 'provenance'],
         verdict: 'ai',
         verdictExplain: 'Indikasi mengarah kuat ke AI: kata "sangat" dan frasa yang sama diulang terus, gaya rata tanpa variasi, ' +
-          'dan ada inkonsistensi — teks bilang "tiga sekolah" tapi menyebut EMPAT nama sekolah. Ditambah tidak ada provenance. ' +
-          'Ingat: ini indikasi kuat, bukan kepastian mutlak — manusia yang menulis terburu-buru juga bisa salah hitung.'
+          'dan ada inkonsistensi: teks bilang "tiga sekolah" tapi menyebut EMPAT nama sekolah. Ditambah tidak ada provenance. ' +
+          'Ingat: ini indikasi kuat, bukan kepastian mutlak; manusia yang menulis terburu-buru juga bisa salah hitung.'
       },
       {
         id: 'k2',
-        type: 'Puisi',
+        type: 'Puisi (tulisan tangan)',
         title: 'Puisi di mading kelas',
-        body: 'hujan turun pas bel pulang / sepatuku bolong yang kiri / kupinjem kresek bu Darmi di kantin / ' +
-          'biar kaos kaki tetep kering — Sinta, kelas 8B',
-        meta: 'Ditulis tangan di mading kelas, ada bekas coretan revisi, nama penulis jelas.',
+        // look 'tangan' membuat konten ini dirender sebagai catatan kertas,
+        // bukan teks ketikan, supaya yang dilihat siswa cocok dengan meta-nya.
+        // Kata di antara ~...~ ditampilkan sebagai coretan revisi.
+        look: 'tangan',
+        body: 'hujan turun pas bel pulang / sepatuku bolong yang kiri / kupinjem ~plastik~ kresek bu Darmi di kantin / ' +
+          'biar kaos kaki tetep kering. Sinta, kelas 8B',
+        meta: 'Dari mading kelas: tulisan tangan dengan bekas coretan revisi, nama penulis jelas.',
         present: ['detail', 'personal'],
         verdict: 'manusia',
         verdictExplain: 'Indikasi mengarah ke manusia: ada detail spesifik yang bisa dicek (bu Darmi di kantin, kelas 8B), ' +
-          'bahasa sehari-hari yang tidak rata ("kupinjem", "tetep"), dan provenance-nya jelas — ditulis tangan di mading ' +
+          'bahasa sehari-hari yang tidak rata ("kupinjem", "tetep"), dan provenance-nya jelas: ditulis tangan di mading ' +
           'dengan nama penulis dan bekas revisi. Riwayat asal-usul seperti ini adalah bukti terkuat.'
       },
       {
@@ -263,7 +267,7 @@
         meta: 'Tangkapan layar chat dari nomor tak dikenal, tanpa konteks percakapan sebelumnya.',
         present: ['provenance'],
         verdict: 'belum',
-        verdictExplain: 'Jawaban terbaik: BELUM CUKUP BUKTI. Teks ini terlalu pendek dan terlalu umum — manusia dan AI ' +
+        verdictExplain: 'Jawaban terbaik: BELUM CUKUP BUKTI. Teks ini terlalu pendek dan terlalu umum; manusia dan AI ' +
           'sama-sama sering menulis kalimat persis seperti ini. Tidak ada detail yang bisa dicek, tidak ada ciri khas, ' +
           'dan tidak ada provenance. Memaksakan jawaban "Manusia" atau "AI" di sini hanyalah tebakan, bukan kesimpulan.'
       },
@@ -276,10 +280,10 @@
         meta: 'Diunggah akun anonim tanpa lokasi, tanggal, atau sumber foto.',
         present: ['rep', 'inkonsisten', 'seragam', 'provenance'],
         verdict: 'ai',
-        verdictExplain: 'Indikasi mengarah kuat ke AI: ada kesalahan fakta yang ditulis dengan sangat percaya diri — ' +
+        verdictExplain: 'Indikasi mengarah kuat ke AI: ada kesalahan fakta yang ditulis dengan sangat percaya diri. ' +
           'Gunung Semeru ada di Pulau Jawa, bukan Sumatera (gaya salah-tapi-yakin ini sering muncul pada teks AI dan disebut ' +
-          '"halusinasi"). Ditambah pengulangan "sangat ... sangat ..." dan gaya rata. Tetap bukan kepastian — manusia pun bisa ' +
-          'salah geografi — tapi gabungan indikator + tanpa provenance membuat "AI" jadi kesimpulan yang paling didukung bukti.'
+          '"halusinasi"). Ditambah pengulangan "sangat ... sangat ..." dan gaya rata. Tetap bukan kepastian; manusia pun bisa ' +
+          'salah geografi, tapi gabungan indikator + tanpa provenance membuat "AI" jadi kesimpulan yang paling didukung bukti.'
       }
     ]
   };

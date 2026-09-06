@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — storage.js
+   SIGAP - storage.js
    LocalStorage wrapper with graceful fallback (in-memory) and
    corruption handling. Never throws to callers.
    ============================================================ */

@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — css/ai-lab.css
+   SIGAP - css/ai-lab.css
    AI LABORATORY styles. Semua kelas diprefix .lab-
    ============================================================ */
 
@@ -223,6 +223,49 @@
   line-height: 1.65;
   white-space: pre-line;
 }
+/* Konten yang aslinya TULISAN TANGAN (LAB 04, puisi mading) dirender sebagai
+   catatan kertas supaya yang dilihat siswa cocok dengan konteks yang ditulis:
+   provenance-nya jadi ikut terlihat, bukan cuma diklaim. Tumpukan font sengaja
+   diakhiri 'cursive' agar tetap terasa tulisan tangan di perangkat apa pun;
+   kalaupun jatuh ke font biasa, kertas + kemiringan + coretan revisi tetap
+   membuatnya terbaca sebagai catatan, bukan ketikan. */
+.lab-content-doc--tangan {
+  background: #f7f3e6;
+  border-color: #cbbf9c;
+  color: #1d2a44;
+  transform: rotate(-0.5deg);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.lab-content-doc--tangan .lab-content-doc__title,
+.lab-content-doc--tangan .lab-content-doc__meta {
+  color: #55617a;
+}
+
+.lab-content-doc--tangan .lab-content-doc__meta {
+  border-top-color: #cbbf9c;
+}
+
+.lab-content-doc--tangan .lab-content-doc__body {
+  font-family: 'Segoe Print', 'Bradley Hand', 'Chalkboard SE', 'Comic Sans MS', cursive;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #1b2a5e;
+  /* garis buku tulis */
+  background-image: repeating-linear-gradient(
+    to bottom, transparent 0, transparent calc(1.9em - 1px),
+    rgba(29, 42, 68, 0.13) calc(1.9em - 1px), rgba(29, 42, 68, 0.13) 1.9em);
+}
+
+.lab-content-doc--tangan .lab-content-doc__body s {
+  color: #7b2d2d;
+  text-decoration-thickness: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-content-doc--tangan { transform: none; }
+}
+
 .lab-content-doc__meta {
   padding-top: var(--space-2);
   border-top: 1px dashed var(--color-border);

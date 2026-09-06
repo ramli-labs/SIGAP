@@ -3,7 +3,9 @@
 # SIGAP - CASE 004 "Phantom Signal"
 # Pipeline video simulasi v5 (SIMULASI MEDIA PELATIHAN, bukan deepfake nyata).
 #
-# Master: referencenew.mp4 - REKAMAN ASLI (bukan video AI): seorang pengajar
+# Master: referencenew.mp4 - REKAMAN ASLI (bukan video AI), TIDAK DISERTAKAN
+# di repo karena ukurannya 3,1 MB dan tidak pernah dimuat aplikasi. Simpan
+# sendiri, lalu berikan path-nya sebagai argumen. Isinya: seorang pengajar
 # presentasi di depan kelas, berdiri di kanan layar proyektor yang
 # menampilkan slide alur "Pertanyaan Pemantik / Rancang Proyek / Kumpulkan
 # Data / Latih Model AI / Uji Model / Evaluasi & Refleksi"; dinding hijau
@@ -45,7 +47,7 @@
 # Keduanya diberi watermark "SIMULASI MEDIA PELATIHAN" kiri bawah.
 #
 # Pakai: python3 generate.py [/path/ke/master.mp4]
-#        (default: referencenew.mp4 di folder yang sama)
+#        (tanpa argumen, dicari referencenew.mp4 di folder yang sama)
 # Butuh: ffmpeg, numpy, opencv-python(<5)
 # ============================================================
 import os
@@ -180,7 +182,7 @@ def make_slide_patch():
     print('  patch: %d frame, %d frame bertukar, %d blok terdeteksi '
           '(harusnya %d)' % (len(frames), n_swap, hits, n_swap * 2))
     if hits < n_swap * 2:
-        print('  PERINGATAN: ada frame yang bloknya tidak terdeteksi — '
+        print('  PERINGATAN: ada frame yang bloknya tidak terdeteksi, '
               'periksa SLIDE_ROI / ambang warna.')
     import tempfile
     with tempfile.TemporaryDirectory() as tmp:
@@ -242,7 +244,9 @@ def main():
     master = sys.argv[1] if len(sys.argv) > 1 else MASTER_DEFAULT
     if not os.path.exists(master):
         sys.exit('Master tidak ditemukan: %s\n'
-                 'Pakai: python3 generate.py [/path/ke/master.mp4]' % master)
+                 'File master TIDAK disimpan di repo (3,1 MB, tidak dipakai\n'
+                 'aplikasi). Ambil rekaman aslinya, lalu jalankan:\n'
+                 '  python3 generate.py /path/ke/master.mp4' % master)
     try:
         render_base(master)
         make_slide_patch()

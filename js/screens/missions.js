@@ -1,8 +1,8 @@
 /* ============================================================
-   SIGAP — screens/missions.js
+   SIGAP - screens/missions.js
    Tiga route: 'missions' (daftar case folders),
    'archive' (arsip bukti lintas case),
-   'achievements' (grid badge — terkunci tetap terlihat).
+   'achievements' (grid badge; yang terkunci tetap terlihat).
    ============================================================ */
 (function () {
   'use strict';
@@ -85,7 +85,7 @@
     go.href = '#/' + (c.route || c.id);
     if (completed) {
       go.className = 'btn btn--ghost';
-      go.textContent = 'ULANGI (PRACTICE RUN — tanpa XP)';
+      go.textContent = 'ULANGI (PRACTICE RUN, tanpa XP)';
     } else {
       go.className = 'btn btn--primary';
       go.textContent = 'MULAI';
@@ -148,7 +148,7 @@
       labPanel.innerHTML =
         '<div class="scr-lab-strip__info">' +
         '<div class="panel-title">AI Laboratory</div>' +
-        '<p class="text-sm text-muted">Empat modul singkat tentang cara kerja AI — membantu di CASE 002 dan 004.</p>' +
+        '<p class="text-sm text-muted">Empat modul singkat tentang cara kerja AI, membantu di CASE 002 dan 004.</p>' +
         '<div class="text-xs text-mono text-cyan">' + labsDone + '/' + (labs.length || 4) + ' modul selesai</div>' +
         '</div>';
       var labGo = document.createElement('a');
@@ -218,7 +218,7 @@
         secEl.className = 'stack';
         var h = document.createElement('h2');
         h.className = 'scr-archive-head text-mono';
-        h.textContent = sec.caseMeta.code + ' — ' + sec.caseMeta.title +
+        h.textContent = sec.caseMeta.code + ': ' + sec.caseMeta.title +
           ' (' + sec.evidence.length + ' bukti)';
         secEl.appendChild(h);
 

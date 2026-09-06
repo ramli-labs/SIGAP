@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — state.js
+   SIGAP - state.js
    Single structured game state + schema migration + helpers.
    Auto-saves on every update().
    ============================================================ */
@@ -108,7 +108,7 @@
         s.player.level = SIGAP.state.levelForXp(s.player.xp);
       });
       if (SIGAP.ui && SIGAP.ui.toast) {
-        SIGAP.ui.toast('+' + amount + ' XP' + (reason ? ' — ' + reason : ''), 'xp');
+        SIGAP.ui.toast('+' + amount + ' XP' + (reason ? ': ' + reason : ''), 'xp');
       }
       var levelAfter = SIGAP.state.levelForXp(_state.player.xp);
       if (levelAfter > levelBefore && SIGAP.ui && SIGAP.ui.toast) {
@@ -182,7 +182,7 @@
       });
     },
 
-    /** Save a reflection answer (teacher review only — never auto-graded). */
+    /** Save a reflection answer (teacher review only, never auto-graded). */
     saveReflection: function (contextId, questions, answers) {
       SIGAP.state.update(function (s) {
         s.reflections[contextId] = {

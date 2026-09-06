@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — app.js
+   SIGAP - app.js
    Boot: global error guard, reduced-motion attr, service worker,
    router start.
    ============================================================ */
@@ -28,7 +28,7 @@
 
     if (!SIGAP.storage.persistent) {
       setTimeout(function () {
-        SIGAP.ui.toast('Penyimpanan lokal tidak tersedia — progres tidak akan tersimpan setelah tab ditutup.', 'warn');
+        SIGAP.ui.toast('Penyimpanan lokal tidak tersedia. Progres tidak akan tersimpan setelah tab ditutup.', 'warn');
       }, 1200);
     }
 

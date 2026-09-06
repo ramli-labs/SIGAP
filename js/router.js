@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — router.js
+   SIGAP - router.js
    Hash-based router. Screens register with:
      SIGAP.router.register(name, { render(container, params), onLeave() })
    Navigate with SIGAP.router.go('academy', {foo:'bar'}).

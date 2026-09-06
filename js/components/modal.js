@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — components/modal.js
+   SIGAP - components/modal.js
    Accessible modal: focus trap, ESC close, aria-modal.
    SIGAP.ui.modal({title, body, actions, dismissible, wide, onClose})
    body: HTMLElement or HTML string.

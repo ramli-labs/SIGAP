@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — games/ai-lab.js
+   SIGAP - games/ai-lab.js
    AI LABORATORY: hub + 4 mini-lab (route 'ailab').
    ?lab=lab01..lab04 membuka lab tertentu.
    Data soal/konten: js/data/ai-lab-data.js (SIGAP.data.aiLab).
@@ -80,7 +80,7 @@
     panel.appendChild(el('div', 'panel-title', esc(meta.code) + ' SELESAI'));
 
     if (res.practice) {
-      panel.appendChild(el('div', 'practice-banner', 'PRACTICE RUN — XP tidak diberikan'));
+      panel.appendChild(el('div', 'practice-banner', 'PRACTICE RUN: XP tidak diberikan'));
     }
 
     var good = cfg.score >= 60;
@@ -89,8 +89,8 @@
       '<span class="debrief-verdict__icon" aria-hidden="true">' + (good ? '✅' : '🔬') + '</span>' +
       '<div><strong>Skor lab: ' + cfg.score + '/100.</strong> ' +
       (good
-        ? 'Kerja bagus — konsep intinya sudah kamu pegang.'
-        : 'Belum maksimal — baca debrief di bawah, lalu coba lagi sebagai latihan.') +
+        ? 'Kerja bagus, konsep intinya sudah kamu pegang.'
+        : 'Belum maksimal. Baca debrief di bawah, lalu coba lagi sebagai latihan.') +
       '</div>';
     panel.appendChild(verdict);
 
@@ -109,7 +109,7 @@
     }
 
     var concept = el('div', 'panel lab-debrief__concept stack');
-    concept.appendChild(el('div', 'panel-title', 'Debrief — konsep yang barusan kamu alami'));
+    concept.appendChild(el('div', 'panel-title', 'Debrief: konsep yang barusan kamu alami'));
     var ul = el('ul', 'lab-concept-list');
     for (var c = 0; c < cfg.concept.length; c++) {
       ul.appendChild(el('li', '', cfg.concept[c]));
@@ -141,14 +141,14 @@
     if (simLabel) head.appendChild(el('div', 'sim-label lab-sim-label', esc(simLabel)));
     head.appendChild(el('p', 'screen__sub', subtitle));
     if (SIGAP.state.isPractice('lab', labId)) {
-      head.appendChild(el('div', 'practice-banner', 'PRACTICE RUN — lab ini sudah selesai; XP tidak diberikan lagi'));
+      head.appendChild(el('div', 'practice-banner', 'PRACTICE RUN: lab ini sudah selesai; XP tidak diberikan lagi'));
     }
     main.appendChild(head);
     return head;
   }
 
   /* ============================================================
-     HUB — 4 kartu lab + status + bestScore
+     HUB: 4 kartu lab + status + bestScore
      ============================================================ */
   function renderHub(main) {
     var head = el('div', 'screen__header');
@@ -209,12 +209,12 @@
   }
 
   /* ============================================================
-     LAB 01 — PATTERN RECOGNITION
+     LAB 01: PATTERN RECOGNITION
      ============================================================ */
   function renderLab01(main) {
     var questions = SIGAP.data.aiLab.lab01;
     labHeader(main, 'lab01',
-      'Mesin (dan manusia) mengenali pola dari contoh. Temukan aturan tiap pola — dan waspadai: ' +
+      'Mesin (dan manusia) mengenali pola dari contoh. Temukan aturan tiap pola, dan waspadai: ' +
       'pola yang tampak cocok belum tentu aturan yang sebenarnya.');
 
     var idx = 0;
@@ -231,7 +231,7 @@
 
       var panel = el('div', 'panel panel--accent stack');
       panel.appendChild(el('div', 'panel-title',
-        'Soal ' + (idx + 1) + ' dari ' + questions.length + ' — ' + esc(q.label)));
+        'Soal ' + (idx + 1) + ' dari ' + questions.length + ': ' + esc(q.label)));
 
       var seq = el('div', 'lab-seq');
       seq.setAttribute('aria-label', 'Urutan pola: ' + q.sequence.join(', '));
@@ -297,8 +297,8 @@
         },
         rows: [{ label: 'Jawaban benar', val: correctCount + '/' + questions.length }],
         concept: [
-          'Setiap pola punya <strong>aturan</strong> — mengenali pola berarti menemukan aturannya, bukan menghafal gambarnya.',
-          '<strong>Model AI juga bekerja dengan menemukan pola dari data — tapi pola yang tampak cocok belum tentu aturan sebenarnya.</strong>',
+          'Setiap pola punya <strong>aturan</strong>: mengenali pola berarti menemukan aturannya, bukan menghafal gambarnya.',
+          '<strong>Model AI juga bekerja dengan menemukan pola dari data, tapi pola yang tampak cocok belum tentu aturan sebenarnya.</strong>',
           'Di soal jebakan, dua aturan berbeda sama-sama cocok dengan data awal. Kesimpulan yang jujur: "informasi belum cukup".',
           'Makin banyak data (contoh), makin yakin kita membedakan aturan yang benar dari yang kebetulan cocok.'
         ]
@@ -309,12 +309,12 @@
   }
 
   /* ============================================================
-     LAB 02 — TRAINING DATA
+     LAB 02: TRAINING DATA
      ============================================================ */
   function renderLab02(main) {
     var D = SIGAP.data.aiLab.lab02;
     labHeader(main, 'lab02',
-      'Model AI belajar dari contoh berlabel. Di lab ini KAMU yang jadi pemberi label — lalu lihat ' +
+      'Model AI belajar dari contoh berlabel. Di lab ini KAMU yang jadi pemberi label, lalu lihat ' +
       'model meniru apa pun yang kamu ajarkan, termasuk kesalahanmu.');
 
     var body = el('div', 'stack');
@@ -330,10 +330,10 @@
       body.appendChild(SIGAP.ui.phaseSteps(['LABELI DATA', 'LATIH MODEL', 'EKSPERIMEN', 'KUIS'], 0));
 
       var panel = el('div', 'panel panel--accent stack');
-      panel.appendChild(el('div', 'panel-title', 'Tahap 1 — Labeli 10 kartu data latihan'));
+      panel.appendChild(el('div', 'panel-title', 'Tahap 1: Labeli 10 kartu data latihan'));
       panel.appendChild(el('p', 'text-sm text-muted',
         'Masukkan tiap kartu ke <strong>Keranjang Kucing</strong> atau <strong>Keranjang Anjing</strong>. ' +
-        'Beberapa kartu sengaja ambigu — putuskan sebisamu; nanti kita lihat akibatnya pada model.'));
+        'Beberapa kartu sengaja ambigu. Putuskan sebisamu; nanti kita lihat akibatnya pada model.'));
 
       var counter = el('div', 'text-sm text-mono lab-count');
       panel.appendChild(counter);
@@ -422,9 +422,9 @@
       body.appendChild(SIGAP.ui.phaseSteps(['LABELI DATA', 'LATIH MODEL', 'EKSPERIMEN', 'KUIS'], 1));
 
       var panel = el('div', 'panel panel--accent stack');
-      panel.appendChild(el('div', 'panel-title', 'Tahap 2 — Melatih model dari labelmu'));
+      panel.appendChild(el('div', 'panel-title', 'Tahap 2: Melatih model dari labelmu'));
       panel.appendChild(el('div', 'sim-label lab-sim-label',
-        'SIMULASI — model sederhana untuk belajar, bukan AI nyata'));
+        'SIMULASI: model sederhana untuk belajar, bukan AI nyata'));
 
       var prog = el('div', 'stack');
       prog.appendChild(el('p', 'text-sm text-mono lab-train-status', 'Membaca 10 contoh berlabel…'));
@@ -480,7 +480,7 @@
 
       results.appendChild(el('p', 'text-sm ' + (anyError ? 'text-amber' : 'text-success'),
         anyError
-          ? '⚠ Model mengulangi kesalahan labelmu. Model tidak "salah sendiri" — ia belajar persis dari contoh yang diberikan.'
+          ? '⚠ Model mengulangi kesalahan labelmu. Model tidak "salah sendiri"; ia belajar persis dari contoh yang diberikan.'
           : '✔ Labelmu pada kartu jelas rapi, jadi prediksi model ikut rapi. Tapi apa yang terjadi kalau labelnya sengaja dibuat salah?'));
 
       results.appendChild(btn('Lanjut: eksperimen label salah', 'primary', function () { stepBadExperiment(); }));
@@ -494,9 +494,9 @@
 
       var E = D.badExperiment;
       var panel = el('div', 'panel panel--accent stack');
-      panel.appendChild(el('div', 'panel-title', 'Tahap 3 — Eksperimen terkontrol: 2 label sengaja salah'));
+      panel.appendChild(el('div', 'panel-title', 'Tahap 3: Eksperimen terkontrol dengan 2 label sengaja salah'));
       panel.appendChild(el('div', 'sim-label lab-sim-label',
-        'SIMULASI — model sederhana untuk belajar, bukan AI nyata'));
+        'SIMULASI: model sederhana untuk belajar, bukan AI nyata'));
       panel.appendChild(el('p', 'text-sm text-muted', esc(E.intro)));
 
       var ds = el('div', 'lab-cards lab-cards--compact');
@@ -557,14 +557,14 @@
         score: score,
         competencies: { aiLiteracy: { score: score, weight: 1.5 } },
         rows: [
-          { label: 'Ketepatan label (kartu jelas) — 50%', val: labelingScore + '/100' },
-          { label: 'Kuis pemahaman — 50%', val: quizCorrect + '/' + D.quiz.length }
+          { label: 'Ketepatan label (kartu jelas), bobot 50%', val: labelingScore + '/100' },
+          { label: 'Kuis pemahaman, bobot 50%', val: quizCorrect + '/' + D.quiz.length }
         ],
         concept: [
-          'Model AI belajar dari <strong>contoh berlabel</strong> — ia meniru pola dari label yang diberikan manusia.',
+          'Model AI belajar dari <strong>contoh berlabel</strong>; ia meniru pola dari label yang diberikan manusia.',
           'Label salah → model mengulang kesalahan yang sama. Ia tidak punya cara sendiri untuk tahu label mana yang keliru.',
           'Prinsip <strong>"garbage in, garbage out"</strong>: kualitas data latihan menentukan kualitas hasil model.',
-          'Kartu ambigu (rubah, serigala) menunjukkan: dunia nyata tidak selalu pas dengan dua kategori — keputusan pelabel manusia ikut membentuk "pandangan" model.'
+          'Kartu ambigu (rubah, serigala) menunjukkan: dunia nyata tidak selalu pas dengan dua kategori; keputusan pelabel manusia ikut membentuk "pandangan" model.'
         ]
       });
     }
@@ -573,12 +573,12 @@
   }
 
   /* ============================================================
-     LAB 03 — AI BIAS (SIMULASI KONSEPTUAL)
+     LAB 03: AI BIAS (SIMULASI KONSEPTUAL)
      ============================================================ */
   function renderLab03(main) {
     var D = SIGAP.data.aiLab.lab03;
     labHeader(main, 'lab03',
-      'Kalau satu kelompok jarang muncul di data latihan, performa model untuk kelompok itu bisa turun — ' +
+      'Kalau satu kelompok jarang muncul di data latihan, performa model untuk kelompok itu bisa turun. ' +
       'walau angka rata-rata masih terlihat bagus. Coba sendiri dengan slider di bawah.',
       'SIMULASI KONSEPTUAL');
 
@@ -598,7 +598,7 @@
       body.appendChild(SIGAP.ui.phaseSteps(['EKSPLORASI', 'KUIS'], 0));
 
       var panel = el('div', 'panel panel--accent stack');
-      panel.appendChild(el('div', 'panel-title', 'Eksperimen — komposisi data latihan'));
+      panel.appendChild(el('div', 'panel-title', 'Eksperimen: komposisi data latihan'));
 
       var gA = D.groups[0], gB = D.groups[1];
 
@@ -640,7 +640,7 @@
         function groupRow(g, share, p) {
           var row = el('div', 'stack lab-bias-group');
           row.appendChild(el('div', 'row row--between text-sm',
-            '<span>' + g.emoji + ' ' + esc(g.label) + ' — <span class="text-mono">' +
+            '<span>' + g.emoji + ' ' + esc(g.label) + ': <span class="text-mono">' +
             Math.round(share * 100) + '%</span> data latihan</span>' +
             '<span class="text-mono">performa ' + p + '/100</span>'));
           row.appendChild(meterEl(p, p >= 80 ? 'green' : (p >= 68 ? 'amber' : '')));
@@ -701,7 +701,7 @@
         rows: [{ label: 'Kuis reasoning', val: quizCorrect + '/' + D.quiz.length }],
         concept: [
           'Kelompok yang <strong>kurang terwakili</strong> di data latihan → contoh lebih sedikit → model bisa belajar kurang baik untuk kelompok itu.',
-          'Akurasi keseluruhan yang tinggi TIDAK menjamin model adil — performa perlu dievaluasi <strong>per kelompok</strong>.',
+          'Akurasi keseluruhan yang tinggi TIDAK menjamin model adil; performa perlu dievaluasi <strong>per kelompok</strong>.',
           'Bias model biasanya berasal dari data dan proses pembuatannya, bukan dari "niat" mesin.',
           'Perbaikannya nyata dan bisa dilakukan: lengkapi data kelompok yang kurang, lalu uji per kelompok sebelum dipakai.'
         ],
@@ -713,7 +713,7 @@
   }
 
   /* ============================================================
-     LAB 04 — HUMAN OR AI?
+     LAB 04: HUMAN OR AI?
      ============================================================ */
   function renderLab04(main) {
     var contents = SIGAP.data.aiLab.lab04;
@@ -742,16 +742,19 @@
 
       var panel = el('div', 'panel panel--accent stack');
       panel.appendChild(el('div', 'panel-title',
-        'Konten ' + (idx + 1) + ' dari ' + contents.length + ' — ' + esc(K.type)));
+        'Konten ' + (idx + 1) + ' dari ' + contents.length + ': ' + esc(K.type)));
 
-      var doc = el('div', 'lab-content-doc');
+      var doc = el('div', 'lab-content-doc' +
+        (K.look === 'tangan' ? ' lab-content-doc--tangan' : ''));
       doc.appendChild(el('div', 'lab-content-doc__title', esc(K.title)));
-      doc.appendChild(el('p', 'lab-content-doc__body', esc(K.body)));
+      // Escape dulu, baru ubah penanda ~kata~ jadi coretan revisi.
+      doc.appendChild(el('p', 'lab-content-doc__body',
+        esc(K.body).replace(/~([^~]+)~/g, '<s>$1</s>')));
       doc.appendChild(el('div', 'lab-content-doc__meta text-xs text-muted', 'ℹ Konteks: ' + esc(K.meta)));
       panel.appendChild(doc);
 
       // 1) checklist indikator
-      panel.appendChild(el('h3', 'lab-step-title', 'Langkah 1 — Indikator apa saja yang KAMU LIHAT di konten ini?'));
+      panel.appendChild(el('h3', 'lab-step-title', 'Langkah 1: Indikator apa saja yang KAMU LIHAT di konten ini?'));
       panel.appendChild(el('p', 'text-xs text-muted',
         'Centang hanya yang benar-benar ada. Memilih indikator yang tidak ada juga mengurangi skor bukti.'));
       var selected = {};
@@ -779,7 +782,7 @@
       panel.appendChild(indWrap);
 
       // 2) uncertainty
-      panel.appendChild(el('h3', 'lab-step-title', 'Langkah 2 — Seberapa yakin kamu?'));
+      panel.appendChild(el('h3', 'lab-step-title', 'Langkah 2: Seberapa yakin kamu?'));
       var conf = SIGAP.ui.confidenceSlider({
         label: 'Keyakinanmu terhadap penilaian konten ini',
         value: 50,
@@ -788,7 +791,7 @@
       panel.appendChild(conf.el);
 
       // 3) verdict
-      panel.appendChild(el('h3', 'lab-step-title', 'Langkah 3 — Kesimpulanmu?'));
+      panel.appendChild(el('h3', 'lab-step-title', 'Langkah 3: Kesimpulanmu?'));
       var verdictWrap = el('div', 'row lab-verdicts');
       verdictWrap.setAttribute('role', 'group');
       verdictWrap.setAttribute('aria-label', 'Pilihan kesimpulan');
@@ -842,7 +845,7 @@
       var verdictOk = chosen === K.verdict;
       var verdictScore = verdictOk ? 100 : 0;
       var cal = SIGAP.scoring.calibrate(verdictOk, confidence);
-      // Bobot: bukti 50%, kesimpulan 35%, kalibrasi 15% — bukti lebih berat dari verdict.
+      // Bobot: bukti 50%, kesimpulan 35%, kalibrasi 15%; bukti lebih berat dari verdict.
       var total = Math.round(0.5 * evidenceScore + 0.35 * verdictScore + 0.15 * cal.score);
       perContent.push({ evidence: evidenceScore, verdict: verdictScore, calibration: cal.score, score: total });
 
@@ -857,9 +860,9 @@
       for (var d = 0; d < detail.length; d++) {
         var it = detail[d];
         var cls, txt;
-        if (it.present && it.picked) { cls = 'lab-ev--hit'; txt = '✔ Tepat — indikator ini memang ada'; }
-        else if (it.present && !it.picked) { cls = 'lab-ev--miss'; txt = '✖ Terlewat — indikator ini sebenarnya ada'; }
-        else if (!it.present && it.picked) { cls = 'lab-ev--false'; txt = '✖ Kurang tepat — indikator ini tidak ada di konten'; }
+        if (it.present && it.picked) { cls = 'lab-ev--hit'; txt = '✔ Tepat, indikator ini memang ada'; }
+        else if (it.present && !it.picked) { cls = 'lab-ev--miss'; txt = '✖ Terlewat, indikator ini sebenarnya ada'; }
+        else if (!it.present && it.picked) { cls = 'lab-ev--false'; txt = '✖ Kurang tepat, indikator ini tidak ada di konten'; }
         else { cls = 'lab-ev--skip'; txt = '✔ Benar dilewati'; }
         chk.appendChild(el('li', 'lab-ev ' + cls,
           '<span>' + esc(it.ind.text) + '</span><span class="text-xs">' + txt + '</span>'));
@@ -901,8 +904,8 @@
           { label: 'Rata-rata skor konten', val: score + '/100' }
         ],
         concept: [
-          'Menilai konten = mengumpulkan <strong>indikator</strong> dulu, baru menyimpulkan — bukan menebak dari kesan.',
-          '"Belum Cukup Bukti" adalah kesimpulan yang sah dan kadang paling benar — terutama untuk konten pendek dan generik.',
+          'Menilai konten = mengumpulkan <strong>indikator</strong> dulu, baru menyimpulkan, bukan menebak dari kesan.',
+          '"Belum Cukup Bukti" adalah kesimpulan yang sah dan kadang paling benar, terutama untuk konten pendek dan generik.',
           '<strong>Provenance</strong> = riwayat asal-usul konten: siapa membuatnya, kapan, di mana, dan lewat jalur apa ia sampai ke kita. ' +
           'Tanpa provenance, penampilan konten saja sering tidak cukup untuk memastikan manusia atau AI.',
           'Tidak ada indikator tunggal yang pasti: gaya rapi ≠ pasti AI, typo ≠ pasti manusia. Kekuatan ada pada GABUNGAN bukti.'
@@ -917,7 +920,7 @@
   function renderQuizQuestion(body, quiz, qi, onDone) {
     var q = quiz[qi];
     var panel = el('div', 'panel panel--accent stack');
-    panel.appendChild(el('div', 'panel-title', 'Kuis — soal ' + (qi + 1) + ' dari ' + quiz.length));
+    panel.appendChild(el('div', 'panel-title', 'Kuis, soal ' + (qi + 1) + ' dari ' + quiz.length));
     panel.appendChild(el('p', 'lab-quiz-q', esc(q.q)));
 
     var keys = ['A', 'B', 'C', 'D'];

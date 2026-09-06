@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — games/evidence-board.js
+   SIGAP - games/evidence-board.js
    Reusable evidence-connection board.
 
    SIGAP.games.evidenceBoard.create({
@@ -305,7 +305,7 @@
           msg.push(missing.length + ' hubungan penting belum terbentuk.');
         }
         if (invalid.length) {
-          msg.push(invalid.length + ' hubungan tidak didukung bukti — coba hapus yang tidak bisa kamu jelaskan.');
+          msg.push(invalid.length + ' hubungan tidak didukung bukti. Coba hapus yang tidak bisa kamu jelaskan.');
         }
 
         // Escalating hints: attempt 1 = no hint, attempt 2 = hints[0],

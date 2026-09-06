@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — data/achievements-data.js
+   SIGAP - data/achievements-data.js
    Badge definitions. Badges reward reasoning behaviour,
    never raw click counts.
    ============================================================ */

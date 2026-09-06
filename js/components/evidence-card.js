@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — components/evidence-card.js
+   SIGAP - components/evidence-card.js
    Evidence card factory.
    SIGAP.ui.evidenceCard({
      id, title, body, source, strength ('LEMAH'|'SEDANG'|'KUAT'|null),

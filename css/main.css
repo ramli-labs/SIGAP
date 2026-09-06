@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — main.css
+   SIGAP - main.css
    Design tokens + base styles. Digital Forensic Command Center.
    ============================================================ */
 
@@ -26,7 +26,7 @@
   --space-20: 5rem;
   --space-24: 6rem;
 
-  /* Palette — very dark navy command center */
+  /* Palette: very dark navy command center */
   --color-bg: #070c14;
   --color-bg-deep: #04070d;
   --color-surface: #0c1420;

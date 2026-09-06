@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — components/confidence-slider.js
+   SIGAP - components/confidence-slider.js
    Labeled 0–100 confidence slider with live value + hint.
    SIGAP.ui.confidenceSlider({ id, label, value, hint }) ->
      { el, get(), set(v) }
@@ -48,13 +48,13 @@
     var scale = document.createElement('div');
     scale.className = 'conf-slider__scale';
     scale.setAttribute('aria-hidden', 'true');
-    scale.innerHTML = '<span>0% — menebak</span><span>50%</span><span>100% — pasti</span>';
+    scale.innerHTML = '<span>0% (menebak)</span><span>50%</span><span>100% (pasti)</span>';
 
     var hint = document.createElement('p');
     hint.className = 'conf-slider__hint';
     hint.id = id + '-hint';
     hint.textContent = opts.hint ||
-      'Confidence yang baik mengikuti kekuatan bukti — bukan perasaan. Kalau bukti belum lengkap, wajar untuk tidak terlalu yakin.';
+      'Confidence yang baik mengikuti kekuatan bukti, bukan perasaan. Kalau bukti belum lengkap, wajar untuk tidak terlalu yakin.';
 
     function refresh() {
       var v = parseInt(input.value, 10);

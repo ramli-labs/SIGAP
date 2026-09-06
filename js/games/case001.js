@@ -1,6 +1,6 @@
 /* ============================================================
-   SIGAP — games/case001.js
-   CASE 001 "FILE MISTERI" — APK berbahaya / social engineering.
+   SIGAP - games/case001.js
+   CASE 001 "FILE MISTERI". APK berbahaya / social engineering.
    Flow: AMATI → HIPOTESIS → VERIFIKASI (2 token) → BANDINGKAN
    (rating kekuatan bukti + evidence board) → PUTUSKAN →
    JELASKAN → debrief → CASE CLOSED → REFLEKSI → PHANTOM.
@@ -25,7 +25,7 @@
     },
     'permissions': {
       title: 'PERMISSION BERBAHAYA',
-      body: 'Aplikasi meminta akses SMS, Kontak, dan Accessibility. Untuk "melihat foto", permintaan itu tidak masuk akal — aplikasi galeri hanya butuh akses media.',
+      body: 'Aplikasi meminta akses SMS, Kontak, dan Accessibility. Untuk "melihat foto", permintaan itu tidak masuk akal; aplikasi galeri hanya butuh akses media.',
       source: 'Analisis permission (simulasi)'
     },
     'direct-confirm': {
@@ -81,22 +81,22 @@
       ifLow: 'Coba pikirkan lagi: pesan bilang "foto", tapi filenya adalah aplikasi. Kontradiksi langsung seperti ini termasuk bukti yang paling kuat.'
     },
     'sender-account': {
-      why: 'Nomor baru, foto di-crop, dan akun baru dibuat memang mencurigakan — tetapi masih ada penjelasan lain (ganti HP, buat akun baru). Karena belum pasti, kekuatannya SEDANG.',
-      ifLow: 'Kejanggalan akun bukan bukti kuat sendirian, tapi juga bukan tanpa arti — ia SEDANG: perlu dicek bersama bukti lain.',
-      ifHigh: 'Hati-hati: akun janggal saja belum membuktikan penipuan. Orang bisa ganti nomor atau membuat akun baru. Ini bukti SEDANG — berguna jika didukung bukti lain.'
+      why: 'Nomor baru, foto di-crop, dan akun baru dibuat memang mencurigakan, tetapi masih ada penjelasan lain (ganti HP, buat akun baru). Karena belum pasti, kekuatannya SEDANG.',
+      ifLow: 'Kejanggalan akun bukan bukti kuat sendirian, tapi juga bukan tanpa arti. Kekuatannya SEDANG: perlu dicek bersama bukti lain.',
+      ifHigh: 'Hati-hati: akun janggal saja belum membuktikan penipuan. Orang bisa ganti nomor atau membuat akun baru. Ini bukti SEDANG, berguna jika didukung bukti lain.'
     },
     'permissions': {
       why: 'Akses SMS, Kontak, dan Accessibility tidak masuk akal untuk "melihat foto". Ketidaksesuaian izin dengan fungsi yang diklaim adalah bukti KUAT.',
-      ifLow: 'Bandingkan dengan aplikasi galeri biasa: hanya butuh akses media. Permintaan SMS + Kontak + Accessibility untuk "foto" adalah ketidaksesuaian besar — bukti KUAT.'
+      ifLow: 'Bandingkan dengan aplikasi galeri biasa: hanya butuh akses media. Permintaan SMS + Kontak + Accessibility untuk "foto" adalah ketidaksesuaian besar. Ini bukti KUAT.'
     },
     'direct-confirm': {
       why: 'Konfirmasi dari Dimas lewat jalur lain langsung mematahkan klaim pengirim. Sumber pertama yang independen seperti ini adalah bukti KUAT.',
-      ifLow: 'Pernyataan langsung dari Dimas lewat jalur berbeda adalah bukti yang sangat sulit dibantah — ini bukti KUAT.'
+      ifLow: 'Pernyataan langsung dari Dimas lewat jalur berbeda adalah bukti yang sangat sulit dibantah. Ini bukti KUAT.'
     }
   };
 
   var DECISIONS = [
-    { key: 'A', text: 'Install file itu — kalau dari teman pasti aman.', correct: false },
+    { key: 'A', text: 'Install file itu, kalau dari teman pasti aman.', correct: false },
     { key: 'B', text: 'Abaikan saja pesan itu, tidak perlu tindakan apa pun.', correct: false },
     { key: 'C', text: 'Jangan instal. Verifikasi pengirim lewat jalur lain, hapus file, dan laporkan akunnya.', correct: true },
     { key: 'D', text: 'Teruskan file ke teman-teman lain supaya mereka ikut mencoba.', correct: false }
@@ -105,28 +105,28 @@
   var HYPOTHESES = [
     {
       key: 'A',
-      text: 'Pesan ini pasti aman — Dimas memang temanku.',
+      text: 'Pesan ini pasti aman, Dimas memang temanku.',
       iq: 0,
       feedback: 'Dari mana kamu tahu akun itu benar-benar Dimas? Nama dan foto profil mudah ditiru. Hipotesis yang baik menyisakan ruang untuk kemungkinan lain.'
     },
     {
       key: 'B',
-      text: 'File ini mungkin berbahaya — ada yang janggal antara "foto" dan perintah "install".',
+      text: 'File ini mungkin berbahaya, ada yang janggal antara "foto" dan perintah "install".',
       iq: 10,
-      feedback: 'Kamu menangkap kejanggalan penting: foto tidak perlu di-install. Tapi ingat, ini masih dugaan — harus diperiksa sebelum disimpulkan.'
+      feedback: 'Kamu menangkap kejanggalan penting: foto tidak perlu di-install. Tapi ingat, ini masih dugaan; harus diperiksa sebelum disimpulkan.'
     },
     {
       key: 'C',
-      text: 'Belum bisa disimpulkan — aku perlu memeriksa file dan pengirimnya dulu.',
+      text: 'Belum bisa disimpulkan, aku perlu memeriksa file dan pengirimnya dulu.',
       iq: 15,
       feedback: 'Sikap yang tepat: menahan kesimpulan sampai ada bukti. Sekarang tentukan apa yang paling penting untuk diperiksa lebih dulu.'
     }
   ];
 
   var INTRO_LINES = [
-    { speaker: 'system', text: 'CASE FILE 001 — "FILE MISTERI" DIBUKA. STATUS: AKTIF.' },
+    { speaker: 'system', text: 'CASE FILE 001: "FILE MISTERI" DIBUKA. STATUS: AKTIF.' },
     { speaker: 'aruna', voice: 'aruna/case001-intro-01.mp3', text: 'Kasus pertamamu. Seorang siswa bernama Raka menerima pesan dari akun yang tampak seperti temannya, Dimas.' },
-    { speaker: 'aruna', voice: 'aruna/case001-intro-02.mp3', text: 'Pesan itu berisi sebuah file dan permintaan untuk meng-install-nya. Raka hampir menekan tombol install — lalu ia ragu, dan mengirim kasus ini ke kita.' },
+    { speaker: 'aruna', voice: 'aruna/case001-intro-02.mp3', text: 'Pesan itu berisi sebuah file dan permintaan untuk meng-install-nya. Raka hampir menekan tombol install, lalu ia ragu, dan mengirim kasus ini ke kita.' },
     { speaker: 'aruna', voice: 'aruna/case001-intro-03.mp3', text: 'Jangan buru-buru menyimpulkan. Amati dulu pesannya: apa yang benar-benar kamu lihat, bukan apa yang kamu duga?' }
   ];
 
@@ -185,7 +185,7 @@
 
   /* ---------- route ---------- */
   SIGAP.router.register('case001', {
-    title: 'CASE 001 — File Misteri',
+    title: 'CASE 001: File Misteri',
 
     render: function (container) {
       SIGAP.ui.background(container);
@@ -263,7 +263,7 @@
 
         var btn = el('button', 'btn btn--primary btn--lg');
         btn.type = 'button';
-        btn.textContent = 'Aku sudah mengamati — buat hipotesis ▸';
+        btn.textContent = 'Aku sudah mengamati, buat hipotesis ▸';
         btn.addEventListener('click', phaseHipotesis);
         panel.appendChild(btn);
 
@@ -325,10 +325,10 @@
         clearContent();
 
         var panel = el('div', 'panel panel--glass stack');
-        panel.appendChild(el('div', 'panel-title', 'VERIFIKASI — PILIH SUMBERMU'));
+        panel.appendChild(el('div', 'panel-title', 'VERIFIKASI: PILIH SUMBERMU'));
         panel.appendChild(el('p', '',
           'Waktumu terbatas: kamu hanya punya <strong>2 Investigation Token</strong>. ' +
-          'Ada 4 sumber yang bisa diperiksa. Pilih 2 yang menurutmu paling penting — sisanya terkunci dulu.'));
+          'Ada 4 sumber yang bisa diperiksa. Pilih 2 yang menurutmu paling penting; sisanya terkunci dulu.'));
 
         var tokenBar = el('div', 'token-display');
         panel.appendChild(tokenBar);
@@ -367,7 +367,7 @@
             d.textContent = src.desc;
             card.appendChild(d);
             card.appendChild(el('span', 'c1-source__cost',
-              opened ? '✔ Sudah diperiksa' : (locked ? '🔒 Terkunci — token habis' : '◈ 1 token')));
+              opened ? '✔ Sudah diperiksa' : (locked ? '🔒 Terkunci, token habis' : '◈ 1 token')));
             if (!opened && !locked) {
               card.addEventListener('click', function () {
                 openSource(src.id, true, function () {
@@ -437,7 +437,7 @@
         var src = getSource(id);
 
         if (src.simTool) {
-          wrap.appendChild(el('span', 'sim-label', '⚠ SIMULATED FORENSIC TOOL — bukan detector AI nyata'));
+          wrap.appendChild(el('span', 'sim-label', '⚠ SIMULATED FORENSIC TOOL, bukan detector AI nyata'));
         }
 
         if (id === 'file-type') {
@@ -446,9 +446,9 @@
             '<div class="terminal__body">' +
             '<div class="terminal__line"><span class="terminal__prompt">&gt;</span> inspect FOTO_ACARA.apk</div>' +
             '<div class="terminal__line">Ekstensi     : .apk</div>' +
-            '<div class="terminal__line">Jenis        : Android Package — file INSTALASI aplikasi</div>' +
+            '<div class="terminal__line">Jenis        : Android Package, file INSTALASI aplikasi</div>' +
             '<div class="terminal__line">Format foto  : .jpg / .png / .heic (bukan .apk)</div>' +
-            '<div class="terminal__line text-muted">Alat ini hanya membaca tipe file. Apa artinya — kamu yang menilai.</div>' +
+            '<div class="terminal__line text-muted">Alat ini hanya membaca tipe file. Apa artinya, kamu yang menilai.</div>' +
             '</div>'));
         } else if (id === 'sender-account') {
           wrap.appendChild(el('div', 'terminal',
@@ -458,7 +458,7 @@
             '<div class="terminal__line">Nomor         : BERBEDA dari nomor Dimas yang tersimpan</div>' +
             '<div class="terminal__line">Foto profil   : sama seperti milik Dimas, tapi terpotong (di-crop)</div>' +
             '<div class="terminal__line">Bergabung     : 2 hari yang lalu</div>' +
-            '<div class="terminal__line text-muted">Janggal — tetapi orang juga bisa ganti nomor. Perlu bukti lain.</div>' +
+            '<div class="terminal__line text-muted">Janggal, tetapi orang juga bisa ganti nomor. Perlu bukti lain.</div>' +
             '</div>'));
         } else if (id === 'permissions') {
           wrap.appendChild(el('div', 'terminal',
@@ -495,7 +495,7 @@
         clearContent();
 
         var panel = el('div', 'panel panel--glass stack');
-        panel.appendChild(el('div', 'panel-title', 'BANDINGKAN — SEBERAPA KUAT TIAP BUKTI?'));
+        panel.appendChild(el('div', 'panel-title', 'BANDINGKAN: SEBERAPA KUAT TIAP BUKTI?'));
         panel.appendChild(el('p', '',
           'Tidak semua bukti sama kuatnya. Nilai setiap bukti yang kamu temukan: ' +
           '<strong>LEMAH</strong> (mudah dibantah), <strong>SEDANG</strong> (mencurigakan tapi ada penjelasan lain), ' +
@@ -556,7 +556,7 @@
                 fb.className = 'c1-feedback c1-feedback--info';
                 fb.textContent = 'Penilaian rubrik: ' + correct + '. ' +
                   (pick < target ? meta.ifLow : (meta.ifHigh || meta.why)) +
-                  ' Menilai kekuatan bukti adalah keterampilan — bukan soal benar-salah tunggal.';
+                  ' Menilai kekuatan bukti adalah keterampilan, bukan soal benar-salah tunggal.';
               }
 
               if (allInitialRated()) showRemaining();
@@ -580,7 +580,7 @@
           if (remaining.length) {
             extraWrap.appendChild(el('p', 'c1-note',
               '🔓 Dua sumber tersisa kini <strong>terbuka tanpa token</strong>. Kamu boleh memeriksanya ' +
-              'sebelum memutuskan — penyelidik yang teliti memeriksa lebih banyak sumber.'));
+              'sebelum memutuskan. Penyelidik yang teliti memeriksa lebih banyak sumber.'));
             var grid = el('div', 'grid-2 c1-sources');
             grid.dataset.role = 'remaining';
             extraWrap.appendChild(grid);
@@ -597,7 +597,7 @@
             if (run.opened.indexOf(src.id) !== -1 && run.tokenPicks.indexOf(src.id) !== -1) return;
             var opened = run.opened.indexOf(src.id) !== -1;
             if (opened && run.tokenPicks.indexOf(src.id) === -1) {
-              // already opened for free — skip card, rating block exists
+              // already opened for free, skip card; rating block exists
               return;
             }
             var card = el('button', 'c1-source');
@@ -606,7 +606,7 @@
             var d = el('span', 'c1-source__desc');
             d.textContent = src.desc;
             card.appendChild(d);
-            card.appendChild(el('span', 'c1-source__cost', '🔓 Gratis — tanpa token'));
+            card.appendChild(el('span', 'c1-source__cost', '🔓 Gratis, tanpa token'));
             card.addEventListener('click', function () {
               openSource(src.id, false, function () {
                 list.appendChild(ratingBlock(src.id));
@@ -628,7 +628,7 @@
         clearContent();
 
         var panel = el('div', 'panel panel--glass stack');
-        panel.appendChild(el('div', 'panel-title', 'PAPAN BUKTI — SUSUN RANTAI PENALARAN'));
+        panel.appendChild(el('div', 'panel-title', 'PAPAN BUKTI: SUSUN RANTAI PENALARAN'));
         panel.appendChild(el('p', '',
           'Hubungkan bukti dengan apa yang didukungnya: risiko, sumber, atau kesimpulan. ' +
           'Papan yang baik menunjukkan <em>mengapa</em> kesimpulanmu masuk akal.'));
@@ -637,7 +637,7 @@
           { id: 'src-sender', label: 'Pengirim tidak terverifikasi', category: 'SOURCE' },
           { id: 'risk-data', label: 'Data SMS & kontak bisa dicuri', category: 'RISK' },
           { id: 'risk-account', label: 'Akun bisa diambil alih', category: 'RISK' },
-          { id: 'concl', label: 'File berbahaya — jangan instal', category: 'CONCLUSION' }
+          { id: 'concl', label: 'File berbahaya, jangan instal', category: 'CONCLUSION' }
         ];
         var required = [];
         var optional = [
@@ -681,7 +681,7 @@
 
         var hint2 = run.opened.indexOf('permissions') !== -1
           ? 'Periksa hubungan antara permission aplikasi dan risiko data.'
-          : 'Hubungkan setiap bukti dengan hal yang ia dukung: sebuah risiko, sumber, atau kesimpulan — lalu pastikan ada jalur menuju kesimpulan.';
+          : 'Hubungkan setiap bukti dengan hal yang ia dukung: sebuah risiko, sumber, atau kesimpulan, lalu pastikan ada jalur menuju kesimpulan.';
 
         board = SIGAP.games.evidenceBoard.create({
           container: boardHost,
@@ -691,8 +691,8 @@
           hints: [
             hint2,
             function (missing) {
-              if (!missing.length) return 'Ada hubungan yang tidak didukung bukti — hapus yang tidak bisa kamu jelaskan.';
-              return 'Perhatikan node "' + missing[0][0] + '" — ia belum terhubung dengan pasangan yang tepat.';
+              if (!missing.length) return 'Ada hubungan yang tidak didukung bukti. Hapus yang tidak bisa kamu jelaskan.';
+              return 'Perhatikan node "' + missing[0][0] + '" belum terhubung dengan pasangan yang tepat.';
             }
           ],
           onSolved: function (wrong) {
@@ -713,7 +713,7 @@
         clearContent();
 
         var panel = el('div', 'panel panel--glass stack');
-        panel.appendChild(el('div', 'panel-title', 'PUTUSKAN — APA YANG SEBAIKNYA RAKA LAKUKAN?'));
+        panel.appendChild(el('div', 'panel-title', 'PUTUSKAN: APA YANG SEBAIKNYA RAKA LAKUKAN?'));
 
         var picked = null;
         var opts = el('div', 'stack stack--sm');
@@ -771,7 +771,7 @@
         clearContent();
 
         var panel = el('div', 'panel panel--glass stack');
-        panel.appendChild(el('div', 'panel-title', 'JELASKAN — BUKTI APA YANG MENDUKUNG KEPUTUSANMU?'));
+        panel.appendChild(el('div', 'panel-title', 'JELASKAN: BUKTI APA YANG MENDUKUNG KEPUTUSANMU?'));
         panel.appendChild(el('p', '', 'Pilih <strong>2–3 bukti terkuat</strong> yang mendukung keputusanmu. Kalau kamu tidak bisa menjelaskannya, kamu belum selesai menyelidiki.'));
 
         var chosen = [];
@@ -825,7 +825,7 @@
           decisionCorrect: correct,
           evidenceRelevance: er,
           confidence: run.confidence,
-          decisionLabel: run.decision.key + ' — ' + run.decision.text,
+          decisionLabel: run.decision.key + ': ' + run.decision.text,
           competencies: {
             digitalSafety: { score: correct ? Math.max(iq, 70) : Math.min(iq, 45), weight: 2 },
             evidenceReasoning: { score: er, weight: 1.5 },
@@ -841,7 +841,7 @@
               'Percaya file dari "teman" tanpa verifikasi, meski format file tidak sesuai klaim (memilih install APK).');
           } else if (run.decision.key === 'D') {
             SIGAP.scoring.recordMisconception('case001',
-              'Menyebarkan file mencurigakan ke orang lain untuk "dicoba" — memperluas risiko, bukan mengujinya.');
+              'Menyebarkan file mencurigakan ke orang lain untuk "dicoba" berarti memperluas risiko, bukan mengujinya.');
           }
           if (correct && run.confidence >= 75 && run.confidence <= 90) {
             SIGAP.achievements.unlock('calibrated-thinker');
@@ -858,10 +858,10 @@
         var correct = run.decision.correct;
 
         var panel = el('div', 'panel panel--glass stack');
-        panel.appendChild(el('div', 'panel-title', 'DEBRIEF — CASE 001'));
+        panel.appendChild(el('div', 'panel-title', 'DEBRIEF: CASE 001'));
 
         if (out.practice) {
-          panel.appendChild(el('div', 'practice-banner', 'PRACTICE RUN — XP tidak diberikan'));
+          panel.appendChild(el('div', 'practice-banner', 'PRACTICE RUN: XP tidak diberikan'));
         }
 
         var verdict = el('div', 'debrief-verdict ' + (correct ? 'debrief-verdict--good' : 'debrief-verdict--bad'));
@@ -871,7 +871,7 @@
           vText.innerHTML = '<strong>Keputusan tepat.</strong> Tiga bukti independen saling mendukung: ' +
             'format file (.apk) tidak cocok dengan klaim "foto", permission yang diminta (SMS, Kontak, Accessibility) ' +
             'tidak masuk akal untuk melihat foto, dan Dimas sendiri menyangkal mengirim file. ' +
-            'Jangan instal, verifikasi lewat jalur lain, hapus, lalu laporkan — melindungi dirimu dan orang lain.';
+            'Jangan instal, verifikasi lewat jalur lain, hapus, lalu laporkan. Itu melindungi dirimu dan orang lain.';
         } else {
           var missed = SOURCES.filter(function (s) { return run.opened.indexOf(s.id) === -1; })
             .map(function (s) { return s.label; });
@@ -880,9 +880,9 @@
               ? 'Format .apk bertentangan dengan klaim "foto", dan permission yang diminta bisa mencuri SMS serta kontak. Meng-install berarti menyerahkan datamu.'
               : run.decision.key === 'B'
                 ? 'Mengabaikan memang lebih aman daripada meng-install, tetapi pengirim palsu itu akan mengirim file yang sama ke teman-temanmu. Verifikasi dan laporkan.'
-                : 'Meneruskan file mencurigakan justru memperluas jangkauan penyerang — temanmu bisa jadi korban berikutnya.') +
+                : 'Meneruskan file mencurigakan justru memperluas jangkauan penyerang; temanmu bisa jadi korban berikutnya.') +
             (missed.length ? ' Sumber yang belum kamu periksa: ' + missed.join(', ') + '.' : '') +
-            ' Bukan soal siapa yang salah — periksa lagi buktinya, lalu coba tarik kesimpulan yang paling didukung bukti.';
+            ' Bukan soal siapa yang salah. Periksa lagi buktinya, lalu coba tarik kesimpulan yang paling didukung bukti.';
         }
         verdict.appendChild(vText);
         panel.appendChild(verdict);
@@ -929,7 +929,7 @@
         cineEl.setAttribute('role', 'dialog');
         cineEl.setAttribute('aria-label', 'Kasus selesai');
         cineEl.appendChild(el('div', 'case-complete-cine__stamp', 'CASE CLOSED'));
-        cineEl.appendChild(el('p', 'text-mono text-muted', 'CASE 001 — FILE MISTERI · ARSIP DISEGEL'));
+        cineEl.appendChild(el('p', 'text-mono text-muted', 'CASE 001: FILE MISTERI · ARSIP DISEGEL'));
         var btn = el('button', 'btn btn--primary btn--lg');
         btn.type = 'button';
         btn.textContent = 'Lanjut';
@@ -967,7 +967,7 @@
         var panel = el('div', 'panel panel--glass stack');
         panel.appendChild(el('div', 'panel-title', 'CASE 001 SELESAI'));
         panel.appendChild(el('p', '',
-          'Metode yang kamu pakai di sini — periksa format, periksa izin, konfirmasi lewat jalur lain — ' +
+          'Metode yang kamu pakai di sini. Periksa format, periksa izin, konfirmasi lewat jalur lain. ' +
           'berlaku untuk file apa pun, dari siapa pun.'));
 
         var rowBtns = el('div', 'row');
@@ -982,7 +982,7 @@
         panel.appendChild(rowBtns);
         content.appendChild(panel);
 
-        // PHANTOM first contact — only after the first (non-practice) completion.
+        // PHANTOM first contact, only after the first (non-practice) completion.
         var story = SIGAP.state.get().story;
         if (!run.finishResult.practice && !story.phantomIntroSeen) {
           SIGAP.ui.dialogue.play(SIGAP.data.dialogues.phantomFirstContact, {

@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — components/dialogue.js
+   SIGAP - components/dialogue.js
    Dialogue system: portrait, name, typewriter text, Next/Skip,
    optional narration (▶ Dengarkan / ⏸ / 🔇). Subtitles always on.
    SIGAP.ui.dialogue.play(lines, { onEnd })
@@ -109,7 +109,7 @@
         var controls = box.querySelector('.dialogue__controls');
         var fullText = line.text;
 
-        // Narration (optional, never autoplays before user gesture problems —
+        // Narration (optional, never autoplays before user gesture problems,
         // dialogue itself is opened from a user action).
         if (line.voice && SIGAP.audio.isNarrationOn()) {
           SIGAP.audio.playNarration(line.voice);

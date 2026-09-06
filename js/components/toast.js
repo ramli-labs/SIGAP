@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — components/toast.js
+   SIGAP - components/toast.js
    Non-blocking notifications. Icon + text (never color-only).
    ============================================================ */
 (function () {

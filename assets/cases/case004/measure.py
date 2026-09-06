@@ -29,6 +29,7 @@ import tempfile
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+# Master tidak disimpan di repo; taruh sendiri di folder ini atau ubah path.
 MASTER = os.path.join(HERE, 'referencenew.mp4')
 SR = 16000
 BINS = 90          # 9 detik / 0,1 s
@@ -147,7 +148,12 @@ def js(name, arr):
 def main():
     ref = os.path.join(HERE, 'reference.mp4')
     sus = os.path.join(HERE, 'suspect.mp4')
-    for f in (MASTER, ref, sus):
+    if not os.path.exists(MASTER):
+        sys.exit('Master tidak ditemukan: %s\n'
+                 'File master TIDAK disimpan di repo. MOUTH_DATA diukur dari\n'
+                 'master resolusi penuh, jadi taruh rekaman aslinya di sini dulu.'
+                 % MASTER)
+    for f in (ref, sus):
         if not os.path.exists(f):
             sys.exit('Tidak ada: %s (jalankan generate.py dulu)' % f)
     with tempfile.TemporaryDirectory() as tmp:

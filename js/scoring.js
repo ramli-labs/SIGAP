@@ -1,5 +1,5 @@
 /* ============================================================
-   SIGAP — scoring.js
+   SIGAP - scoring.js
    PROGRESS (XP) is separated from PERFORMANCE (competencies).
 
    Case score = 40% investigation quality + 30% decision +
@@ -63,7 +63,7 @@
     }
     return decisionCorrect
       ? 'Confidence-mu sesuai dengan kekuatan bukti. Ini yang disebut kalibrasi yang baik.'
-      : 'Keputusanmu keliru, tetapi kamu jujur dengan ketidakpastianmu — itu sikap epistemik yang sehat. Sekarang periksa bukti yang terlewat.';
+      : 'Keputusanmu keliru, tetapi kamu jujur dengan ketidakpastianmu. Itu sikap epistemik yang sehat. Sekarang periksa bukti yang terlewat.';
   }
 
   SIGAP.scoring = {
@@ -95,7 +95,7 @@
 
     /**
      * Record competency performance (weighted average). Practice runs must
-     * NOT call this — enforced by finishCase/finishLab.
+     * NOT call this; enforced by finishCase/finishLab.
      * comps: { criticalThinking: {score: 0-100, weight: 1}, ... }
      */
     recordCompetencies: function (comps) {
