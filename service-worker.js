@@ -8,7 +8,7 @@
      media requests — those get a proper error Response.
    Bump CACHE_VERSION on every significant release.
    ============================================================ */
-var CACHE_VERSION = 'sigap-v4';
+var CACHE_VERSION = 'sigap-v5';
 
 var PRECACHE = [
   './',
@@ -150,12 +150,61 @@ self.addEventListener('activate', function (event) {
   );
 });
 
+/**
+ * Serve a byte range out of the cache as a real 206 response.
+ * Without this, a ranged media request gets the full cached 200 back and the
+ * browser marks the resource NON-SEEKABLE — which breaks CASE 004's frame
+ * scrubbing (FRAME ANALYZER, BACKGROUND CONTINUITY) whenever the app runs
+ * from cache.
+ */
+function rangeResponse(req, range) {
+  return caches.match(req).then(function (hit) {
+    if (!hit) {
+      return fetch(req).catch(function () {
+        return new Response('', { status: 504, statusText: 'Offline: asset unavailable' });
+      });
+    }
+    return hit.arrayBuffer().then(function (buf) {
+      var m = /^bytes=(\d*)-(\d*)/.exec(range);
+      var total = buf.byteLength;
+      if (!m) return hit;
+      var start = m[1] ? parseInt(m[1], 10) : 0;
+      var end = m[2] ? parseInt(m[2], 10) : total - 1;
+      if (end >= total) end = total - 1;
+      if (isNaN(start) || start > end || start >= total) {
+        return new Response('', {
+          status: 416,
+          statusText: 'Range Not Satisfiable',
+          headers: { 'Content-Range': 'bytes */' + total }
+        });
+      }
+      return new Response(buf.slice(start, end + 1), {
+        status: 206,
+        statusText: 'Partial Content',
+        headers: {
+          'Content-Type': hit.headers.get('Content-Type') || 'application/octet-stream',
+          'Content-Length': String(end - start + 1),
+          'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
+          'Accept-Ranges': 'bytes'
+        }
+      });
+    });
+  });
+}
+
 self.addEventListener('fetch', function (event) {
   var req = event.request;
   if (req.method !== 'GET') return;
 
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return; // never intercept cross-origin
+
+  // Ranged requests (video/audio seeking) need a 206, not the cached 200.
+  var range = req.headers.get('range');
+  if (range) {
+    event.respondWith(rangeResponse(req, range));
+    return;
+  }
 
   // Navigations: cache-first, then network, then index.html shell.
   if (req.mode === 'navigate') {

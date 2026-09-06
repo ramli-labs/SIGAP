@@ -109,7 +109,7 @@ sigap/
     ├── characters/         # aset karakter
     └── cases/
         ├── case002/        # plate-a.svg, plate-b.svg, plate-c.svg
-        └── case004/        # suspect.mp4, reference.mp4 (+ script generator ffmpeg)
+        └── case004/        # referencenew.mp4 (master), suspect.mp4, reference.mp4 (+ generate.py, measure.py)
 ```
 
 ---
@@ -196,12 +196,14 @@ Skema state (`SCHEMA_VERSION = 1`, di `js/state.js`):
 
 ### Video CASE 004 (`assets/cases/case004/suspect.mp4`, `reference.mp4`)
 
-- Spesifikasi: durasi 8–10 detik, 640×360, **<1,5 MB**, h264+aac, `-movflags +faststart`, **watermark "SIMULASI MEDIA PELATIHAN"** di pojok.
-- Kedua video dibuat oleh **script generator ffmpeg** yang disertakan di `assets/cases/case004/` (buatan modul CASE 004, berbasis lavfi: warna, drawbox/drawtext, sine audio). Untuk mengganti video, **jalankan ulang / modifikasi script tersebut**, jangan sekadar menaruh video lain — karena deskripsi evidence dalam gameplay harus cocok dengan artefak yang benar-benar ada di video:
-  - ±00:03.2 — lip-sync mismatch (gerak "bibir" mendahului audio ~0,4s);
-  - ±00:05.6 — boundary artifact (kotak wajah flicker 2–3 frame);
-  - perubahan pitch/timbre audio di tengah suspect;
-  - elemen latar berpindah/hilang di detik 6+ dibanding reference.
+- Spesifikasi: durasi 9 detik, 640×360 @25fps, **<1,5 MB**, h264+aac, `-movflags +faststart`, **watermark "SIMULASI MEDIA PELATIHAN"** di pojok.
+- Master: `assets/cases/case004/referencenew.mp4` — rekaman asli (1920×1080, 60 fps, 8,0 s) yang dipakai dengan izin. Kedua aset diturunkan dari master yang **sama** oleh `assets/cases/case004/generate.py` (ffmpeg). Untuk mengganti video, **ganti master lalu jalankan ulang `generate.py`**, jangan sekadar menaruh video lain — karena deskripsi evidence dalam gameplay harus cocok dengan artefak yang benar-benar ada di video:
+  - ±00:03.4 — lip-sync mismatch (bibir mendahului audio ~0,4 s, sinkron lagi di 00:04.9);
+  - ±00:04.9 — sambungan kasar lalu pitch turun ~2,5 semitone + tremolo 9 Hz sampai akhir;
+  - ±00:05.6 — boundary artifact (salinan wajah bergeser + kotak magenta, 3–4 frame);
+  - 00:06.0+ — dua blok warna di slide proyektor bertukar dibanding reference.
+- `generate.py` berjalan **tiga tahap**: render base lossless → bangun tambalan warna slide dengan OpenCV (blok dicari ulang tiap frame, jadi tambalan ikut goyangan kamera) → komposit akhir. Berkas antara dihapus otomatis. Butuh `numpy` + `opencv-python<5`.
+- Setelah ganti master, **ukur ulang** grafik in-game dengan `assets/cases/case004/measure.py` dan tempel hasilnya ke `MOUTH_DATA` / `AUDIO_REF` / `AUDIO_SUS` di `js/games/case004.js`; sesuaikan juga `FACE` (kotak kepala) dan `SLIDE_ROI` + ambang warna `BLOCK_*` di `generate.py` terhadap frame baru. Skrip mencetak berapa blok yang berhasil terdeteksi — kalau kurang dari 2× jumlah frame, ambangnya perlu disetel ulang.
 - Verifikasi hasil render dengan `ffprobe` dan ekstraksi frame (`ffmpeg -ss 5.6 -i suspect.mp4 -frames:v 1 out.png`) sebelum dirilis. Bump `CACHE_VERSION` setelah ganti.
 
 ### Ikon aplikasi
@@ -226,6 +228,12 @@ Narasi bersifat **sepenuhnya opsional** — gim berjalan normal tanpa satu pun f
 3. Komponen dialog memutar file lewat `SIGAP.audio.playNarration(relPath)`. **Fallback otomatis**: jika file tidak ada, format tidak didukung, autoplay diblokir, atau toggle Narasi dimatikan pemain, pemutaran gagal **secara diam** — teks dialog tetap tampil normal, tanpa error.
 4. Agar narasi tersedia offline, tambahkan file-nya ke `PRECACHE` di `service-worker.js` (opsional; ingat batas kuota cache) dan bump `CACHE_VERSION`.
 5. SFX (klik, scan, dsb.) tidak butuh file — dibangkitkan prosedural via WebAudio dan menghormati toggle Suara.
+6. Untuk membuat/mengganti satu baris narasi dengan suara yang konsisten dengan aset yang ada:
+   ```
+   pip install edge-tts
+   python3 tools/generate_narration.py aruna/case004-intro-01.mp3 "Teks dialog persis seperti di kode..."
+   ```
+   Skrip memakai suara yang dipilih dengan mencocokkan speaker-embedding ke aset Aruna lama, dan meng-encode ke format yang sama (mono, 44,1 kHz, 112 kbps). **Teks argumen harus sama persis dengan field `text` di kode** — kalau berbeda, subtitle dan suara jadi tidak cocok. Perlu koneksi internet (memakai layanan TTS Microsoft Edge).
 
 ---
 

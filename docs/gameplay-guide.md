@@ -67,7 +67,7 @@ Keterampilan inti: **membaca domain dari kanan** (domain utama = bagian sebelum 
 ### CASE 004 — Phantom Signal (klimaks)
 *Tema: deepfake / video termanipulasi · Kompetensi: AI Literacy, Evidence Reasoning, Critical Thinking, Ethical Reasoning · XP 100*
 
-Video "pernyataan Ketua OSIS" beredar. Pemain membandingkan SUSPECT VIDEO dengan REFERENCE VIDEO (keduanya asset sintetis ber-watermark "SIMULASI MEDIA PELATIHAN"), memilih hipotesis (Face / Lip-sync / Audio / Background / Metadata) yang menentukan tool pertama, lalu menguji dengan 5 tool simulasi: FRAME ANALYZER, LIP-SYNC ANALYZER, AUDIO WAVEFORM, BACKGROUND CONTINUITY, METADATA VIEWER (berlabel "SIMULATED FORENSIC METADATA"). Evidence bertimestamp; kesimpulan memakai 3 pilihan gaya CASE 002 + confidence.
+Potongan video seorang guru yang sedang menjelaskan proyek di kelas beredar dan diragukan keasliannya. Pemain membandingkan SUSPECT VIDEO dengan REFERENCE VIDEO (keduanya diturunkan dari satu rekaman asli yang dipakai dengan izin, ber-watermark "SIMULASI MEDIA PELATIHAN"), memilih hipotesis (Face / Lip-sync / Audio / Background / Metadata) yang menentukan tool pertama, lalu menguji dengan 5 tool simulasi: FRAME ANALYZER, LIP-SYNC ANALYZER, AUDIO WAVEFORM, BACKGROUND CONTINUITY, METADATA VIEWER (berlabel "SIMULATED FORENSIC METADATA"). Evidence bertimestamp; kesimpulan memakai 3 pilihan gaya CASE 002 + confidence.
 
 Setelah debrief (penyelesaian pertama), terjadi **FINAL PHANTOM DECISION** — dilema etis tentang bagaimana merespons manipulasi. Pesan penutup gim menghindari klise "teknologi itu netral": *dampak teknologi dipengaruhi oleh desain, konteks, aturan, dan cara manusia menggunakannya.*
 

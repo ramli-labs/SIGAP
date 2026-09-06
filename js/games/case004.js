@@ -2,25 +2,33 @@
    SIGAP — games/case004.js
    CASE 004 "Phantom Signal" — klimaks: deepfake / video termanipulasi.
 
-   Aset video (assets/cases/case004/) = video AI fotorealistis dengan
-   KARAKTER SINTETIS (bukan orang nyata), diturunkan oleh generate.py dari
-   satu master veo_3_1, lalu DIVERIFIKASI frame-per-frame + pengukuran
-   audio. Ucapan master diverifikasi ASR (faster-whisper, id): 100% kata
-   cocok dengan naskah. Artefak nyata di suspect.mp4 (deskripsi bukti di
-   bawah HARUS tetap cocok dengan aset):
-     - 00:03.2–00:04.5 audio digeser +0,4 s dengan crossfade (segmen
-       suara 2,8–4,1 diputar ulang pada 3,2–4,5) → bibir MENDAHULUI
+   Aset video (assets/cases/case004/) = REKAMAN ASLI seorang pengajar yang
+   sedang presentasi di depan kelas (dipakai dengan izin sebagai bahan
+   latihan), diturunkan oleh generate.py dari satu master referencenew.mp4,
+   lalu DIVERIFIKASI frame-per-frame + pengukuran audio. Ucapan master
+   diverifikasi ASR (faster-whisper medium, id):
+     0,0–2,3  "yang akan kita pelajari atau kita lakuin hari ini"
+     2,3–3,8  "yang pertama nanti"
+     3,8–6,0  "bapak akan ngasih sebuah pertanyaan"
+     7,4–7,7  "terus"
+   Artefak nyata di suspect.mp4 (deskripsi bukti di bawah HARUS tetap
+   cocok dengan aset):
+     - 00:03.4–00:04.9 audio digeser +0,4 s dengan crossfade (segmen
+       suara 3,0–4,5 diputar ulang pada 3,4–4,9) → bibir MENDAHULUI
        audio ±0,4 s; suara terlambat/overlap, BUKAN hening. Contoh:
-       detik 3,6–4,0 mulut aktif tetapi amplitudo audio nyaris kosong.
+       detik 3,8–4,1 mulut aktif ("bapak akan…") tetapi amplitudo audio
+       nyaris kosong.
      - 00:05.55–00:05.72 area wajah pecah 3–4 frame: salinan wajah
-       (crop 88x104 @300,56) bergeser +5/+4 px, bingkai kotak magenta,
+       (crop 76x92 @442,124) bergeser +5/+4 px, bingkai kotak magenta,
        garis sobek mendatar.
-     - 00:04.5 sambungan kasar (sepotong kata terlewati), lalu timbre
-       berubah: nada dasar turun ±2,5 semitone (lebih berat) + getar
-       cepat (tremolo 9 Hz) sampai akhir.
-     - 00:06.0+ poster OSIS berpindah dari pojok kanan atas papan
-       pengumuman (overlay 92,12) turun ke kiri (16,64)
-       (reference.mp4: tetap selama 9 detik).
+     - 00:04.9 sambungan kasar (potongan 4,5–4,9 terlewati, sepotong kata
+       "ngasih" hilang), lalu timbre berubah: nada dasar turun ±2,5
+       semitone (lebih berat) + getar cepat (tremolo 9 Hz) sampai akhir.
+     - 00:06.0+ dua blok warna di slide proyektor BERTUKAR WARNA:
+       "Kumpulkan Data" (hijau) jadi merah, "Diskusi & Refleksi" (merah)
+       jadi hijau; labelnya tetap di tempat. Yang diubah hanya hue piksel
+       aslinya, jadi bayangan dan noise proyektor tetap utuh
+       (reference.mp4: warna tidak berubah selama 9 detik).
    ============================================================ */
 (function () {
   'use strict';
@@ -35,15 +43,15 @@
   SIGAP.data.evidenceCatalog.case004 = {
     'c4-ev-lipsync': {
       id: 'c4-ev-lipsync',
-      title: '00:03.2 — Bibir mendahului audio',
-      body: 'Mulai detik 3,2 suara TERTINGGAL ±0,4 detik dari gerak bibir: mulut sudah membentuk ' +
+      title: '00:03.4 — Bibir mendahului audio',
+      body: 'Mulai detik 3,4 suara TERTINGGAL ±0,4 detik dari gerak bibir: mulut sudah membentuk ' +
         'kata berikutnya sementara audio masih menyelesaikan kata sebelumnya. Paling jelas di detik ' +
-        '3,6–4,0 — mulut aktif berbicara tetapi bar audio nyaris kosong; suaranya baru menyusul. ' +
-        'Ketinggalan ini bertahan sampai detik 4,5 — di video referensi keduanya selalu serentak.',
+        '3,8–4,1 — mulut aktif berbicara tetapi bar audio nyaris kosong; suaranya baru menyusul. ' +
+        'Ketinggalan ini bertahan sampai detik 4,9 — di video referensi keduanya selalu serentak.',
       source: 'LIP-SYNC ANALYZER (simulasi)',
       strength: 'KUAT',
       temporal: true,
-      ts: '00:03.2'
+      ts: '00:03.4'
     },
     'c4-ev-boundary': {
       id: 'c4-ev-boundary',
@@ -58,22 +66,24 @@
     },
     'c4-ev-audio': {
       id: 'c4-ev-audio',
-      title: '±00:04.5 — Warna suara berubah',
-      body: 'Sebelum detik 4,5 warna suaranya masih natural. Tepat di detik 4,5 ada sambungan kasar — ' +
+      title: '±00:04.9 — Warna suara berubah',
+      body: 'Sebelum detik 4,9 warna suaranya masih natural. Tepat di detik 4,9 ada sambungan kasar — ' +
         'sepotong ucapan seperti terlewati — lalu nada dasar tiba-tiba TURUN (lebih berat) dan bergetar ' +
         'cepat (tremolo). Pola gelombang paruh kedua jelas berbeda, padahal di video referensi warna ' +
         'suaranya konsisten dari awal sampai akhir.',
       source: 'AUDIO WAVEFORM (simulasi)',
       strength: 'SEDANG',
       temporal: true,
-      ts: '00:04.5'
+      ts: '00:04.9'
     },
     'c4-ev-background': {
       id: 'c4-ev-background',
-      title: '00:06.0 — Poster OSIS berpindah',
-      body: 'Mulai detik 6 poster OSIS yang sejak awal menempel di pojok kanan atas papan pengumuman ' +
-        'tiba-tiba melompat turun ke kiri. Pada video referensi poster tetap di pojok kanan atas ' +
-        'selama 9 detik penuh. Latar yang "melompat" bisa menandakan potongan/tempelan.',
+      title: '00:06.0 — Warna blok di slide bertukar',
+      body: 'Mulai detik 6, dua blok di slide proyektor bertukar warna: "Kumpulkan Data" yang sejak ' +
+        'awal HIJAU berubah jadi MERAH, dan "Diskusi & Refleksi" yang MERAH berubah jadi HIJAU — ' +
+        'sementara tulisannya tetap di tempat. Pada video referensi warnanya tidak berubah sedikit pun ' +
+        'selama 9 detik. Slide tidak bisa berubah sendiri sementara orangnya bicara tanpa jeda; ' +
+        'perubahan seperti ini menandakan ada potongan yang disambung.',
       source: 'BACKGROUND CONTINUITY (simulasi)',
       strength: 'SEDANG',
       temporal: true,
@@ -117,12 +127,14 @@
   }
 
   /* ---------- Data tersinkron dengan aset video final ----------
-     Diukur dari aset final: audio = RMS per 0,1 s (dinormalkan 0-1);
-     mulut = gerak area mulut per 0,1 s dari selisih antarframe
-     (dinormalkan 0-1). Indeks i = detik i/10. */
-  var MOUTH_DATA = [0.83, 0.86, 0.76, 0.71, 0.62, 0.62, 0.52, 0.44, 0.55, 0.65, 0.66, 0.72, 0.79, 0.69, 0.54, 0.51, 0.53, 0.52, 0.45, 0.44, 0.51, 0.48, 0.37, 0.3, 0.35, 0.55, 0.59, 0.48, 0.45, 0.51, 0.51, 0.37, 0.28, 0.39, 0.7, 0.88, 0.8, 0.77, 0.78, 0.75, 0.66, 0.49, 0.44, 0.47, 0.48, 0.49, 0.45, 0.34, 0.21, 0.17, 0.24, 0.33, 0.4, 0.41, 0.34, 0.31, 0.34, 0.41, 0.44, 0.46, 0.49, 0.41, 0.32, 0.29, 0.23, 0.28, 0.39, 0.57, 0.91, 1, 0.78, 0.67, 0.57, 0.37, 0.23, 0.24, 0.3, 0.35, 0.45, 0.4, 0.15, 0.01, 0, 0, 0, 0, 0, 0, 0, 0];
-  var AUDIO_REF = [0.27, 0.79, 1, 0.91, 0.95, 0.98, 0.72, 0.63, 0.62, 0.83, 0.4, 0.22, 0.18, 0.15, 0.17, 0.73, 0.67, 0.98, 0.67, 0.82, 0.7, 0.34, 0.6, 0.76, 0.63, 0.86, 0.34, 0.65, 0.71, 0.24, 0.38, 0.38, 0.12, 0.12, 0.13, 0.12, 0.22, 0.78, 0.67, 0.89, 0.72, 0.97, 0.68, 0.19, 0.78, 0.29, 0.14, 0.36, 0.29, 0.15, 0.39, 0.4, 0.46, 0.42, 0.3, 0.45, 0.24, 0.56, 0.33, 0.88, 0.32, 0.24, 0.38, 0.78, 0.36, 0.24, 0.57, 0.3, 0.12, 0.46, 0.23, 0.11, 0.12, 0.18, 0.28, 0.37, 0.4, 0.56, 0.64, 0.61, 0.01, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  var AUDIO_SUS = [0.27, 0.79, 1, 0.91, 0.95, 0.98, 0.72, 0.63, 0.62, 0.83, 0.4, 0.22, 0.18, 0.15, 0.17, 0.73, 0.67, 0.98, 0.67, 0.82, 0.7, 0.34, 0.6, 0.76, 0.63, 0.86, 0.34, 0.65, 0.71, 0.24, 0.38, 0.38, 0.37, 0.24, 0.39, 0.38, 0.12, 0.12, 0.13, 0.11, 0.23, 0.77, 0.67, 0.89, 0.72, 0.14, 0.09, 0.27, 0.14, 0.09, 0.3, 0.31, 0.33, 0.25, 0.24, 0.29, 0.22, 0.28, 0.33, 0.75, 0.25, 0.14, 0.25, 0.55, 0.34, 0.18, 0.34, 0.22, 0.1, 0.34, 0.18, 0.08, 0.09, 0.13, 0.2, 0.26, 0.27, 0.37, 0.49, 0.47, 0.09, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+     Diukur dari aset final oleh assets/cases/case004/measure.py:
+     audio = RMS per 0,1 s (reference & suspect dinormalkan dengan skala
+     yang sama, 0-1); mulut = gabungan bukaan bibir (jarak bibir dalam /
+     lebar mulut, face-mesh landmark) dan laju perubahannya per 0,1 s,
+     dinormalkan 0-1. Indeks i = detik i/10. */
+  var MOUTH_DATA = [0.64, 0.64, 0.62, 1, 0.4, 0.4, 0.34, 0.31, 0.44, 0.48, 0.35, 0.4, 0.64, 0.77, 0.61, 0.49, 0.77, 0.7, 0.34, 0.35, 0.85, 0.67, 0.85, 1, 1, 1, 0.93, 0.86, 0.75, 0.56, 0.5, 0.56, 0.36, 0.23, 0.24, 0.22, 0.38, 0.38, 0.82, 0.46, 0.48, 0.1, 0.47, 1, 0.6, 0.56, 0.67, 0.7, 0.91, 0.48, 0.33, 0.41, 0.18, 0.18, 0.29, 0.2, 0.64, 0.57, 0.49, 0.69, 0.68, 0.63, 0.53, 0.31, 0.17, 0.16, 0.19, 0.18, 0.3, 0.47, 0.46, 0.06, 0.01, 0.01, 0.02, 0.16, 0.29, 0.37, 0.31, 0.26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var AUDIO_REF = [0.6, 0.42, 0.41, 0.61, 0.41, 0.9, 0.68, 0.88, 0.84, 0.67, 0.44, 0.3, 0.46, 0.68, 0.32, 0.48, 0.38, 0.62, 0.43, 0.4, 0.45, 0.33, 0.29, 0.39, 0.39, 0.41, 0.53, 0.51, 0.55, 0.43, 1, 0.45, 0.19, 0.12, 0.12, 0.1, 0.1, 0.15, 0.6, 0.57, 0.69, 0.29, 0.2, 0.12, 0.45, 0.21, 0.51, 0.28, 0.56, 0.26, 0.41, 0.31, 0.28, 0.74, 0.86, 0.44, 0.31, 0.3, 0.48, 0.33, 0.27, 0.25, 0.34, 0.15, 0.1, 0.09, 0.07, 0.08, 0.09, 0.08, 0.09, 0.08, 0.1, 0.09, 0.11, 0.6, 0.55, 0.45, 0.83, 0.3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var AUDIO_SUS = [0.6, 0.42, 0.41, 0.61, 0.41, 0.9, 0.68, 0.88, 0.84, 0.67, 0.44, 0.3, 0.46, 0.68, 0.32, 0.48, 0.38, 0.62, 0.43, 0.4, 0.45, 0.33, 0.29, 0.39, 0.39, 0.41, 0.53, 0.51, 0.55, 0.43, 1, 0.45, 0.19, 0.12, 0.54, 0.45, 0.19, 0.12, 0.12, 0.1, 0.1, 0.15, 0.6, 0.58, 0.68, 0.29, 0.21, 0.12, 0.45, 0.13, 0.34, 0.2, 0.22, 0.54, 0.64, 0.31, 0.23, 0.2, 0.32, 0.24, 0.23, 0.14, 0.29, 0.12, 0.08, 0.06, 0.05, 0.06, 0.06, 0.06, 0.06, 0.06, 0.07, 0.07, 0.08, 0.5, 0.35, 0.31, 0.53, 0.24, 0.06, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   function sample(arr, t) {
     var i = Math.floor(t * 10);
     if (i < 0) i = 0;
@@ -247,7 +259,7 @@
       header.appendChild(el('div', 'screen__eyebrow', 'CASE 004 — KLIMAKS'));
       header.appendChild(el('h1', 'screen__title', 'Phantom Signal'));
       header.appendChild(el('p', 'screen__sub',
-        'Sebuah video pernyataan Ketua OSIS beredar. Bandingkan dengan rekaman referensi resmi, ' +
+        'Sebuah potongan video guru beredar dan diragukan keasliannya. Bandingkan dengan rekaman referensi resmi, ' +
         'uji hipotesismu dengan alat forensik simulasi, lalu putuskan berdasarkan bukti.'));
       main.appendChild(header);
 
@@ -291,9 +303,9 @@
   function showIntro() {
     setPhase(0);
     SIGAP.ui.dialogue.play([
-      { speaker: 'aruna', voice: 'aruna/case004-intro-01.mp3', text: 'Agen, ini kasus terbesar kita. Sebuah video pernyataan Ketua OSIS beredar di grup chat — isinya membatalkan Pentas Seni dan menyudutkan seorang siswa. Ketua OSIS bilang dia tidak pernah merekam itu.' },
+      { speaker: 'aruna', voice: 'aruna/case004-intro-01.mp3', text: 'Agen, ini kasus terbesar kita. Potongan video guru kita saat menjelaskan proyek di kelas beredar di grup chat — versinya sudah diubah, dan seorang siswa jadi tersudut. Beliau bilang bukan itu yang dia rekam.' },
       { speaker: 'aruna', voice: 'aruna/case004-intro-02.mp3', text: 'Untungnya, sekolah punya rekaman referensi resmi yang diambil di ruangan yang sama. Bandingkan keduanya dengan teliti: mata dan telingamu adalah alat pertama.' },
-      { speaker: 'system', text: 'CATATAN: kedua video adalah SIMULASI MEDIA PELATIHAN — siswa di dalamnya adalah KARAKTER SINTETIS buatan AI yang dibuat khusus untuk latihan ini, bukan rekaman orang sungguhan.' },
+      { speaker: 'system', text: 'CATATAN: kedua video adalah SIMULASI MEDIA PELATIHAN. Rekaman aslinya nyata dan dipakai dengan izin; versi "suspect" sengaja diberi artefak buatan untuk latihan ini. Jangan sebarkan potongannya di luar kelas.' },
       { speaker: 'aruna', voice: 'aruna/case004-intro-03.mp3', text: 'Tonton keduanya sampai selesai (nyalakan suara). Catat apa pun yang terasa janggal — sekecil apa pun.' }
     ], { onEnd: showObserve });
   }
@@ -381,17 +393,17 @@
 
     var grid = el('div', 'grid-2 c4-videos');
     grid.appendChild(videoPanel('suspect', 'VIDEO BEREDAR (SUSPECT)', 'tag--red', [
-      'Seorang siswa (karakter sintetis "Ketua OSIS", selempang kuning) berdiri di koridor sekolah: papan pengumuman hijau di kiri dengan poster OSIS di pojok kanan atasnya, deretan pintu dan jendela kelas di kanan. Watermark: SIMULASI MEDIA PELATIHAN.',
-      'Ia berkata: "Mulai bulan depan, semua dana kegiatan OSIS akan dialihkan untuk membeli perlengkapan pribadi panitia."',
-      'Sekitar detik 3-4 suaranya tertinggal dari gerak bibir — mulut sudah mengucapkan kata berikutnya, suaranya menyusul terlambat.',
+      'Seorang pengajar berdiri di depan kelas, di sisi kanan layar proyektor yang menampilkan slide alur belajar (Pertanyaan Pemantik, Rancang Proyek, Kumpulkan Data, Latih Model AI, Uji Model, Evaluasi & Refleksi). Dinding hijau toska di bawah layar; papan tulis kaca di sisi kanan. Watermark: SIMULASI MEDIA PELATIHAN.',
+      'Ia berkata: "…yang akan kita pelajari atau kita lakuin hari ini. Yang pertama nanti bapak akan ngasih sebuah pertanyaan… terus…"',
+      'Sekitar detik 3-5 suaranya tertinggal dari gerak bibir — mulut sudah mengucapkan kata berikutnya, suaranya menyusul terlambat.',
       'Sekilas, sekitar detik 5-6, ada kedipan kotak magenta dan garis sobek di area wajah.',
-      'Di detik 4,5 ada sambungan kasar, lalu suaranya berubah jadi lebih berat dan bergetar; setelah detik 6 ada yang berpindah di latar belakang.'
+      'Di detik 4,9 ada sambungan kasar — sepotong kata seperti hilang — lalu suaranya berubah jadi lebih berat dan bergetar; setelah detik 6 ada yang berpindah di latar belakang.'
     ]));
     grid.appendChild(videoPanel('reference', 'REKAMAN REFERENSI RESMI', 'tag--green', [
-      'Siswa yang sama, koridor yang sama: papan pengumuman di kiri, poster OSIS di pojok kanan atas papan. Watermark: SIMULASI MEDIA PELATIHAN.',
-      'Kalimat yang sama diucapkan jelas dan utuh: "Mulai bulan depan, semua dana kegiatan OSIS akan dialihkan untuk membeli perlengkapan pribadi panitia."',
+      'Pengajar yang sama, ruang kelas yang sama, slide alur belajar yang sama di layar proyektor. Watermark: SIMULASI MEDIA PELATIHAN.',
+      'Kalimat yang sama diucapkan jelas dan utuh: "…yang akan kita pelajari atau kita lakuin hari ini. Yang pertama nanti bapak akan ngasih sebuah pertanyaan… terus…"',
       'Gerak mulut dan suara selalu terasa serentak.',
-      'Suara terdengar konsisten dari awal sampai akhir; poster OSIS tidak berpindah.'
+      'Suara terdengar konsisten dari awal sampai akhir; warna blok di slide tidak berubah.'
     ]));
     refs.stage.appendChild(grid);
 
@@ -606,8 +618,8 @@
     if (t >= 5.4 && t <= 5.8) {
       return 'Area wajah tampak PECAH: salinan wajah bergeser dengan bingkai kotak magenta, plus garis sobek mendatar.';
     }
-    if (t >= 6.0) return 'Siswa berbicara. Poster OSIS kini TURUN KE KIRI dari pojok kanan atas papan (sisi kiri layar).';
-    return 'Siswa berbicara di koridor; papan pengumuman di sisi kiri layar dengan poster OSIS di pojok kanan atasnya. Tidak ada keanehan mencolok.';
+    if (t >= 6.0) return 'Pengajar berbicara. Di slide, blok "Kumpulkan Data" kini MERAH dan blok "Diskusi & Refleksi" kini HIJAU — tertukar.';
+    return 'Pengajar berbicara di depan layar proyektor; di slide, blok "Kumpulkan Data" hijau dan blok "Diskusi & Refleksi" merah. Tidak ada keanehan mencolok.';
   }
 
   function toolFrame(panel) {
@@ -714,8 +726,8 @@
     canvas.setAttribute('role', 'img');
     canvas.setAttribute('aria-label',
       'Grafik bar gerak mulut (atas, biru) vs amplitudo audio (bawah, kuning) sepanjang 9 detik. ' +
-      'Mulai detik 3,2 pola bar audio tertinggal ±0,4 detik dari bar mulut; paling jelas di detik ' +
-      '3,6 sampai 4,0: bar mulut tinggi tetapi bar audio hampir kosong. Sinkron kembali di detik 4,5.');
+      'Mulai detik 3,4 pola bar audio tertinggal ±0,4 detik dari bar mulut; paling jelas di detik ' +
+      '3,8 sampai 4,1: bar mulut tinggi tetapi bar audio hampir kosong. Sinkron kembali di detik 4,9.');
     var ctx = canvas.getContext('2d');
     // gambar bar per 0.1 s
     ctx.fillStyle = '#0b1220';
@@ -744,14 +756,14 @@
     for (var s = 0; s < 22; s++) {
       (function (segStart) {
         var b = btn(fmt(segStart), 'c4-seg', function (self) {
-          if (segStart >= 2.8 && segStart <= 4.0) {
+          if (segStart >= 3.2 && segStart <= 4.4) {
             self.classList.add('c4-seg--correct');
             markFound('c4-ev-lipsync');
           } else {
             self.classList.add('c4-seg--wrong');
             wrongMark('lipsync', [
               'Di segmen ini bar mulut dan bar audio masih kompak. Cari bagian di mana bar atas tinggi tetapi bar bawah kosong.',
-              'Petunjuk: perhatikan sekitar sepertiga awal video, setelah detik ke-3.'
+              'Petunjuk: perhatikan bagian tengah video, antara detik ke-3 dan ke-5.'
             ]);
           }
         });
@@ -795,9 +807,9 @@
     c1.setAttribute('role', 'img');
     c1.setAttribute('aria-label',
       'Gelombang audio suspect: paruh pertama pola ucapan natural (dengan pola yang tertinggal 0,4 detik ' +
-      'mulai detik 3,2); tepat di detik 4,5 ada sambungan kasar lalu polanya berubah — nada lebih ' +
+      'mulai detik 3,4); tepat di detik 4,9 ada sambungan kasar lalu polanya berubah — nada lebih ' +
       'rendah/berat dan bergetar, ditandai warna beda.');
-    drawWave(c1, audioEnvSus, 4.5);
+    drawWave(c1, audioEnvSus, 4.9);
     body.appendChild(c1);
 
     body.appendChild(el('div', 'text-xs text-mono text-success', 'REFERENSI'));
@@ -822,7 +834,7 @@
             self.classList.add('c4-seg--wrong');
             wrongMark('audio', [
               'Di sini polanya masih sama dengan bagian sebelumnya. Bandingkan paruh pertama dan paruh kedua.',
-              'Petunjuk: dengarkan/lihat sekitar tengah video — sebelum dan sesudah detik 4-5.'
+              'Petunjuk: dengarkan/lihat sekitar tengah video — sebelum dan sesudah detik 5.'
             ]);
           }
         });
@@ -847,10 +859,10 @@
     body.appendChild(grid);
 
     var slots = [
-      { src: 'suspect.mp4', t: 2.0, label: 'SUSPECT — 00:02.0', desc: 'Poster OSIS di pojok KANAN ATAS papan pengumuman.' },
-      { src: 'suspect.mp4', t: 7.0, label: 'SUSPECT — 00:07.0', desc: 'Poster OSIS kini TURUN KE KIRI dari pojok papan.' },
-      { src: 'reference.mp4', t: 2.0, label: 'REFERENSI — 00:02.0', desc: 'Poster OSIS di pojok KANAN ATAS papan pengumuman.' },
-      { src: 'reference.mp4', t: 7.0, label: 'REFERENSI — 00:07.0', desc: 'Poster OSIS tetap di pojok KANAN ATAS.' }
+      { src: 'suspect.mp4', t: 2.0, label: 'SUSPECT — 00:02.0', desc: 'Di slide: "Kumpulkan Data" HIJAU, "Diskusi & Refleksi" MERAH.' },
+      { src: 'suspect.mp4', t: 7.0, label: 'SUSPECT — 00:07.0', desc: 'Warna kedua blok itu kini TERTUKAR — labelnya tetap.' },
+      { src: 'reference.mp4', t: 2.0, label: 'REFERENSI — 00:02.0', desc: 'Di slide: "Kumpulkan Data" HIJAU, "Diskusi & Refleksi" MERAH.' },
+      { src: 'reference.mp4', t: 7.0, label: 'REFERENSI — 00:07.0', desc: 'Warnanya tetap sama seperti di detik 2.' }
     ];
     slots.forEach(function (slot) {
       var cell = el('div', 'c4-bg-cell');
@@ -885,9 +897,9 @@
 
     body.appendChild(el('p', 'text-sm', 'Elemen latar mana yang berbeda antara suspect dan referensi?'));
     var opts = [
-      { label: 'Jendela koridor di sisi kiri', ok: false },
-      { label: 'Poster OSIS di papan pengumuman', ok: true },
-      { label: 'Seragam yang dipakai siswa', ok: false },
+      { label: 'Posisi layar proyektor', ok: false },
+      { label: 'Warna blok di slide proyektor', ok: true },
+      { label: 'Baju yang dipakai pengajar', ok: false },
       { label: 'Tidak ada perbedaan', ok: false }
     ];
     var optWrap = el('div', 'stack stack--sm');
@@ -899,7 +911,7 @@
         } else {
           wrongMark('background', [
             'Elemen itu sama persis di kedua video. Bandingkan cuplikan detik 2 dan detik 7 dari video suspect.',
-            'Petunjuk: ada benda di PAPAN PENGUMUMAN yang "melompat" posisi setelah detik ke-6 — hanya di suspect.'
+            'Petunjuk: perhatikan WARNA di dalam slide setelah detik ke-6 — ada dua blok yang bertukar, hanya di suspect.'
           ]);
         }
       }));
@@ -1098,10 +1110,10 @@
     var verdict = el('div', 'debrief-verdict ' + (correct ? 'debrief-verdict--good' : 'debrief-verdict--bad'));
     var whyList =
       '<ul class="c4-recap">' +
-      '<li><span class="text-mono">00:03.2</span> suara tertinggal ±0,4 detik dari gerak bibir — mulut mendahului audio sampai detik 4,5;</li>' +
+      '<li><span class="text-mono">00:03.4</span> suara tertinggal ±0,4 detik dari gerak bibir — mulut mendahului audio sampai detik 4,9;</li>' +
       '<li><span class="text-mono">00:05.6</span> area wajah pecah/berkedip (salinan wajah bergeser + garis sobek) selama 3-4 frame;</li>' +
-      '<li><span class="text-mono">±00:04.5</span> sambungan kasar lalu warna suara berubah — nada dasar turun dan bergetar;</li>' +
-      '<li><span class="text-mono">00:06.0</span> poster OSIS di latar berpindah — di referensi tidak.</li></ul>';
+      '<li><span class="text-mono">±00:04.9</span> sambungan kasar lalu warna suara berubah — nada dasar turun dan bergetar;</li>' +
+      '<li><span class="text-mono">00:06.0</span> dua blok warna di slide bertukar — di referensi tidak.</li></ul>';
     if (correct) {
       verdict.innerHTML = '<strong>&#10003; Kesimpulan tepat: kemungkinan besar dimanipulasi.</strong>' +
         '<p>Yang membuat kesimpulan ini kuat bukan satu keanehan, melainkan EMPAT pengamatan independen yang menunjuk arah sama:</p>' +
@@ -1210,7 +1222,7 @@
       id: 'lapor', key: 'C', label: 'Dokumentasikan, verifikasi, laporkan, edukasi',
       desc: 'Simpan bukti + timestamp, laporkan ke pihak sekolah/platform, ajak teman memahami cara kerjanya.',
       ok: true,
-      feedback: 'Ini jalur yang memutus rantai: bukti terdokumentasi rapi (timestamp 00:03.2, 00:04.5, 00:05.6, 00:06.0) ' +
+      feedback: 'Ini jalur yang memutus rantai: bukti terdokumentasi rapi (timestamp 00:03.4, 00:04.9, 00:05.6, 00:06.0) ' +
         'membuat laporanmu bisa diperiksa ulang orang lain; pihak berwenang dan platform bisa bertindak; dan teman-temanmu ' +
         'belajar mengenali polanya — sehingga manipulasi berikutnya lebih sulit berhasil.'
     },
