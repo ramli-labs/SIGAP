@@ -14,7 +14,7 @@ Panduan ini membantu guru memakai SIGAP di kelas: tujuan pembelajaran, skenario 
 
 **Sekali di awal, sebelum mengajar**
 
-1. Buka [`kunci-jawaban.md`](kunci-jawaban.md) di folder yang sama. File ini **tidak ada di situs**, hanya di repositori, jadi bukalah lewat GitHub atau salinan folder proyek. Simpan/cetak untuk diri sendiri.
+1. Siapkan **dokumen kunci jawaban**. Dokumen itu sengaja **tidak disimpan di repositori ini** (repo bersifat publik); mintalah dari pengelola SIGAP di sekolah Anda, lalu simpan di Drive pribadi atau cetak.
 2. Mainkan sendiri minimal CASE 001 sampai selesai supaya paham alurnya.
 3. Pastikan tiap perangkat siswa pernah membuka URL SIGAP **sekali saat online**. Setelah itu gim jalan offline.
 4. Tentukan cara siswa mengirim Class Code: grup chat kelas, dokumen bersama, atau ditulis di kertas.
@@ -57,13 +57,13 @@ SIGAP mengukur 5 kompetensi: **Critical Thinking (CT)**, **AI Literacy (AI)**, *
 | **LAB 03: AI Bias** | AI (1), ET (1) | Memahami hubungan keterwakilan data dan performa per kelompok; menyadari akurasi keseluruhan ≠ keadilan per kelompok |
 | **LAB 04: Human or AI?** | CT (1.5), AI (1) | Menilai konten berdasarkan indikator, bukan firasat; memahami konsep provenance; berani menjawab "belum cukup bukti" |
 
-Kunci jawaban tiap kasus ada di [`kunci-jawaban.md`](kunci-jawaban.md), di folder yang sama. Folder `guru/` sengaja tidak ikut dipublikasikan ke situs.
+Kunci jawaban tiap kasus ada di dokumen terpisah yang **tidak disimpan di repositori** ini, karena repo bersifat publik. Simpan salinan Anda sendiri di luar proyek.
 
 ## 3. Cara pakai di kelas
 
 ### Persiapan (sebelum jam pelajaran)
 - Pastikan tiap perangkat (Chromebook/HP/PC lab) sudah pernah membuka URL SIGAP sekali saat online; setelah itu gim berjalan offline.
-- Coba mainkan CASE 001 sendiri dan baca [`kunci-jawaban.md`](kunci-jawaban.md).
+- Coba mainkan CASE 001 sendiri dan baca dokumen kunci jawaban Anda.
 - Siapkan kanal pengumpulan Class Code (grup chat kelas, dokumen bersama, atau ditulis di kertas).
 
 ### Skenario A: 2 JP (±80 menit): fokus satu kasus

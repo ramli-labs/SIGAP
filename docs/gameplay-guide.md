@@ -1,6 +1,6 @@
 # SIGAP - Panduan Gameplay
 
-Panduan ini menjelaskan filosofi desain, alur permainan, sistem skor, dan achievements SIGAP. Bagian per-CASE **tidak membocorkan jawaban**, jadi dokumen ini aman dibagikan. Kunci jawaban disimpan terpisah di `guru/kunci-jawaban.md`, folder yang dikecualikan dari situs publik.
+Panduan ini menjelaskan filosofi desain, alur permainan, sistem skor, dan achievements SIGAP. Bagian per-CASE **tidak membocorkan jawaban**, jadi dokumen ini aman dibagikan. Kunci jawaban disimpan sebagai dokumen pribadi guru di luar repositori.
 
 ---
 
@@ -144,6 +144,6 @@ Di layar Achievements, badge terkunci tetap menampilkan nama dan deskripsinya (e
 
 ## 7. Kunci jawaban
 
-Kunci jawaban tiap CASE dan Lab **tidak disimpan di file ini** supaya panduan ini
-aman dibagikan/dipublikasikan. Materinya ada di `guru/kunci-jawaban.md`, folder
-yang dikecualikan dari situs publik.
+Kunci jawaban tiap CASE dan Lab **tidak disimpan di repositori ini**, karena repo
+bersifat publik. Materinya dipegang guru sebagai dokumen pribadi di luar proyek.
+Lihat `guru/panduan-guru.md` untuk cara memperolehnya.

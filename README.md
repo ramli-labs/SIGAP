@@ -64,8 +64,8 @@ Tidak ada dependency, `npm install`, atau proses build apa pun.
 3. Di GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
    Workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) akan jalan otomatis setiap push ke `main`.
 
-   > **Penting.** Workflow ini hanya mengunggah berkas aplikasi. Folder `guru/`
-   > (panduan guru + **kunci jawaban**), `docs/`, dan `tools/` sengaja TIDAK ikut,
+   > **Penting.** Workflow ini hanya mengunggah berkas aplikasi. Folder `guru/`,
+   > `docs/`, dan `tools/` sengaja TIDAK ikut,
    > supaya materi guru tidak bisa dibuka siswa lewat URL situs. Kalau Source
    > dibiarkan **"Deploy from a branch"**, seluruh isi repo tetap disajikan dan
    > pengecualian ini tidak berlaku. Workflow punya langkah pemeriksa yang
@@ -91,8 +91,7 @@ sigap/
 │   ├── gameplay-guide.md   # Panduan gameplay & sistem skor (tanpa spoiler)
 │   └── playtest-checklist.md # Checklist QA
 ├── guru/                   # KHUSUS GURU, dikecualikan dari situs publik
-│   ├── panduan-guru.md     # Tujuan pembelajaran, skenario kelas, baca dashboard
-│   └── kunci-jawaban.md    # Kunci jawaban seluruh CASE & Lab
+│   └── panduan-guru.md     # Tujuan pembelajaran, skenario kelas, baca dashboard
 ├── tools/                  # skrip pendukung (tidak ikut dipublikasikan)
 ├── css/                    # fonts, main, components, game, screens, case001–004, ai-lab, responsive
 ├── js/
@@ -268,7 +267,7 @@ Panduan lengkap membaca dashboard: lihat [`guru/panduan-guru.md`](guru/panduan-g
 
 - [`docs/gameplay-guide.md`](docs/gameplay-guide.md): filosofi desain, alur tiap CASE/Lab, sistem skor & achievements. **Tanpa spoiler**, aman dibagikan.
 - [`guru/panduan-guru.md`](guru/panduan-guru.md): tujuan pembelajaran, skenario kelas 2–4 JP, cara membaca dashboard, diskusi lanjutan.
-- [`guru/kunci-jawaban.md`](guru/kunci-jawaban.md): **kunci jawaban seluruh CASE dan Lab.** Folder `guru/` dikecualikan dari situs yang dipublikasikan.
+- **Kunci jawaban** seluruh CASE dan Lab **tidak disimpan di repositori ini** (repo publik). Materinya dipegang guru sebagai dokumen pribadi di luar proyek; `.gitignore` menjaga agar salinan lokalnya tidak ikut ter-commit.
 - [`docs/playtest-checklist.md`](docs/playtest-checklist.md): checklist QA lengkap sebelum rilis.
 
 ## Privasi & etika

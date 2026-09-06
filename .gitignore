@@ -1,0 +1,12 @@
+# Kunci jawaban disimpan sebagai dokumen PRIBADI guru, di luar repositori.
+# Kalau Anda menaruh salinannya di sini untuk dibaca offline, jangan sampai
+# ikut ter-commit: repo ini publik.
+guru/kunci-jawaban.md
+guru/*-pribadi.md
+
+# Master video CASE 004 (3,1 MB, tidak dipakai aplikasi). Lihat README.
+assets/cases/case004/referencenew.mp4
+
+# Berkas antara pipeline video
+assets/cases/case004/_base.mkv
+assets/cases/case004/_patch.mov
