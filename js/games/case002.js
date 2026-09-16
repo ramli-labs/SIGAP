@@ -322,6 +322,11 @@
     title: 'CASE 002: Real or Generated?',
     render: function (container) {
       run = freshRun();
+      // Progres di tengah kasus tidak disimpan; peringatkan sebelum keluar.
+      SIGAP.router.setLeaveGuard(function () {
+        if (!run || run.finished) return null;
+        return lockedCount() > 0 ? 'Progres kasus ini belum tersimpan dan akan hilang kalau kamu keluar sekarang. Kasus hanya tersimpan setelah kamu menyelesaikannya.' : null;
+      });
       refs = {};
       SIGAP.ui.background(container);
       container.appendChild(SIGAP.ui.topbar({ crumb: 'CASE 002', backTo: 'missions' }));
@@ -1128,6 +1133,7 @@
 
     if (sc.decisionCorrect) SIGAP.audio.sfx('success');
     renderDebrief(res, sc);
+    SIGAP.ui.phantomFirstContact(res.practice);
   }
 
   function scoreRow(label, val) {

@@ -891,6 +891,7 @@
     d.appendChild(el('p', 'text-sm text-muted', esc(res.result.calibrationFeedback)));
     d.appendChild(btn('Lanjut', 'btn btn--primary btn--lg', function () { showCinematic(); }));
     wrap.appendChild(d);
+    SIGAP.ui.phantomFirstContact(res.practice);
     window.scrollTo(0, 0);
   }
 
@@ -966,6 +967,11 @@
     title: 'CASE 003: Link Palsu',
     render: function (container) {
       run = newRun();
+      // Progres di tengah kasus tidak disimpan; peringatkan sebelum keluar.
+      SIGAP.router.setLeaveGuard(function () {
+        if (!run || run.finished) return null;
+        return run.phase > 0 ? 'Progres kasus ini belum tersimpan dan akan hilang kalau kamu keluar sekarang. Kasus hanya tersimpan setelah kamu menyelesaikannya.' : null;
+      });
       SIGAP.ui.background(container);
       container.appendChild(SIGAP.ui.topbar({ crumb: 'CASE 003', backTo: 'missions' }));
 

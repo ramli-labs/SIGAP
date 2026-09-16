@@ -233,4 +233,31 @@
 
     isActive: function () { return !!active; }
   };
+
+  /**
+   * Perkenalan PHANTOM: diputar SEKALI, setelah kasus pertama (non-practice)
+   * mana pun selesai. Urutan kasus bebas, jadi ini tidak boleh terikat ke
+   * CASE 001 saja; kalau terikat, siswa yang mulai dari kasus lain tidak
+   * pernah berkenalan dengan PHANTOM dan klimaks CASE 004 kehilangan
+   * persiapannya.
+   *
+   * @param {boolean} practice  true = pengulangan, perkenalan tidak diputar.
+   * @param {object}  [opts]    { silent: true } hanya menandai sudah dikenal
+   *                            tanpa memutar dialog (dipakai CASE 004, yang
+   *                            punya adegan PHANTOM-nya sendiri).
+   * @returns {boolean} true jika dialog benar-benar diputar.
+   */
+  SIGAP.ui.phantomFirstContact = function (practice, opts) {
+    if (practice) return false;
+    var story = SIGAP.state.get().story;
+    if (!story || story.phantomIntroSeen) return false;
+    function mark() {
+      SIGAP.state.update(function (s) { s.story.phantomIntroSeen = true; });
+    }
+    if (opts && opts.silent) { mark(); return false; }
+    var lines = SIGAP.data && SIGAP.data.dialogues && SIGAP.data.dialogues.phantomFirstContact;
+    if (!lines) { mark(); return false; }
+    SIGAP.ui.dialogue.play(lines, { onEnd: mark });
+    return true;
+  };
 })();

@@ -246,6 +246,11 @@
 
     render: function (container) {
       S = freshState();
+      // Progres di tengah kasus tidak disimpan; peringatkan sebelum keluar.
+      SIGAP.router.setLeaveGuard(function () {
+        if (!S || S.decision) return null;
+        return (S.hypothesis || foundCount() > 0) ? 'Progres kasus ini belum tersimpan dan akan hilang kalau kamu keluar sekarang. Kasus hanya tersimpan setelah kamu menyelesaikannya.' : null;
+      });
       live = { videos: [], timers: [] };
 
       SIGAP.ui.background(container);
@@ -1099,6 +1104,9 @@
     });
 
     if (SIGAP.audio) SIGAP.audio.sfx(correct ? 'success' : 'error');
+    // CASE 004 punya adegan PHANTOM sendiri (FINAL PHANTOM DECISION), jadi
+    // perkenalannya cukup ditandai tanpa diputar ulang di sini.
+    SIGAP.ui.phantomFirstContact(out.practice, { silent: true });
     showDebrief(correct, decision, confidence, out);
   }
 

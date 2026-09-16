@@ -10,3 +10,6 @@ assets/cases/case004/referencenew.mp4
 # Berkas antara pipeline video
 assets/cases/case004/_base.mkv
 assets/cases/case004/_patch.mov
+
+# Gambar analisis sementara (bukan bagian aplikasi)
+_analisis-*.png

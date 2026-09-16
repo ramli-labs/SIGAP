@@ -17,6 +17,62 @@
       '</svg>';
   };
 
+  /* ---------- Header institusional ---------- */
+
+  var INST_MARKUP =
+    '<div class="inst-header__inner">' +
+      '<img class="inst-header__main" src="assets/images/logo-kemendikdasmen.png" alt="Kementerian Pendidikan Dasar dan Menengah">' +
+      '<div class="inst-header__group">' +
+        '<img class="inst-header__bermutu" src="assets/images/logo-pendidikan-bermutu.png" alt="Pendidikan Bermutu Untuk Semua">' +
+        '<img class="inst-header__ramah" src="assets/images/logo-ramah.png" alt="Kemendikdasmen RAMAH">' +
+        '<img class="inst-header__sobat" src="assets/images/logo-sobat-smp.png" alt="Sobat SMP">' +
+      '</div>' +
+    '</div>';
+
+  var instHost = null;
+  var instMeasureBound = false;
+
+  /** Simpan tinggi header ke CSS var supaya layar 100dvh tidak ikut meluber. */
+  function measureInstHeader() {
+    var h = instHost ? instHost.offsetHeight : 0;
+    document.documentElement.style.setProperty('--inst-header-h', h + 'px');
+  }
+
+  /**
+   * Header institusional (bar putih: logo Kemendikdasmen + logo program).
+   * @param {'full'|'compact'|'none'} variant
+   * Idempoten: hanya menggambar ulang kalau variannya berubah.
+   */
+  SIGAP.ui.instHeader = function (variant) {
+    instHost = instHost || document.getElementById('inst-header');
+    if (!instHost) return;
+    variant = variant || 'none';
+    if (instHost.getAttribute('data-variant') === variant) return;
+    instHost.setAttribute('data-variant', variant);
+
+    if (variant === 'none') {
+      instHost.innerHTML = '';
+      measureInstHeader();
+      return;
+    }
+
+    instHost.innerHTML =
+      '<div class="inst-header' + (variant === 'compact' ? ' inst-header--compact' : '') + '">' +
+      INST_MARKUP + '</div>';
+
+    measureInstHeader();
+    // Logo belum termuat saat markup dipasang; ukur ulang setelah gambar siap
+    // dan saat lebar layar berubah (baris logo bisa membungkus).
+    var imgs = instHost.querySelectorAll('img');
+    for (var i = 0; i < imgs.length; i++) {
+      if (!imgs[i].complete) imgs[i].addEventListener('load', measureInstHeader);
+    }
+    if (!instMeasureBound) {
+      instMeasureBound = true;
+      window.addEventListener('resize', measureInstHeader);
+    }
+  };
+
   /** Fixed background layers (grid + glow + scanline). Idempotent per screen render. */
   SIGAP.ui.background = function (container) {
     var wrap = document.createElement('div');

@@ -12,6 +12,13 @@
   var current = null; // { name, screen }
   var appEl = null;
 
+  // Penjaga keluar layar. Diisi layar yang punya progres belum tersimpan
+  // (mis. CASE yang sedang dikerjakan): fungsi yang mengembalikan pesan
+  // konfirmasi, atau null kalau boleh langsung keluar.
+  var leaveGuard = null;
+  var lastHash = null;        // hash layar yang sedang tampil, untuk dipulihkan
+  var suppressNextRoute = false; // lewati satu hashchange hasil pemulihan kita
+
   // Routes reachable without a player profile.
   var PUBLIC_ROUTES = ['title', 'teacher'];
 
@@ -45,6 +52,11 @@
   }
 
   function doRoute() {
+    // Hashchange yang kita picu sendiri saat memulihkan alamat: abaikan,
+    // supaya layar yang sedang dikerjakan TIDAK ter-render ulang (yang justru
+    // akan menghapus progres yang sedang kita lindungi) dan modal tetap buka.
+    if (suppressNextRoute) { suppressNextRoute = false; return; }
+
     var target = parseHash();
     var name = target.name;
 
@@ -52,6 +64,28 @@
       renderError('Layar "' + name + '" tidak ditemukan.');
       return;
     }
+
+    // Konfirmasi kalau layar sekarang punya progres yang belum tersimpan.
+    // Alamat sudah terlanjur berubah, jadi pulihkan dulu, baru bertanya.
+    if (leaveGuard && current && current.name !== name) {
+      var msg = null;
+      try { msg = leaveGuard(); } catch (e) { msg = null; }
+      if (msg) {
+        var intended = window.location.hash;
+        var back = lastHash || '#/' + current.name;
+        if (window.location.hash !== back) {
+          suppressNextRoute = true;
+          window.location.hash = back;
+        }
+        SIGAP.ui.confirm('Keluar dari kasus ini?', msg, function () {
+          leaveGuard = null;
+          window.location.hash = intended;
+        }, { yesLabel: 'Ya, keluar', noLabel: 'Lanjut mengerjakan', danger: true });
+        return;
+      }
+    }
+    leaveGuard = null;
+    lastHash = window.location.hash;
 
     // Guard: gameplay screens need a profile.
     if (PUBLIC_ROUTES.indexOf(name) === -1 && !SIGAP.state.hasProfile()) {
@@ -66,6 +100,11 @@
     if (SIGAP.ui && SIGAP.ui.dialogue) SIGAP.ui.dialogue.stop();
     if (SIGAP.audio) SIGAP.audio.stopNarration();
     if (SIGAP.ui && SIGAP.ui.closeAllModals) SIGAP.ui.closeAllModals();
+
+    // Header institusional: versi penuh di layar non-gameplay, ringkas saat bermain.
+    if (SIGAP.ui && SIGAP.ui.instHeader) {
+      SIGAP.ui.instHeader(name === 'title' || name === 'teacher' ? 'full' : 'compact');
+    }
 
     appEl.innerHTML = '';
     window.scrollTo(0, 0);
@@ -87,6 +126,13 @@
 
   SIGAP.router = {
     register: function (name, screen) { screens[name] = screen; },
+
+    /**
+     * Pasang konfirmasi sebelum meninggalkan layar ini.
+     * @param {function|null} fn mengembalikan pesan konfirmasi, atau null
+     *        kalau sudah aman ditinggalkan. Otomatis dilepas saat pindah layar.
+     */
+    setLeaveGuard: function (fn) { leaveGuard = fn || null; },
 
     go: function (name, params) {
       var hash = '#/' + name;

@@ -44,6 +44,13 @@
       rTag.textContent = '★ DISARANKAN';
       tags.appendChild(rTag);
     }
+    if (c.finale && !completed) {
+      var fTag = document.createElement('span');
+      fTag.className = 'tag tag--purple';
+      fTag.textContent = 'KLIMAKS CERITA';
+      fTag.title = 'Paling pas dimainkan terakhir. Tidak dikunci.';
+      tags.appendChild(fTag);
+    }
     var sTag = document.createElement('span');
     if (completed) {
       sTag.className = 'tag tag--green';

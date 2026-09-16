@@ -38,6 +38,46 @@
   to { top: 100dvh; }
 }
 
+/* ---------- Header institusional (identik dengan NEXA) ---------- */
+/* Bar putih di atas layar: logo Kemendikdasmen di kiri, logo program di
+   kanan. Dua varian: penuh (layar judul) dan ringkas (saat bermain). */
+.inst-header {
+  position: relative;
+  z-index: 25;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(7, 20, 38, 0.1);
+  box-shadow: 0 2px 10px rgba(7, 20, 38, 0.14);
+}
+.inst-header__inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.inst-header__group {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.inst-header img { display: block; width: auto; }
+.inst-header__main { height: 56px; flex: none; }
+.inst-header__bermutu { height: 34px; }
+.inst-header__ramah { height: 34px; }
+.inst-header__sobat { height: 38px; }
+
+.inst-header--compact { box-shadow: 0 1px 6px rgba(7, 20, 38, 0.12); }
+.inst-header--compact .inst-header__inner { padding: 6px 24px; gap: 16px; }
+.inst-header--compact .inst-header__group { gap: 16px; }
+.inst-header--compact .inst-header__main { height: 36px; }
+.inst-header--compact .inst-header__bermutu,
+.inst-header--compact .inst-header__ramah { height: 20px; }
+.inst-header--compact .inst-header__sobat { height: 23px; }
+
 /* ---------- App chrome (topbar) ---------- */
 .topbar {
   position: sticky;

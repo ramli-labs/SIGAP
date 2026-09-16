@@ -43,6 +43,9 @@
       code: 'CASE 004',
       title: 'Phantom Signal',
       theme: 'Deepfake · Video termanipulasi',
+      // Klimaks cerita PHANTOM. Tidak dikunci (urutan kasus sengaja bebas),
+      // tapi ditandai supaya siswa tahu kasus ini paling pas dimainkan terakhir.
+      finale: true,
       brief: 'Potongan video seorang guru beredar dan diragukan keasliannya. Bandingkan dengan rekaman referensi, uji hipotesismu, dan hadapi PHANTOM.',
       route: 'case004',
       competencies: ['aiLiteracy', 'evidenceReasoning', 'ethicalReasoning', 'criticalThinking'],

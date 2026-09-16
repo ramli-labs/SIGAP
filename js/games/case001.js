@@ -221,6 +221,13 @@
         finishResult: null
       };
 
+      // Progres di tengah kasus tidak disimpan; peringatkan sebelum keluar.
+      SIGAP.router.setLeaveGuard(function () {
+        if (!run || run.finishResult) return null;
+        if (!run.opened.length && !run.decision) return null;
+        return 'Progres kasus ini belum tersimpan dan akan hilang kalau kamu keluar sekarang. Kasus hanya tersimpan setelah kamu menyelesaikannya.';
+      });
+
       SIGAP.state.update(function () {
         var c = SIGAP.state.caseProgress('case001');
         if (!c.startedAt) c.startedAt = Date.now();
@@ -982,15 +989,8 @@
         panel.appendChild(rowBtns);
         content.appendChild(panel);
 
-        // PHANTOM first contact, only after the first (non-practice) completion.
-        var story = SIGAP.state.get().story;
-        if (!run.finishResult.practice && !story.phantomIntroSeen) {
-          SIGAP.ui.dialogue.play(SIGAP.data.dialogues.phantomFirstContact, {
-            onEnd: function () {
-              SIGAP.state.update(function (s) { s.story.phantomIntroSeen = true; });
-            }
-          });
-        }
+        // Perkenalan PHANTOM setelah penyelesaian pertama (non-practice).
+        SIGAP.ui.phantomFirstContact(run.finishResult.practice);
       }
 
       /* ================= boot ================= */
