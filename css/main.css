@@ -219,7 +219,7 @@ html[data-reduced-motion='true'] *::after {
 }
 
 #app {
-  min-height: 100dvh;
+  min-height: calc(100dvh - var(--inst-header-h, 0px));
   outline: none;
 }
 
