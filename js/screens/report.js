@@ -258,6 +258,85 @@
       perf.appendChild(perfNote);
       main.appendChild(perf);
 
+      /* ===== 2b. KALIBRASI CONFIDENCE PER CASE ===== */
+      var calibRows = [];
+      (SIGAP.data.cases || []).forEach(function (caseDef) {
+        var c = s.progress.cases[caseDef.id];
+        if (!c || !c.breakdown || c.confidence === null || c.confidence === undefined) return;
+        var decisionCorrect = c.breakdown.decisionCorrectness === 100;
+        var conf = Math.max(0, Math.min(100, c.confidence));
+        var cal = SIGAP.scoring.calibrate(decisionCorrect, conf);
+        calibRows.push({ caseDef: caseDef, decisionCorrect: decisionCorrect, confidence: conf, cal: cal });
+      });
+
+      if (calibRows.length) {
+        var CALIB_VERDICT_TEXT = {
+          wellCalibrated: 'Terkalibrasi baik',
+          overconfident: 'Terlalu yakin',
+          underconfident: 'Kurang yakin'
+        };
+        var CALIB_VERDICT_CLASS = {
+          wellCalibrated: 'good',
+          overconfident: 'over',
+          underconfident: 'under'
+        };
+
+        var calibPanel = document.createElement('section');
+        calibPanel.className = 'panel stack';
+        calibPanel.innerHTML = '<div class="panel-title">2b · KALIBRASI CONFIDENCE PER CASE</div>' +
+          '<p class="text-xs text-muted">Titik menunjukkan seberapa yakin kamu saat mengunci kesimpulan. ' +
+          'Zona hijau adalah rentang confidence yang ideal untuk keputusan itu: tinggi (75–90%) kalau kesimpulanmu benar, ' +
+          'rendah (0–40%) kalau ternyata keliru.</p>';
+
+        var calibList = document.createElement('div');
+        calibList.className = 'scr-calib';
+        calibRows.forEach(function (r) {
+          var zoneLeft = r.decisionCorrect ? 75 : 0;
+          var zoneWidth = r.decisionCorrect ? 15 : 40;
+          var vClass = CALIB_VERDICT_CLASS[r.cal.verdict] || 'good';
+          var vText = CALIB_VERDICT_TEXT[r.cal.verdict] || '';
+
+          var row = document.createElement('div');
+          row.className = 'scr-calib__row';
+
+          var head = document.createElement('div');
+          head.className = 'scr-calib__head';
+          head.innerHTML =
+            '<span class="text-sm">' + esc(r.caseDef.code) + ' · ' + esc(r.caseDef.title) + '</span>' +
+            '<span class="tag ' + (r.decisionCorrect ? 'tag--green' : 'tag--red') + '">' +
+            (r.decisionCorrect ? '✓ Keputusan benar' : '✕ Keputusan keliru') + '</span>' +
+            '<span class="text-mono text-xs text-cyan">' + r.confidence + '%</span>';
+          row.appendChild(head);
+
+          var track = document.createElement('div');
+          track.className = 'scr-calib__track';
+          track.setAttribute('role', 'img');
+          track.setAttribute('aria-label', r.caseDef.code + ': confidence ' + r.confidence +
+            ' persen, keputusan ' + (r.decisionCorrect ? 'benar' : 'keliru') + ', ' + vText.toLowerCase());
+          track.innerHTML =
+            '<div class="scr-calib__zone" style="left:' + zoneLeft + '%;width:' + zoneWidth + '%"></div>' +
+            '<div class="scr-calib__marker scr-calib__marker--' + vClass + '" style="left:' + r.confidence + '%"></div>';
+          row.appendChild(track);
+
+          var note = document.createElement('p');
+          note.className = 'text-xs scr-calib__verdict scr-calib__verdict--' + vClass;
+          note.textContent = vText;
+          row.appendChild(note);
+
+          calibList.appendChild(row);
+        });
+        calibPanel.appendChild(calibList);
+
+        var wellCount = calibRows.filter(function (r) { return r.cal.verdict === 'wellCalibrated'; }).length;
+        var calibNote = document.createElement('p');
+        calibNote.className = 'text-xs text-faint';
+        calibNote.textContent = wellCount + ' dari ' + calibRows.length +
+          ' keputusan terkalibrasi baik. Ini dihitung dari run pertama tiap CASE (practice run tidak dihitung).';
+        calibPanel.appendChild(calibNote);
+
+        main.appendChild(calibPanel);
+      }
+
       /* ===== 3. KEKUATANMU / HAL YANG PERLU DILATIH ===== */
       var fb = buildFeedback(summary, s);
       var fbWrap = document.createElement('section');
